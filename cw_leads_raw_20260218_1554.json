@@ -1,0 +1,1446 @@
+[
+  {
+    "report_id": "3387177",
+    "project_name": "Ward 8 Senior Wellness Center",
+    "title": "Ward 8 Senior Wellness Center",
+    "estimated_value": "$10",
+    "value": "$10",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3387177?reporttypeid=1",
+    "address": "1700 Q St SE",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20020",
+    "stage": "Starts in 4-12 months",
+    "schedule": "12/2026  - Q4/2027",
+    "construction_type": "New",
+    "project_type": "Office/Athletic Facilities/Green Buildings (3,000 sq-ft), Medical",
+    "companies": "(O) City of Washington (DC)\n\t\t(A) Perkins Eastman Architects",
+    "created_updated": "07/03/202302/18/2026",
+    "detail": {
+      "title": "Ward 8 Senior Wellness Center",
+      "location_full": "Washington, DC 20020. 1700 Q St SE  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "12/2026",
+      "construction_end": "Q4/2027",
+      "contacts": [
+        {
+          "role": "Owner",
+          "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Brittany HughesDeputy Director Constituent Service\t\t\t\t\tBrittany.hughes@dc.gov",
+          "name": "Brittany Hughes",
+          "email": "Brittany.hughes@dc.gov"
+        },
+        {
+          "role": "Architect",
+          "company": "Perkins Eastman Architects\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Karen GiocondaAssociate Principal\t\t\t\t\tk.gioconda@perkinseastman-dc.com",
+          "name": "Karen Gioconda",
+          "email": "k.gioconda@perkinseastman-dc.com"
+        }
+      ]
+    },
+    "construction_start": "12/2026",
+    "construction_end": "Q4/2027",
+    "detail_contacts": [
+      {
+        "role": "Owner",
+        "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Brittany HughesDeputy Director Constituent Service\t\t\t\t\tBrittany.hughes@dc.gov",
+        "name": "Brittany Hughes",
+        "email": "Brittany.hughes@dc.gov"
+      },
+      {
+        "role": "Architect",
+        "company": "Perkins Eastman Architects\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Karen GiocondaAssociate Principal\t\t\t\t\tk.gioconda@perkinseastman-dc.com",
+        "name": "Karen Gioconda",
+        "email": "k.gioconda@perkinseastman-dc.com"
+      }
+    ],
+    "companies_parsed": [
+      [
+        "City of Washington (DC)",
+        "Owner"
+      ],
+      [
+        "Perkins Eastman Architects",
+        "Architect"
+      ]
+    ]
+  },
+  {
+    "report_id": "3760655",
+    "project_name": "Bryant Street Phase Two - Grocery",
+    "title": "Bryant Street Phase Two - Grocery",
+    "estimated_value": "$4.812",
+    "value": "$4.812",
+    "developer_company": "MRP Realty",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3760655?reporttypeid=1",
+    "address": "524 Rhode Island Ave NE",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20002",
+    "stage": "Starts in 1-3 months",
+    "schedule": "3/2026  - 3/2027",
+    "construction_type": "New",
+    "project_type": "Retail/Grocery (10,000-24,999 sq-ft)",
+    "companies": "(D) MRP Realty\n\t\t(D) FRP Development Corp.",
+    "created_updated": "03/24/202502/03/2026",
+    "detail": {
+      "title": "Bryant Street Phase Two - Grocery",
+      "location_full": "Washington, DC 20002. 524 Rhode Island Ave NE  (View Map)",
+      "stage": "Starts in 1-3 months",
+      "construction_start": "3/2026",
+      "construction_end": "3/2027",
+      "contacts": [
+        {
+          "role": "Developer",
+          "company": "MRP Realty\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Developer",
+          "company": "FRP Development Corp.\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "3/2026",
+    "construction_end": "3/2027",
+    "detail_contacts": [
+      {
+        "role": "Developer",
+        "company": "MRP Realty\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Developer",
+        "company": "FRP Development Corp.\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "MRP Realty",
+        "Developer"
+      ],
+      [
+        "FRP Development Corp.",
+        "Developer"
+      ]
+    ]
+  },
+  {
+    "report_id": "3867683",
+    "project_name": "Claridge Towers Renovation",
+    "title": "Claridge Towers Renovation",
+    "estimated_value": "$17",
+    "value": "$17",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3867683?reporttypeid=1",
+    "address": "1221 M St NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20005",
+    "stage": "Starts in 4-12 months",
+    "schedule": "6/2026  - Q2/2028",
+    "construction_type": "Renovation",
+    "project_type": "MultiFamily (343 units)",
+    "companies": "(O) District of Columbia Housing Authority",
+    "created_updated": "01/23/202601/23/2026",
+    "detail": {
+      "title": "Claridge Towers Renovation",
+      "location_full": "Washington, DC 20005. 1221 M St NW  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "6/2026",
+      "construction_end": "Q2/2028",
+      "contacts": [
+        {
+          "role": "Owner",
+          "company": "District of Columbia Housing Authority\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "6/2026",
+    "construction_end": "Q2/2028",
+    "detail_contacts": [
+      {
+        "role": "Owner",
+        "company": "District of Columbia Housing Authority\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "District of Columbia Housing Authority",
+        "Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3859196",
+    "project_name": "2121 Virginia Avenue Northwest Conversion",
+    "title": "2121 Virginia Avenue Northwest Conversion",
+    "estimated_value": "$50",
+    "value": "$50",
+    "developer_company": "Carr Properties",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3859196?reporttypeid=1",
+    "address": "2121 Virginia Ave NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20037",
+    "stage": "Starts in 1-3 months",
+    "schedule": "5/2026  - Q2/2029",
+    "construction_type": "Renovation, Backfill",
+    "project_type": "MultiFamily (320 units), Athletic Facilities (< 10,000 sq-ft), Social (< 10,000 sq-ft)",
+    "companies": "(D/O) Carr Properties",
+    "created_updated": "12/26/202501/21/2026",
+    "detail": {
+      "title": "2121 Virginia Avenue Northwest Conversion",
+      "location_full": "Washington, DC 20037. 2121 Virginia Ave NW  (View Map)",
+      "stage": "Starts in 1-3 months",
+      "construction_start": "5/2026",
+      "construction_end": "Q2/2029",
+      "contacts": [
+        {
+          "role": "Developer, Owner",
+          "company": "Carr Properties\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Austen HoldernessChief Development Officer\t\t\t\t\taholderness@carrprop.com",
+          "name": "Austen Holderness",
+          "email": "aholderness@carrprop.com"
+        }
+      ]
+    },
+    "construction_start": "5/2026",
+    "construction_end": "Q2/2029",
+    "detail_contacts": [
+      {
+        "role": "Developer, Owner",
+        "company": "Carr Properties\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Austen HoldernessChief Development Officer\t\t\t\t\taholderness@carrprop.com",
+        "name": "Austen Holderness",
+        "email": "aholderness@carrprop.com"
+      }
+    ],
+    "companies_parsed": [
+      [
+        "Carr Properties",
+        "Developer/Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3682274",
+    "project_name": "DC Correctional Treatment Facility Annex Project​",
+    "title": "DC Correctional Treatment Facility Annex Project​",
+    "estimated_value": "$1000",
+    "value": "$1000",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3682274?reporttypeid=1",
+    "address": "",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20003",
+    "stage": "Starts in 4-12 months",
+    "schedule": "1/2027  - Q3/2030",
+    "construction_type": "New",
+    "project_type": "Government Buildings/Office/Prisons/Jails/Detention (100,000-249,999 sq-ft), Medical",
+    "companies": "(O) City of Washington (DC)",
+    "created_updated": "08/05/202401/19/2026",
+    "detail": {
+      "title": "DC Correctional Treatment Facility Annex Project​",
+      "location_full": "Washington, DC 20003. north of the existing correctional facility (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "1/2027",
+      "construction_end": "Q3/2030",
+      "contacts": [
+        {
+          "role": "Owner",
+          "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Michelle WilsonDistrict of Columbia Department of Corrections\t\t\t\t\tMichelle.Wilson@dc.gov",
+          "name": "Michelle Wilson",
+          "email": "Michelle.Wilson@dc.gov"
+        }
+      ]
+    },
+    "construction_start": "1/2027",
+    "construction_end": "Q3/2030",
+    "detail_contacts": [
+      {
+        "role": "Owner",
+        "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Michelle WilsonDistrict of Columbia Department of Corrections\t\t\t\t\tMichelle.Wilson@dc.gov",
+        "name": "Michelle Wilson",
+        "email": "Michelle.Wilson@dc.gov"
+      }
+    ],
+    "companies_parsed": [
+      [
+        "City of Washington (DC)",
+        "Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3863699",
+    "project_name": "American Medical Association Office Build-Out",
+    "title": "American Medical Association Office Build-Out",
+    "estimated_value": "$1-$5",
+    "value": "$1-$5",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3863699?reporttypeid=1",
+    "address": "200 Massachusetts Ave NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20001",
+    "stage": "Starts in 4-12 months",
+    "schedule": "7/2026  - Q4/2026",
+    "construction_type": "Renovation, Backfill",
+    "project_type": "Office (37,000 sq-ft)",
+    "companies": "(O) Property Group Partners",
+    "created_updated": "01/15/202601/15/2026",
+    "detail": {
+      "title": "American Medical Association Office Build-Out",
+      "location_full": "Washington, DC 20001. 200 Massachusetts Ave NW Floor 9 (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "7/2026",
+      "construction_end": "Q4/2026",
+      "contacts": [
+        {
+          "role": "Tenant",
+          "company": "American Medical Association\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Owner",
+          "company": "Property Group Partners\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "7/2026",
+    "construction_end": "Q4/2026",
+    "detail_contacts": [
+      {
+        "role": "Tenant",
+        "company": "American Medical Association\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Owner",
+        "company": "Property Group Partners\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "Property Group Partners",
+        "Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3852718",
+    "project_name": "1999 Eye Street Mixed-Use",
+    "title": "1999 Eye Street Mixed-Use",
+    "estimated_value": "$250",
+    "value": "$250",
+    "developer_company": "Bernstein Management Corporation",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3852718?reporttypeid=1",
+    "address": "1990 K St NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20006",
+    "stage": "Starts in 1-3 months",
+    "schedule": "3/2026  - 5/2028",
+    "construction_type": "New",
+    "project_type": "MultiFamily (434 units), Retail (14,000 sq-ft)",
+    "companies": "(D/O) Bernstein Management Corporation\n\t\t(D/O) Stonebridge\n\t\t(O) Criterion Real Estate Capital",
+    "created_updated": "12/04/202512/19/2025",
+    "detail": {
+      "title": "1999 Eye Street Mixed-Use",
+      "location_full": "Washington, DC 20006. 1990 K St NW  (View Map)",
+      "stage": "Starts in 1-3 months",
+      "construction_start": "3/2026",
+      "construction_end": "5/2028",
+      "contacts": [
+        {
+          "role": "Developer, Owner",
+          "company": "Bernstein Management Corporation\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Developer, Owner",
+          "company": "Stonebridge\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Douglas FirstenbergPrincipal\t\t\t\t\tfirstenberg@stonebridge.us.com",
+          "name": "Douglas Firstenberg",
+          "email": "firstenberg@stonebridge.us.com"
+        },
+        {
+          "role": "Consultant",
+          "company": "Clark Construction\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Ethan WagnerProject Manager\t\t\t\t\tethan.wagner@clarkconstruction.com",
+          "name": "Ethan Wagner",
+          "email": "ethan.wagner@clarkconstruction.com"
+        },
+        {
+          "role": "Owner",
+          "company": "Criterion Real Estate Capital\n\t\t\n\n\nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "3/2026",
+    "construction_end": "5/2028",
+    "detail_contacts": [
+      {
+        "role": "Developer, Owner",
+        "company": "Bernstein Management Corporation\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Developer, Owner",
+        "company": "Stonebridge\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Douglas FirstenbergPrincipal\t\t\t\t\tfirstenberg@stonebridge.us.com",
+        "name": "Douglas Firstenberg",
+        "email": "firstenberg@stonebridge.us.com"
+      },
+      {
+        "role": "Consultant",
+        "company": "Clark Construction\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Ethan WagnerProject Manager\t\t\t\t\tethan.wagner@clarkconstruction.com",
+        "name": "Ethan Wagner",
+        "email": "ethan.wagner@clarkconstruction.com"
+      },
+      {
+        "role": "Owner",
+        "company": "Criterion Real Estate Capital\n\t\t\n\n\nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "Bernstein Management Corporation",
+        "Developer/Owner"
+      ],
+      [
+        "Stonebridge",
+        "Developer/Owner"
+      ],
+      [
+        "Criterion Real Estate Capital",
+        "Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3393993",
+    "project_name": "Drews Elementary School Modernization",
+    "title": "Drews Elementary School Modernization",
+    "estimated_value": "$62",
+    "value": "$62",
+    "developer_company": "",
+    "gc_company": "Gilbane, Inc.",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3393993?reporttypeid=1",
+    "address": "5600 Eads St NE",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20019",
+    "stage": "Starts in 1-3 months",
+    "schedule": "5/2026  - Q3/2028",
+    "construction_type": "Addition/Expansion, Renovation",
+    "project_type": "Schools (K-12) (71,000 sq-ft)",
+    "companies": "(O) District of Columbia Public Schools\n\t\t(A) Studio MB\n\t\t(C) Gilbane, Inc.",
+    "created_updated": "07/11/202312/11/2025",
+    "detail": {
+      "title": "Drews Elementary School Modernization",
+      "location_full": "Washington, DC 20019. 5600 Eads St NE  (View Map)",
+      "stage": "Starts in 1-3 months",
+      "construction_start": "5/2026",
+      "construction_end": "Q3/2028",
+      "contacts": [
+        {
+          "role": "Owner",
+          "company": "District of Columbia Public Schools\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Architect",
+          "company": "Studio MB\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "General Contractor",
+          "company": "Gilbane, Inc.\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "5/2026",
+    "construction_end": "Q3/2028",
+    "detail_contacts": [
+      {
+        "role": "Owner",
+        "company": "District of Columbia Public Schools\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Architect",
+        "company": "Studio MB\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "General Contractor",
+        "company": "Gilbane, Inc.\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "District of Columbia Public Schools",
+        "Owner"
+      ],
+      [
+        "Studio MB",
+        "Architect"
+      ],
+      [
+        "Gilbane, Inc.",
+        "GC/Contractor"
+      ]
+    ]
+  },
+  {
+    "report_id": "3848502",
+    "project_name": "Rivian Build-Out",
+    "title": "Rivian Build-Out",
+    "estimated_value": "< $1",
+    "value": "< $1",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3848502?reporttypeid=1",
+    "address": "1100 New York Ave NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20005",
+    "stage": "Starts in 1-3 months",
+    "schedule": "3/2026  - 7/2026",
+    "construction_type": "Renovation, Flash Project, Backfill",
+    "project_type": "Retail (4,233 sq-ft)",
+    "companies": "(O) Rivian Automotive Inc\n\t\t(A) HKS Architects",
+    "created_updated": "11/19/202511/19/2025",
+    "detail": {
+      "title": "Rivian Build-Out",
+      "location_full": "Washington, DC 20005. 1100 New York Ave NW  (View Map)",
+      "stage": "Starts in 1-3 months",
+      "construction_start": "3/2026",
+      "construction_end": "7/2026",
+      "contacts": [
+        {
+          "role": "Owner, Tenant",
+          "company": "Rivian Automotive Inc\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "David DarlingtonManager - Workplace Construction",
+          "name": "David Darlington",
+          "email": ""
+        },
+        {
+          "role": "Architect",
+          "company": "HKS Architects\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Alberto M BoldizsarProject Architect\t\t\t\t\tbboldizsar@hksinc.com",
+          "name": "Alberto M Boldizsar",
+          "email": "bboldizsar@hksinc.com"
+        },
+        {
+          "role": "Bidding General Contractor",
+          "company": "Terry Adams, Inc.\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Courtney BellDirector of Estimating\t\t\t\t\tcbell@terryadamsinc.com",
+          "name": "Courtney Bell",
+          "email": "cbell@terryadamsinc.com"
+        }
+      ]
+    },
+    "construction_start": "3/2026",
+    "construction_end": "7/2026",
+    "detail_contacts": [
+      {
+        "role": "Owner, Tenant",
+        "company": "Rivian Automotive Inc\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "David DarlingtonManager - Workplace Construction",
+        "name": "David Darlington",
+        "email": ""
+      },
+      {
+        "role": "Architect",
+        "company": "HKS Architects\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Alberto M BoldizsarProject Architect\t\t\t\t\tbboldizsar@hksinc.com",
+        "name": "Alberto M Boldizsar",
+        "email": "bboldizsar@hksinc.com"
+      },
+      {
+        "role": "Bidding General Contractor",
+        "company": "Terry Adams, Inc.\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Courtney BellDirector of Estimating\t\t\t\t\tcbell@terryadamsinc.com",
+        "name": "Courtney Bell",
+        "email": "cbell@terryadamsinc.com"
+      }
+    ],
+    "companies_parsed": [
+      [
+        "Rivian Automotive Inc",
+        "Owner"
+      ],
+      [
+        "HKS Architects",
+        "Architect"
+      ]
+    ]
+  },
+  {
+    "report_id": "3845402",
+    "project_name": "Keller and Heckman Office Build-Out",
+    "title": "Keller and Heckman Office Build-Out",
+    "estimated_value": "$1-$5",
+    "value": "$1-$5",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3845402?reporttypeid=1",
+    "address": "1100 New York Ave NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20005",
+    "stage": "Starts in 4-12 months",
+    "schedule": "8/2026  - Q2/2027",
+    "construction_type": "Renovation, Backfill",
+    "project_type": "Office (57,186 sq-ft)",
+    "companies": "(O) PIMCO\n\t\t(O) Manulife Financial Corp.",
+    "created_updated": "11/11/202511/11/2025",
+    "detail": {
+      "title": "Keller and Heckman Office Build-Out",
+      "location_full": "Washington, DC 20005. 1100 New York Ave NW  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "8/2026",
+      "construction_end": "Q2/2027",
+      "contacts": [
+        {
+          "role": "Tenant",
+          "company": "Keller and Heckman LLP\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Jeff KeithlineChair, Management Committee",
+          "name": "Jeff Keithline",
+          "email": ""
+        },
+        {
+          "role": "Owner",
+          "company": "PIMCO\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Owner",
+          "company": "Manulife Financial Corp.\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "8/2026",
+    "construction_end": "Q2/2027",
+    "detail_contacts": [
+      {
+        "role": "Tenant",
+        "company": "Keller and Heckman LLP\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Jeff KeithlineChair, Management Committee",
+        "name": "Jeff Keithline",
+        "email": ""
+      },
+      {
+        "role": "Owner",
+        "company": "PIMCO\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Owner",
+        "company": "Manulife Financial Corp.\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "PIMCO",
+        "Owner"
+      ],
+      [
+        "Manulife Financial Corp.",
+        "Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3661295",
+    "project_name": "Harry Thomas Recreation Center",
+    "title": "Harry Thomas Recreation Center",
+    "estimated_value": "$19",
+    "value": "$19",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3661295?reporttypeid=1",
+    "address": "1743 Lincoln Rd NE",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20002",
+    "stage": "Starts in 1-3 months",
+    "schedule": "3/2026  - Q1/2027",
+    "construction_type": "Renovation",
+    "project_type": "Social (50,000-99,999 sq-ft)",
+    "companies": "(O) City of Washington (DC)",
+    "created_updated": "06/18/202411/05/2025",
+    "detail": {
+      "title": "Harry Thomas Recreation Center",
+      "location_full": "Washington, DC 20002. 1743 Lincoln Rd NE  (View Map)",
+      "stage": "Starts in 1-3 months",
+      "construction_start": "3/2026",
+      "construction_end": "Q1/2027",
+      "contacts": [
+        {
+          "role": "Owner",
+          "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "3/2026",
+    "construction_end": "Q1/2027",
+    "detail_contacts": [
+      {
+        "role": "Owner",
+        "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "City of Washington (DC)",
+        "Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3826113",
+    "project_name": "Saint Peter School Addition",
+    "title": "Saint Peter School Addition",
+    "estimated_value": "$1-$5",
+    "value": "$1-$5",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3826113?reporttypeid=1",
+    "address": "422 3rd St SE",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20003",
+    "stage": "Starts in 4-12 months",
+    "schedule": "7/2026  - Q3/2028",
+    "construction_type": "Addition/Expansion",
+    "project_type": "Office/Schools (K-12) (15,431 sq-ft)",
+    "companies": "(O) Saint Peter School\n\t\t(A) MTFA Architecture",
+    "created_updated": "10/30/202510/30/2025",
+    "detail": {
+      "title": "Saint Peter School Addition",
+      "location_full": "Washington, DC 20003. 422 3rd St SE  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "7/2026",
+      "construction_end": "Q3/2028",
+      "contacts": [
+        {
+          "role": "Owner",
+          "company": "Saint Peter School\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Architect",
+          "company": "MTFA Architecture\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Meagan JancyPrincipal",
+          "name": "Meagan Jancy",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "7/2026",
+    "construction_end": "Q3/2028",
+    "detail_contacts": [
+      {
+        "role": "Owner",
+        "company": "Saint Peter School\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Architect",
+        "company": "MTFA Architecture\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Meagan JancyPrincipal",
+        "name": "Meagan Jancy",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "Saint Peter School",
+        "Owner"
+      ],
+      [
+        "MTFA Architecture",
+        "Architect"
+      ]
+    ]
+  },
+  {
+    "report_id": "3737401",
+    "project_name": "Sprouts Farmers Market - McMillan Park",
+    "title": "Sprouts Farmers Market - McMillan Park",
+    "estimated_value": "$8.662",
+    "value": "$8.662",
+    "developer_company": "Jair Lynch Companies",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3737401?reporttypeid=1",
+    "address": "2501 1st St NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20001",
+    "stage": "Starts in 4-12 months",
+    "schedule": "9/2026  - Q1/2028",
+    "construction_type": "New",
+    "project_type": "Retail/Grocery (22,500 sq-ft)",
+    "companies": "(D) Jair Lynch Companies\n\t\t(D) Trammell Crow Company\n\t\t(D) EYA, LLC\n\t\t(A) Mushinsky Voelzke Associates (MV+A)",
+    "created_updated": "01/17/202510/15/2025",
+    "detail": {
+      "title": "Sprouts Farmers Market - McMillan Park",
+      "location_full": "Washington, DC 20001. 2501 1st St NW  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "9/2026",
+      "construction_end": "Q1/2028",
+      "contacts": [
+        {
+          "role": "Developer",
+          "company": "Jair Lynch Companies\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Developer",
+          "company": "Trammell Crow Company\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Developer",
+          "company": "EYA, LLC\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Architect",
+          "company": "Mushinsky Voelzke Associates (MV+A)\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Tenant",
+          "company": "Sprouts Farmers Market\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "9/2026",
+    "construction_end": "Q1/2028",
+    "detail_contacts": [
+      {
+        "role": "Developer",
+        "company": "Jair Lynch Companies\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Developer",
+        "company": "Trammell Crow Company\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Developer",
+        "company": "EYA, LLC\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Architect",
+        "company": "Mushinsky Voelzke Associates (MV+A)\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Tenant",
+        "company": "Sprouts Farmers Market\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "Jair Lynch Companies",
+        "Developer"
+      ],
+      [
+        "Trammell Crow Company",
+        "Developer"
+      ],
+      [
+        "EYA, LLC",
+        "Developer"
+      ],
+      [
+        "Mushinsky Voelzke Associates (MV+A)",
+        "Architect"
+      ]
+    ]
+  },
+  {
+    "report_id": "3821512",
+    "project_name": "4801 Sargent Road Duplex Townhomes",
+    "title": "4801 Sargent Road Duplex Townhomes",
+    "estimated_value": "$42",
+    "value": "$42",
+    "developer_company": "Urban Atlantic",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3821512?reporttypeid=1",
+    "address": "4801 Sargent Rd Ne",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20017",
+    "stage": "Starts in 1-3 months",
+    "schedule": "5/2026  - Q1/2028",
+    "construction_type": "New",
+    "project_type": "MultiFamily (170 units)",
+    "companies": "(D) Urban Atlantic\n\t\t(O) Boys Town",
+    "created_updated": "09/04/202509/04/2025",
+    "detail": {
+      "title": "4801 Sargent Road Duplex Townhomes",
+      "location_full": "Washington, DC 20017. 4801 Sargent Rd Ne  (View Map)",
+      "stage": "Starts in 1-3 months",
+      "construction_start": "5/2026",
+      "construction_end": "Q1/2028",
+      "contacts": [
+        {
+          "role": "Developer",
+          "company": "Urban Atlantic\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Teddy SwiftDevelopment Manager\t\t\t\t\ttswift@urban-atlantic.com",
+          "name": "Teddy Swift",
+          "email": "tswift@urban-atlantic.com"
+        },
+        {
+          "role": "Owner",
+          "company": "Boys Town\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "5/2026",
+    "construction_end": "Q1/2028",
+    "detail_contacts": [
+      {
+        "role": "Developer",
+        "company": "Urban Atlantic\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Teddy SwiftDevelopment Manager\t\t\t\t\ttswift@urban-atlantic.com",
+        "name": "Teddy Swift",
+        "email": "tswift@urban-atlantic.com"
+      },
+      {
+        "role": "Owner",
+        "company": "Boys Town\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "Urban Atlantic",
+        "Developer"
+      ],
+      [
+        "Boys Town",
+        "Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3116528",
+    "project_name": "Washington Commanders Stadium",
+    "title": "Washington Commanders Stadium",
+    "estimated_value": "> $100",
+    "value": "> $100",
+    "developer_company": "Events D.C.",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3116528?reporttypeid=1",
+    "address": "2400 East Capitol Street Southeast",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20003",
+    "stage": "Starts in 4-12 months",
+    "schedule": "10/2026  - Q4/2030",
+    "construction_type": "New",
+    "project_type": "Retail/Conventions/Arenas/Athletic Facilities/Restaurants (250,000+ sq-ft)",
+    "companies": "(A) BIG - Bjarke Ingels Group\n\t\t(D/O) Events D.C.\n\t\t(A) Kato Architecture",
+    "created_updated": "02/12/201806/13/2025",
+    "detail": {
+      "title": "Washington Commanders Stadium",
+      "location_full": "Washington, DC 20003. 2400 East Capitol Street Southeast  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "10/2026",
+      "construction_end": "Q4/2030",
+      "contacts": [
+        {
+          "role": "Architect",
+          "company": "BIG - Bjarke Ingels Group\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Bjarke IngelsOwner",
+          "name": "Bjarke Ingels",
+          "email": ""
+        },
+        {
+          "role": "Developer, Owner",
+          "company": "Events D.C.\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Vanya RobertsSpecial Assistant and Administrative Operations\t\t\t\t\tvrobinson@eventsdc.com",
+          "name": "Vanya Roberts",
+          "email": "vrobinson@eventsdc.com"
+        },
+        {
+          "role": "Tenant",
+          "company": "Washington Commanders\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Architect",
+          "company": "Kato Architecture\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Kyle MurphyFounder + Executive Director",
+          "name": "Kyle Murphy",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "10/2026",
+    "construction_end": "Q4/2030",
+    "detail_contacts": [
+      {
+        "role": "Architect",
+        "company": "BIG - Bjarke Ingels Group\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Bjarke IngelsOwner",
+        "name": "Bjarke Ingels",
+        "email": ""
+      },
+      {
+        "role": "Developer, Owner",
+        "company": "Events D.C.\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Vanya RobertsSpecial Assistant and Administrative Operations\t\t\t\t\tvrobinson@eventsdc.com",
+        "name": "Vanya Roberts",
+        "email": "vrobinson@eventsdc.com"
+      },
+      {
+        "role": "Tenant",
+        "company": "Washington Commanders\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Architect",
+        "company": "Kato Architecture\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Kyle MurphyFounder + Executive Director",
+        "name": "Kyle Murphy",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "BIG - Bjarke Ingels Group",
+        "Architect"
+      ],
+      [
+        "Events D.C.",
+        "Developer/Owner"
+      ],
+      [
+        "Kato Architecture",
+        "Architect"
+      ]
+    ]
+  },
+  {
+    "report_id": "3736933",
+    "project_name": "725 12th Street Northwest Office Building",
+    "title": "725 12th Street Northwest Office Building",
+    "estimated_value": "$5-$25",
+    "value": "$5-$25",
+    "developer_company": "Boston Properties, Inc.",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3736933?reporttypeid=1",
+    "address": "725 12th St NW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20001",
+    "stage": "Starts in 4-12 months",
+    "schedule": "6/2026  - Q4/2028",
+    "construction_type": "New",
+    "project_type": "Athletic Facilities (< 10,000 sq-ft), Office (320,000 sq-ft)",
+    "companies": "(D) Boston Properties, Inc.\n\t\t(A) Duda/Paine Architects, LLP",
+    "created_updated": "01/16/202501/16/2025",
+    "detail": {
+      "title": "725 12th Street Northwest Office Building",
+      "location_full": "Washington, DC 20001. 725 12th St NW  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "6/2026",
+      "construction_end": "Q4/2028",
+      "contacts": [
+        {
+          "role": "Developer",
+          "company": "Boston Properties, Inc.\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Peter OtteniVice President\t\t\t\t\tpotteni@bostonproperties.com",
+          "name": "Peter Otteni",
+          "email": "potteni@bostonproperties.com"
+        },
+        {
+          "role": "Architect",
+          "company": "Duda/Paine Architects, LLP\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Tenant",
+          "company": "McDermott Will and Emery\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Linda ManginiChief of Administration\t\t\t\t\tlmangini@mwe.com",
+          "name": "Linda Mangini",
+          "email": "lmangini@mwe.com"
+        }
+      ]
+    },
+    "construction_start": "6/2026",
+    "construction_end": "Q4/2028",
+    "detail_contacts": [
+      {
+        "role": "Developer",
+        "company": "Boston Properties, Inc.\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Peter OtteniVice President\t\t\t\t\tpotteni@bostonproperties.com",
+        "name": "Peter Otteni",
+        "email": "potteni@bostonproperties.com"
+      },
+      {
+        "role": "Architect",
+        "company": "Duda/Paine Architects, LLP\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Tenant",
+        "company": "McDermott Will and Emery\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Linda ManginiChief of Administration\t\t\t\t\tlmangini@mwe.com",
+        "name": "Linda Mangini",
+        "email": "lmangini@mwe.com"
+      }
+    ],
+    "companies_parsed": [
+      [
+        "Boston Properties, Inc.",
+        "Developer"
+      ],
+      [
+        "Duda/Paine Architects, LLP",
+        "Architect"
+      ]
+    ]
+  },
+  {
+    "report_id": "3194432",
+    "project_name": "FEMS Engine Company 7 Replacement",
+    "title": "FEMS Engine Company 7 Replacement",
+    "estimated_value": "$14.8",
+    "value": "$14.8",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3194432?reporttypeid=1",
+    "address": "1101 Half St SW",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20024",
+    "stage": "Starts in 4-12 months",
+    "schedule": "1/2027  - Q4/2029",
+    "construction_type": "New",
+    "project_type": "Public Safety (25,000-49,999 sq-ft)",
+    "companies": "(O) District of Columbia Fire and Emergency Services\n\t\t(A) Studio MB",
+    "created_updated": "11/07/201909/30/2024",
+    "detail": {
+      "title": "FEMS Engine Company 7 Replacement",
+      "location_full": "Washington, DC 20024. 1101 Half St SW  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "1/2027",
+      "construction_end": "Q4/2029",
+      "contacts": [
+        {
+          "role": "Project Manager",
+          "company": "District of Columbia Department of General Services\n\t\t\n\n\nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Owner",
+          "company": "District of Columbia Fire and Emergency Services\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        },
+        {
+          "role": "Architect",
+          "company": "Studio MB\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "",
+          "name": "",
+          "email": ""
+        }
+      ]
+    },
+    "construction_start": "1/2027",
+    "construction_end": "Q4/2029",
+    "detail_contacts": [
+      {
+        "role": "Project Manager",
+        "company": "District of Columbia Department of General Services\n\t\t\n\n\nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Owner",
+        "company": "District of Columbia Fire and Emergency Services\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      },
+      {
+        "role": "Architect",
+        "company": "Studio MB\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "",
+        "name": "",
+        "email": ""
+      }
+    ],
+    "companies_parsed": [
+      [
+        "District of Columbia Fire and Emergency Services",
+        "Owner"
+      ],
+      [
+        "Studio MB",
+        "Architect"
+      ]
+    ]
+  },
+  {
+    "report_id": "3682278",
+    "project_name": "DC Correctional Treatment Facility Renovation",
+    "title": "DC Correctional Treatment Facility Renovation",
+    "estimated_value": "$5-$25",
+    "value": "$5-$25",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3682278?reporttypeid=1",
+    "address": "1905 E St SE",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20003",
+    "stage": "Starts in 4-12 months",
+    "schedule": "2/2027  - Q1/2028",
+    "construction_type": "Renovation",
+    "project_type": "Government Buildings/Office/Prisons/Jails/Detention (100,000-249,999 sq-ft), Medical",
+    "companies": "(O) City of Washington (DC)",
+    "created_updated": "08/05/202408/05/2024",
+    "detail": {
+      "title": "DC Correctional Treatment Facility Renovation",
+      "location_full": "Washington, DC 20003. 1905 E St SE  (View Map)",
+      "stage": "Starts in 4-12 months",
+      "construction_start": "2/2027",
+      "construction_end": "Q1/2028",
+      "contacts": [
+        {
+          "role": "Owner",
+          "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Michelle WilsonDistrict of Columbia Department of Corrections\t\t\t\t\tMichelle.Wilson@dc.gov",
+          "name": "Michelle Wilson",
+          "email": "Michelle.Wilson@dc.gov"
+        }
+      ]
+    },
+    "construction_start": "2/2027",
+    "construction_end": "Q1/2028",
+    "detail_contacts": [
+      {
+        "role": "Owner",
+        "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Michelle WilsonDistrict of Columbia Department of Corrections\t\t\t\t\tMichelle.Wilson@dc.gov",
+        "name": "Michelle Wilson",
+        "email": "Michelle.Wilson@dc.gov"
+      }
+    ],
+    "companies_parsed": [
+      [
+        "City of Washington (DC)",
+        "Owner"
+      ]
+    ]
+  },
+  {
+    "report_id": "3682285",
+    "project_name": "DC CDF Replacement Housing",
+    "title": "DC CDF Replacement Housing",
+    "estimated_value": "$6",
+    "value": "$6",
+    "developer_company": "",
+    "gc_company": "",
+    "contact_names": [],
+    "detail_url": "https://www.constructionwire.com/Client/Report/Details/3682285?reporttypeid=1",
+    "address": "",
+    "city": "Washington",
+    "state": "DC",
+    "postal_code": "20003",
+    "stage": "Starts in 12+ months",
+    "schedule": "1/2031  - Q4/2034",
+    "construction_type": "New",
+    "project_type": "MultiFamily (< 50 units), Government Buildings/Prisons/Jails/Detention (100,000-249,999 sq-ft)",
+    "companies": "(O) City of Washington (DC)",
+    "created_updated": "08/01/202408/01/2024",
+    "detail": {
+      "title": "DC CDF Replacement Housing",
+      "location_full": "Washington, DC 20003. North of the existing correctional facility, 1901 D St SE (View Map)",
+      "stage": "Starts in 12+ months",
+      "construction_start": "1/2031",
+      "construction_end": "Q4/2034",
+      "contacts": [
+        {
+          "role": "Owner",
+          "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+          "contact": "Michelle WilsonDistrict of Columbia Department of Corrections\t\t\t\t\tMichelle.Wilson@dc.gov",
+          "name": "Michelle Wilson",
+          "email": "Michelle.Wilson@dc.gov"
+        }
+      ]
+    },
+    "construction_start": "1/2031",
+    "construction_end": "Q4/2034",
+    "detail_contacts": [
+      {
+        "role": "Owner",
+        "company": "City of Washington (DC)\n\t\t\nWebsite\n • \nCompany Report",
+        "contact": "Michelle WilsonDistrict of Columbia Department of Corrections\t\t\t\t\tMichelle.Wilson@dc.gov",
+        "name": "Michelle Wilson",
+        "email": "Michelle.Wilson@dc.gov"
+      }
+    ],
+    "companies_parsed": [
+      [
+        "City of Washington (DC)",
+        "Owner"
+      ]
+    ]
+  }
+]

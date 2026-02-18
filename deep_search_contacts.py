@@ -17,12 +17,16 @@ try:
 except ImportError:
     pass
 
-# 网页搜索：优先 duckduckgo-search，无则退化为占位
+# 网页搜索：优先 ddgs（原 duckduckgo-search，已改名），无则退化为占位
 try:
-    from duckduckgo_search import DDGS
+    from ddgs import DDGS
     HAS_DDGS = True
 except ImportError:
-    HAS_DDGS = False
+    try:
+        from duckduckgo_search import DDGS
+        HAS_DDGS = True
+    except ImportError:
+        HAS_DDGS = False
 
 # Gemini：用于从搜索结果中推断联系人与邮箱
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip().strip('"')

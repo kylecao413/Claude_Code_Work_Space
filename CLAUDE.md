@@ -2,41 +2,46 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Your Role: Executor (Hands)
+## Your Role: Executor + Self-Reviewer
 
-You are the **Executor** in a Centaur Architecture (半人马架构). You write code, run tools, and manipulate files. You do NOT make complex architectural or logic decisions alone. When facing non-trivial design choices, security logic, or multi-module refactors, you **must** consult the **Senior Architect** (Gemini 1.5 Pro) via:
+You write code, run tools, manipulate files, and review your own work before deploying. You do NOT need to call ask_senior for routine code work — use your own judgment.
 
-```bash
-python core_tools/ask_senior.py <file_path> "<question>"
-```
+### Self-Review Checklist (apply before running new scripts)
 
-The Senior Architect reviews code for security, robustness, logic flaws, and high-level strategy. It supports both code/text files and images (multimodal). You execute what it recommends.
+Before executing any new or significantly changed script, mentally verify:
 
-### When You MUST Call ask_senior
+1. **Business rule compliance** — Email bodies follow BCC_PROPOSAL_RULES.md (no signature, billing disclaimer present, no plan review for GC targets, no "Proposal" language in cold outreach subjects)
+2. **Security** — No hardcoded credentials, no command injection, no secrets in outputs
+3. **Logic correctness** — Loops terminate, edge cases handled (empty lists, missing fields, expired cookies)
+4. **Email safety** — Human approval required before any send; no accidental batch-send without Y confirmation
+5. **File safety** — No accidental deletion of non-temp files; old draft cleanup only targets known prefixes (CW_*, Email_*)
 
-- User says "Review logic", "Plan architecture", "Check security", or similar
-- Before implementing complex business logic (proposal generation, scraping pipelines, fee calculations)
-- Before refactoring across 3+ files
-- When unsure about a design pattern or data flow
-- When adding new integrations (API, browser automation, email sending)
+### When to Act Immediately (no extra review needed)
 
-### When You Can Act Alone
+- Bug fixes, typos, single-line changes
+- Running existing tested scripts
+- File reads, git status, work_log checks
+- Following an already-approved plan
 
-- Simple bug fixes, typos, single-line changes
-- Running tests, linting, file reads
-- Following an already-approved plan from ask_senior
-- Routine git operations
+### When to Pause and Think Before Coding
 
-## Mandatory Workflow: Draft → Review → Fix
+- New scripts touching email sending or external APIs
+- Changes to fee calculations or proposal content
+- Refactors across 3+ files
+- Anything that could send real emails or modify shared data
 
-For every new script or significant code change:
+### ask_senior.py — Use Only When User Explicitly Requests
 
-1. **Draft** — Write the code or modification
-2. **Review** — Run `python core_tools/ask_senior.py <your_file> "Review this for logic flaws and security"` and read the output
-3. **Fix** — Apply the Senior Architect's suggestions
-4. **Test** — Run `python -m pytest` to verify
+`core_tools/ask_senior.py` is available but no longer mandatory. Only call it when:
+- User explicitly says "ask senior", "get Gemini review", or "review with AI"
+- Complex multimodal analysis (screenshots, PDF review)
 
-Do NOT skip step 2 for non-trivial changes. Do NOT hallucinate architectural advice — use the tool.
+## Workflow: Draft → Self-Review → Test → Run
+
+1. **Draft** — Write the code
+2. **Self-Review** — Apply the checklist above; fix any issues found
+3. **Test** — Run `python -m pytest` for logic-heavy scripts
+4. **Run** — Execute and verify output
 
 ## Commands
 
@@ -125,8 +130,7 @@ Per the QA architecture, avoid relying on vague natural-language judgments. When
 
 API costs must be minimized. Follow these rules strictly:
 
-- **ask_senior default**: `gemini-2.5-pro` for important reviews (security, architecture, proposals)
-- **ask_senior batch/low-priority**: Use `--model gemini-2.5-flash` for bulk or routine checks (10x cheaper)
+- **ask_senior**: Only when user explicitly requests it. Default model: gemini-2.5-flash (cheaper); use gemini-2.5-pro only when user asks for deeper review.
 - **Email sending**: Zero AI cost. `email_sender.py` uses SMTP directly. Do NOT use AI to send emails.
 - **Proposal generation**: `proposal_generator.py` fills Word templates locally (zero AI cost). Gemini review in Phase 3 is optional.
 - **Research**: Use `deep_search_contacts.py`; use `--model gemini-2.5-flash` flag if it supports it to minimize cost

@@ -65,6 +65,16 @@ def _parse_developer_and_gc(companies_cell: str) -> tuple[str, str]:
     return developer, gc
 
 
+async def _safe_text(locator, default: str = "") -> str:
+    """Return text content of a locator, or default if element absent (avoids 30s timeout hang)."""
+    try:
+        if await locator.count() == 0:
+            return default
+        return (await locator.text_content(timeout=5000) or default).strip()
+    except Exception:
+        return default
+
+
 async def scrape_leads_from_current_page(page):
     """
     从当前搜索列表页解析 Lead。
@@ -80,24 +90,18 @@ async def scrape_leads_from_current_page(page):
 
         # 项目名称与详情链接
         title_el = row.locator("td a.title").first
-        title = (await title_el.text_content() or "").strip()
+        title = await _safe_text(title_el)
         detail_href = await title_el.get_attribute("href") or ""
 
-        # 地址与地点
-        addr1 = await row.locator("span.address1").first.text_content()
-        address1 = (addr1 or "").strip()
-        city_el = row.locator("span.city").first
-        state_el = row.locator("span.state").first
-        zip_el = row.locator("span.postal-code").first
-        city = (await city_el.text_content() or "").strip()
-        state = (await state_el.text_content() or "").strip()
-        postal = (await zip_el.text_content() or "").strip()
+        # 地址与地点 — use _safe_text to avoid 30s timeout when span absent
+        address1 = await _safe_text(row.locator("span.address1").first)
+        city    = await _safe_text(row.locator("span.city").first)
+        state   = await _safe_text(row.locator("span.state").first)
+        postal  = await _safe_text(row.locator("span.postal-code").first)
 
         # 阶段与工期
-        stage_el = row.locator("span.construction-stage").first
-        schedule_el = row.locator("span.construction-schedule").first
-        stage = (await stage_el.text_content() or "").strip()
-        schedule = (await schedule_el.text_content() or "").strip().replace("\n", " ")
+        stage    = await _safe_text(row.locator("span.construction-stage").first)
+        schedule = (await _safe_text(row.locator("span.construction-schedule").first)).replace("\n", " ")
 
         # 第 4–8 列：construction type, project type, value, companies, dates
         tds = row.locator("td")
@@ -106,12 +110,13 @@ async def scrape_leads_from_current_page(page):
         value = ""
         companies_cell = ""
         dates_cell = ""
-        if await tds.count() >= 9:
-            construction_type = (await tds.nth(4).text_content() or "").strip()
-            project_type = (await tds.nth(5).text_content() or "").strip()
-            value = (await tds.nth(6).text_content() or "").strip()
-            companies_cell = (await tds.nth(7).text_content() or "").strip()
-            dates_cell = (await tds.nth(8).text_content() or "").strip()
+        td_count = await tds.count()
+        if td_count >= 9:
+            construction_type = await _safe_text(tds.nth(4))
+            project_type      = await _safe_text(tds.nth(5))
+            value             = await _safe_text(tds.nth(6))
+            companies_cell    = await _safe_text(tds.nth(7))
+            dates_cell        = await _safe_text(tds.nth(8))
 
         developer_company, gc_company = _parse_developer_and_gc(companies_cell)
 
@@ -151,43 +156,44 @@ async def scrape_detail_page(page, detail_url: str) -> dict:
 
     data = {}
     # 标题
-    title_el = page.locator("div.report-heading .title, div.report .title").first
-    data["title"] = (await title_el.text_content() or "").strip()
+    data["title"] = await _safe_text(page.locator("div.report-heading .title, div.report .title").first)
 
     # Location（Project Information 表内）
-    loc_td = page.locator("td.field-value:has(span.city)").first
-    data["location_full"] = (await loc_td.text_content() or "").strip()
+    data["location_full"] = await _safe_text(page.locator("td.field-value:has(span.city)").first)
 
-    # Estimated Schedule 表：Stage, Construction Start/End
+    # Estimated Schedule 表：Stage, Construction Start/End（用 _safe_text 避免 30s 超时）
     schedule_tbody = page.locator("tbody.schedule")
     if await schedule_tbody.count():
         rows = schedule_tbody.locator("tr")
         for r in range(await rows.count()):
-            label = await rows.nth(r).locator("td.field").text_content()
-            if label and "Stage:" in (label or ""):
-                data["stage"] = (await rows.nth(r).locator("td.field-value").text_content() or "").strip()
-            if label and "Construction Start:" in (label or ""):
-                data["construction_start"] = (await rows.nth(r).locator("td.field-value").text_content() or "").strip()
-            if label and "Construction End:" in (label or ""):
-                data["construction_end"] = (await rows.nth(r).locator("td.field-value").text_content() or "").strip()
+            label = await _safe_text(rows.nth(r).locator("td.field").first)
+            if not label:
+                # try alternate selector td:first-child
+                label = await _safe_text(rows.nth(r).locator("td").first)
+            if "Stage:" in label:
+                data["stage"] = await _safe_text(rows.nth(r).locator("td.field-value").first)
+            elif "Construction Start:" in label:
+                data["construction_start"] = await _safe_text(rows.nth(r).locator("td.field-value").first)
+            elif "Construction End:" in label:
+                data["construction_end"] = await _safe_text(rows.nth(r).locator("td.field-value").first)
 
-    # Contact Information 表：tr[data-contact-id]；提取联系人名字（Contact 列中第一个 span 或首行）
+    # Contact Information 表：tr[data-contact-id]
     contacts = []
     for contact_row in await page.locator("tbody.contact-info tr[data-contact-id]").all():
-        role = (await contact_row.locator("td").nth(0).text_content() or "").strip()
-        company_cell = await contact_row.locator("td").nth(1).text_content()
-        company = (company_cell or "").strip()
-        contact_cell = await contact_row.locator("td").nth(2).text_content()
-        contact = (contact_cell or "").strip()
+        role    = await _safe_text(contact_row.locator("td").nth(0))
+        company = await _safe_text(contact_row.locator("td").nth(1))
+        contact_cell = await _safe_text(contact_row.locator("td").nth(2))
         name_el = contact_row.locator("td").nth(2).locator("span").first
-        contact_name = (await name_el.text_content() or "").strip() if await name_el.count() else (contact.split("\n")[0].strip() if contact else "")
-        email_el = contact_row.locator("a[href^='mailto:']").first
-        email = await email_el.get_attribute("href")
-        if email and email.startswith("mailto:"):
-            email = email.replace("mailto:", "").strip()
+        if await name_el.count():
+            contact_name = await _safe_text(name_el)
         else:
-            email = ""
-        contacts.append({"role": role, "company": company, "contact": contact, "name": contact_name, "email": email})
+            contact_name = contact_cell.split("\n")[0].strip() if contact_cell else ""
+        email_el = contact_row.locator("a[href^='mailto:']").first
+        email = ""
+        if await email_el.count():
+            href = await email_el.get_attribute("href") or ""
+            email = href.replace("mailto:", "").strip() if href.startswith("mailto:") else ""
+        contacts.append({"role": role, "company": company, "contact": contact_cell, "name": contact_name, "email": email})
     data["contacts"] = contacts
 
     return data
