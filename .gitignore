@@ -1,0 +1,53 @@
+# Credentials & secrets
+.env
+*.cookies.json
+.google_cookies.json
+
+# Chrome debug profile (huge, not source)
+chrome_debug_profile/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Runtime / scraped data
+leads.csv
+bc_current_lead.json
+
+# Generated research outputs
+Research_*.md
+
+# Generated email drafts (operational, not source)
+Pending_Approval/Outbound/BC_Proposal_*.md
+Pending_Approval/Outbound/*_Draft.md
+Carr_Outreach_Draft.md
+contacts_deep_search.md
+
+# Inbox task logs (operational)
+Inbox/ACTIVE_TASK.md
+Inbox/TASK_STATUS.md
+Inbox/Archive/Task_*.md
+Inbox/BC_Proposals_Generated_*.md
+
+# Generated proposal docs & PDFs (stored in Projects/, not here)
+*.docx
+*.pdf
+
+# Scraped HTML pages and their asset folders
+*.html
+*_files/
+
+# Operational logs & data
+sent_log.csv
+bc_pending_projects.json
+
+# Chrome/Gemini login helper scripts (no longer used)
+*.bat
+*.cmd
+*.ps1
+gemini_fresh_login.bat
+
+# Misc notes (but NOT requirements.txt)
+New Text Document.txt
+Carr_Properties_FollowUp.txt

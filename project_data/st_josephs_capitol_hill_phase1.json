@@ -1,0 +1,18 @@
+{
+  "project_id": "st_josephs_capitol_hill_phase1",
+  "client_full": "Keller Brothers - Keller Brothers Special Projects",
+  "client_short": "Keller Brothers",
+  "attention": "Alex Pauley",
+  "client_email": "apauley@kellerbrothers.com",
+  "project_name": "St. Joseph's on Capitol Hill – Phase I",
+  "project_address": "313 2nd Street Northeast, Washington, DC 20002",
+  "project_size_sqft": "3,276 sq. ft.",
+  "exhibit_a_scope_only": "Renovation of an existing historic carriage house and addition of an event hall with a reception space. The event hall is one double height story of construction type V-B and the carriage house and reception area are two stories of construction type V-B. All spaces are sprinklered.",
+  "price_per_visit": 350,
+  "exhibit_c_rows": [
+    { "keyword": "underground", "visits": 2 },
+    { "keyword": "rough-in", "visits": 4 },
+    { "keyword": "insulation", "visits": 1 },
+    { "keyword": "final", "visits": 2 }
+  ]
+}

@@ -1,0 +1,94 @@
+Building Code Consulting 业务法则：
+
+目标： 检索 ConstructionWire/BuildingConnected 项目 lead。
+
+筛选： Inspection 业务仅限 DC 地区以及northern VA以及PG,Montgomery County；Plan Review 全球/全国， Code Consulting可以去到最北baltimore，最南到Norfolk 距离northern VA不超出2个半小时车程。
+
+身份： 发件人是 Kyle Cao (PE, MCP)。
+
+权限： 在发送正式邮件前，必须生成预览并询问我 "Proceed with sending?"。
+
+工具： 优先使用 Playwright 模拟浏览器登录，严禁在脚本中硬编码密码（从 .env 读取）。
+
+当我让你发送关于 Inspection 或者plan review (检测) 的邮件时，请使用 admin@buildingcodeconsulting.com；并copy ycao@buildingcodeconsulting.com作为抄送。
+
+逻辑： 脚本每 8 小时通过 IMAP 检查三个邮箱的收件箱。
+
+AI 预处理： Agent 会读取邮件正文，判断是“垃圾广告”、“自动回复”还是“真正的客户咨询”。
+
+总结： 如果是客户，它会在侧边栏弹窗告诉你：“[项目名] 的客户回复了，建议回复：[回复草稿]”。
+
+### 邮件与签名
+- **签名**：admin@buildingcodeconsulting.com 与 ycao@buildingcodeconsulting.com 的邮箱已自动附带签名。生成或写入邮件正文时，**不得在正文末尾再次添加签名块**；若发现正文中已包含签名，则不再追加。
+- **主题行**：避免多封邮件使用高度雷同的主题（如 "Bid Inquiry - [Project Name]"），以免被 Outlook 等判为“群发/垃圾”。需**变化主题**，并在邮件中**鼓励对方回复**（回复是反垃圾最强信号）。部分邮件目的为索取 bidding opportunity 或链接，主题与措辞需相应调整。
+
+### Skill: Subject Line Randomizer (Anti-Spam)
+- **目标**：打破“大规模群发”模式，降低被 Outlook 等识别为批量邮件的概率。
+- **逻辑**：针对**每一个** Lead，Agent 必须先生成 **3 个不同侧重点** 的邮件主题，再**随机选择其中 1 个**用于发送。不得对多条 Lead 使用同一主题模板。
+- **三个侧重点示例**（可依具体 Lead 调整）：(1) 侧重 **Plan Review / Peer Review**（如 "Expediting Permit Review for [Project Name]"）；(2) 侧重 **24-hour Inspection**（如 "24-Hour DC Inspection Support for [Company/Project]"）；(3) 侧重 **具体项目进展**（如 "[项目名，如 2121 Virginia Ave] — Plan Review & Inspection Options"）。
+- **执行**：在生成邮件草稿时，在草稿文件顶部注明「本次选用主题：[其中之一]」，并保留另外两个备选主题供你替换。发送前由你审阅并确认主题与正文。
+
+### 交付前自检 (Self-Review Before Sending to You)
+- **每次生成产出后**：必须先把产出**发回给自己**做检查——即实际读取生成物（如打开/提取并阅读生成的文档、代码或报告内容），以「审核者」身份审阅。
+- **自检通过后再交付给你**：只有在审阅后自己确认「通过」后，才把该产出交付给你。不得未经「自己先读并批准」就把结果直接发给你。
+
+### 权限与审批 (Access & Approval)
+- **完全授权 (Always Allow)**：文件读取与检索（leads.csv、Research_*.md、数据库与清单）；Web 搜索与调研（网页抓取、联系人深挖）；数据写入（更新本地清单、数据库状态、日志、Research_*.md、草稿文件）。
+- **半授权 (Ask for Terminal/Shell)**：运行脚本（爬虫、数据处理、send_test_email 等）时需“询问”或一键确认后再执行。
+- **严格审查 (Bottom Line)**：**邮件发送**。所有涉及发送邮件的操作必须经人工审阅。Agent 须在发送前明确提示：`Email content ready for [Contact Name]. Please review 'drafts/xxx.md' (或 Pending_Approval/xxx.md) and type 'Y' to send.` 未经你确认（如回复 "Proceed with sending" 或 "Y"），不得实际发送。
+
+### 项目阶段优先级 (Lead 扩展顺序)
+- 优先从 **1–12 month before construction** 阶段的项目开始抓取与触达。
+- 再逐步扩展至：**groundbreaking**、**early construction**、**planning**、**proposed** 等阶段。
+
+### Web-Based Research Skill (API-Free)
+- **任务定义**：当用户要求“深挖联系人”“深度搜索”“背景调查”时，必须使用内置 Web Search 与网页抓取（Browser/ fetch 工具），不得调用付费 API（如 Gemini API）。
+- **搜索路径**：[公司名] + "DC office staff" → [公司名] + "Principal" → [公司名] + "Project Manager email"；可访问官网 “About / Team / Leadership” 页。
+- **资质匹配**：搜索结果中优先寻找与建筑规范、结构工程、开发报批、施工现场相关的决策者（VP Construction, Director of Development, SVP Design & Construction, Project Manager, Estimator 等）。
+- **输出要求**：将结果整理为 Markdown 报告，并列出数据来源的 URL，确保可追溯；联系人可打标签「适合谈 Plan Review」或「适合谈 Inspection」。
+
+### Gemini 网页版 (零 API 成本，优先于 API)
+- **收到“Deep Search”“深度调研”“用 Gemini 网页”等指令时**：第一动作是**打开浏览器操作 Gemini 网页版**，而不是调用 Gemini API。零成本、功能更强（如 Deep Research）、且无 API 过滤限制。
+- **Cookie 检查（必做）**：**任何涉及 Gemini 网页的操作前**，先运行 `python check_gemini_cookie_expiry.py --check`。若退出码为 1（cookie 缺失或已过期），则**立即**执行重新登录流程：运行 `start_chrome_for_gemini_login.bat`，提示用户在该 Chrome 窗口内打开 gemini.google.com 并登录，用户确认「Ready」后运行 `python google_gemini_login_chrome.py` 保存 Cookie，再继续原任务。用户会配合完成登录。
+- **前置准备**：用户需先完成一次 Gemini 登录并保存 Cookie 到 `.google_cookies.json`。若 Google 提示「此浏览器或应用可能不安全」，改用**本机已安装的 Chrome**：先运行 `start_chrome_for_gemini_login.bat`（专用 profile，无需关掉日常 Chrome），在打开的 Chrome 内打开 gemini.google.com 并登录，再运行 `python google_gemini_login_chrome.py` 连接该 Chrome 并保存 Cookie。详见 `GEMINI_LOGIN_WITH_CHROME.md`。
+- **自动化脚本**：`gemini_web_automation.py` 接收公司名，打开 Gemini 网页，输入默认或自定义 prompt（如“请利用 Deep Research 功能，帮我找到 [公司名] 在 DC 的 specific projects、2–4 位 best point of contacts”），等待“Thinking”结束后抓取结果，保存为 `Research_[公司名].md`，并可在 `Pending_Approval/` 生成邮件草稿占位。
+- **实现细节**：输入框与发送按钮采用“文字匹配 + 多选择器回退”（getByRole、getByPlaceholder、aria-label 等），以应对 Gemini 网页 DOM 经常更新的情况；不依赖固定 class。
+- **人工干预**：若自动化过程中遇到验证码或需用户确认，可将“需要人工干预”的信号写入云盘同步目录；用户手机查看后把对应文件改为 `-OK` 表示已处理。调研完成后报告也可放云盘，用户确认后改 `-OK` 再进入下一环节（如生成邮件草稿）。
+
+### Subagent 与 Skills 建议
+- **Researcher Subagent**：负责长文档、搜索摘要与深度调研（可配置为擅长此类任务的模型）。
+- **Communication Subagent**：负责撰写专业、得体的对外邮件。
+- **Lead_Enrichment Skill**：每当抓取到**公司名**（如 GC/Developer），自动触发基于网页的深度调查（同上 Web-Based Research），生成 Research_[公司名].md 并可为后续邮件草稿提供依据。
+
+### 批量与每日汇总
+- 批量处理 ConstructionWire 其他 Lead 时：按“Carr 模式”对前 N 个项目的 GC 做 Web-Based 深度调查；自动生成 Research_[公司名].md；自动准备邮件草稿。
+- **每日下午 5 点**：汇总一份「待审核发送清单」供你审阅（草稿路径与收件人列表）。
+
+### 手机端与 CRM 联动
+- **跟进状态**：Carr_Properties_FollowUp.txt（可同步至 iCloud / OneDrive / Google Drive）供手机编辑。你在手机上可将状态改为如 `Called-NoAnswer`。
+- **审批**：草稿可放在 `Pending_Approval/[Project_Name].md`；你在手机或本机将文件名改为含 `-OK` 或在文件内写 `APPROVED` 后，Agent 检测到再执行发送（具体实现由脚本/监听逻辑完成）。
+- **重播名单**：Agent 定期扫描跟进文件，将标记为 NoAnswer 等需回访的 lead 汇总为「下周一重播名单」。
+- **提醒**：可通过简单推送（如 Pushover）或每日「待办汇总」邮件发至你私邮，在手机邮件 App 即可查看当日需跟进的电话或邮件。
+
+### Task Observation Skill（Telegram → Cursor 闭环）
+- **监控目标**：始终关注 `Inbox/ACTIVE_TASK.md` 的文件变化（时间戳或内容更新）。
+- **触发条件**：当 ACTIVE_TASK.md 被更新（例如 Yue 在 Telegram 使用 /save 或说「存为任务」后 Bot 写入新任务块），优先处理该任务。
+- **分析步骤**：
+  1. 读取 ACTIVE_TASK.md 正文，识别 Yue 指定的**项目/客户**（如 Carr Properties、2121 Virginia Ave）。
+  2. 理解 Yue 在手机上讨论的**业务逻辑**（如：增加对 Third-Party Peer Review 的描述、修改某邮件草稿、调整 gemini_web_automation 的检索参数等）。
+  3. **自动执行**：按任务要求修改 `Pending_Approval/Outbound/` 下对应邮件草稿、或更新 `gemini_web_automation.py` 的 prompt/参数、或更新 Research/草稿内容；保持 PE/MCP 专业调性。
+- **反馈确认**：完成操作后，在 `Inbox/TASK_STATUS.md` 中写下：「Yue，任务已按你在 Telegram 的要求处理完毕。」并简要列出已修改项。若存在 `ring_bell.py`，可执行一次以提醒用户回到座位查看。
+
+### 认证与上下文与规则固化 (Protocol – No Exceptions)
+
+- **Google（Gmail / Docs）**：不得依赖复制 Cookie 做长期自动化。必须使用 **Google Cloud API + OAuth2 或 Service Account**（`google-auth`、`google-api-python-client`），在 Google Cloud Console 启用 Gmail API 等并下载凭证 JSON。脚本（如 email_sender）需用官方库认证。Cookie 仅作临时/网页 Gemini 用途，见下。
+- **BuildingConnected（无 API 时）**：若需浏览器自动化（Playwright/Selenium），脚本应**程序化登录**、保存完整浏览器状态、下次优先重载状态；若重载失败则自动再次登录。不要依赖“手动复制 Cookie”作为唯一手段。
+- **上下文 (Context)**：接近 100% 时 AI 会遗忘较早内容。完成一个**独立任务**（如修好某个脚本或定好一条规则）后：请 AI 总结关键变更；**新任务另开新会话**，保持干净上下文。
+- **规则固化（禁止只做热修）**：当 Agent **找到** BuildingConnected 或其它站点上某数据点的**正确**抓取方法（正确 selector/XPath/API/步骤）后，**不得**只改代码就结束。必须**立即**打开 `BCC_PROPOSAL_RULES.md`（或项目指定的中央规则文件），找到对应「抓取该数据点」的章节，**删除旧错误规则**，**写入新方法**（步骤、selector、示例）。并遵守：*「今后抓取该站点必须按此文件中记录的规则执行。」* 不把“修好一次”当作学会；必须写进规则文件才算完成。
+
+### BuildingConnected 与 Bid-to-Proposal
+- **线索**：`buildingconnected_bid_scraper.py` 登录 BuildingConnected，检索 Washington DC 近 2–3 个月 Bid Invites，识别尚未提交提案的项目。Cookie 存于 `.buildingconnected_cookies.json`。
+- **提案**：`proposal_generator.py` 使用 `BuildingConnected/templates/DC Code Compliance Proposal Template.docx`（或内置简易模板）填充占位符，按定价逻辑输出：极大型/大客户 $295/visit；常规回头客 $300–350；小型重复 $350–375；一次性 $375–400。生成文件存于 `../Projects/[Client Name]/[Project Name]/`。
+- **提案规则（必读）**：生成或修改任何 BC 提案前，必须遵守 `BCC_PROPOSAL_RULES.md`：客户名、收件人、地址、日期、Exhibit A 描述必须来自 BuildingConnected Overview 真实数据，不得使用 Sample Client / Cox & Company / 701 Monroe / Bryan Kerr 等占位或他项目内容；Exhibit C 按 PE/MCP 估算逻辑；全文黑色；可选在交付用户前用 Gemini 复核。
+- **定价确认**：生成前在终端输出定价摘要表；Yue 可回复「同意」或指定单价后再生成。提案中可强调 ICC MCP 身份以支持较高档位。
+- **邮件**：提案生成后在 `Pending_Approval/Outbound/` 创建发送提案的邮件草稿（BC_Proposal_*_Draft.md），审批（-OK）后由 approval_monitor 发送。
