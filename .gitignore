@@ -41,6 +41,7 @@ Inbox/BC_Proposals_Generated_*.md
 # Operational logs & data
 sent_log.csv
 bc_pending_projects.json
+work_log.json
 
 # Chrome/Gemini login helper scripts (no longer used)
 *.bat

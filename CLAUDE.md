@@ -99,6 +99,16 @@ When a correct scraping method is found, immediately record it in `BCC_PROPOSAL_
 ### Anti-Spam Email Subjects
 For each lead, generate 3 subject lines (Plan Review angle, Inspection angle, project-specific angle), randomly pick one. Never reuse the same template across leads.
 
+### Check Inbox: Consult Work Log First (No Exceptions)
+Before generating any proposal or drafting any email, run:
+```
+python core_tools/work_log.py --status
+```
+Skip any project where proposal is already done (no regeneration).
+Skip any project where email was sent and follow-up is not yet due.
+Only act on: new projects, projects needing email draft, or follow-ups due.
+Default follow-up interval: 4 days.
+
 ### Service Territory
 - **Inspection**: DC, Northern VA, PG County, Montgomery County only
 - **Plan Review**: nationwide/global

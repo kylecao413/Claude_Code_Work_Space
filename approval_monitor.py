@@ -94,6 +94,26 @@ def process_approved_file(path: Path) -> bool:
         return False
     print(f"  [已发送] {path.name} -> {to_email}")
 
+    # Log email sent to work_log.json
+    try:
+        from core_tools.work_log import mark_email_sent
+        # Extract project label from filename: BC_Proposal_<ProjectName>_Draft-OK.md
+        stem = Path(path).stem.replace("-OK", "")
+        project_label = stem.replace("BC_Proposal_", "").replace("_Draft", "").replace("_", " ")
+        mark_email_sent("", project_label, to_email, followup_days=4)
+    except Exception:
+        pass
+
+    # Write to sent_log.csv for backward compatibility
+    try:
+        import csv
+        from datetime import datetime as _dt
+        with open(BASE_DIR / "sent_log.csv", "a", newline="", encoding="utf-8") as f:
+            csv.writer(f).writerow([to_email, "", "", subject,
+                                     _dt.utcnow().isoformat() + "Z"])
+    except Exception:
+        pass
+
     SENT_DIR.mkdir(exist_ok=True)
     dest = SENT_DIR / path.name
     shutil.move(str(path), str(dest))

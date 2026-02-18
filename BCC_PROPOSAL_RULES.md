@@ -4,24 +4,65 @@ These rules are derived from the Critical Failure Report and screenshot correcti
 
 ---
 
-## 0. Scraping / BuildingConnected – Correct Methods (Must Be Updated When Found)
+## 0. Scraping / BuildingConnected – Setup & Correct Methods
 
-**Protocol:** When the agent (or you and the agent together) **finds the correct way** to get a specific data point from BuildingConnected (e.g. Project Description, Client, Address, Contact)—by identifying the right CSS selector, XPath, or step-by-step flow—**do not just fix the code and move on.**
+### BC Self-Login Requirements
 
-1. **Immediately** open this file (`BCC_PROPOSAL_RULES.md`).
-2. Find the section below that corresponds to that data point (or create a subsection under "Scraping – Recorded methods").
-3. **Delete** the old, incorrect rule or selector.
-4. **Replace** it with a clear, step-by-step description of the **new, correct** method (selector, container, optional fallbacks).
-5. Tell the agent: *"Future attempts to scrape this site MUST follow the rule stored in this markdown file."*
+To auto-login to BuildingConnected, add these keys to `.env`:
+```
+BC_EMAIL=your-bc-login-email@example.com
+BC_PASSWORD=your-bc-password
+```
+Script: `bc_scrape_project.py` reads these, navigates to `https://app.buildingconnected.com/login`,
+fills the form, saves cookies to `.buildingconnected_cookies.json`, then scrapes the project page.
 
-**Scraping – Recorded methods (overwrite when you find a better one):**
+**URL format for project pages:**
+`https://app.buildingconnected.com/opportunities/<PROJECT_ID>/info`
 
-- **Project Description / Exhibit A:** *(To be filled when correct BC Overview selector or extraction steps are confirmed. Delete this line and write the exact method.)*
-- **Client name:** *(To be filled when correct BC Overview field/selector is confirmed.)*
-- **Address / Location:** *(To be filled when correct BC Overview field/selector is confirmed.)*
-- **Attention / Contact (To:):** *(To be filled when correct BC Bid Form or Overview selector is confirmed.)*
+**Workflow:** User pastes BC project URL in Telegram → sends `/save` → Claude reads ACTIVE_TASK.md
+→ runs `bc_scrape_project.py <url>` → scrapes all fields → generates proposal draft.
 
-If a scrape fails or returns wrong data, investigate the live HTML with the user, find the correct method once, then **update this section** so the same mistake is not repeated.
+**If self-login fails (2FA / SSO):** Agent opens headful browser (visible), sends Telegram message
+asking user to log in remotely or from phone screen-share. Script waits up to 5 min for login,
+then proceeds to scrape.
+
+### Scraping – Recorded methods (overwrite when confirmed):
+
+- **Project Description / Exhibit A:** *(To be confirmed — run bc_scrape_project.py and update here with selector found.)*
+- **Client name / GC:** *(To be confirmed with live page.)*
+- **Address / Location:** *(To be confirmed with live page.)*
+- **Attention / Contact:** *(To be confirmed — check bid form "To:" or overview "Invited by".)*
+
+**Protocol:** When the agent finds the correct selector for any field, immediately update this file. Delete the "To be confirmed" line and replace with the exact selector/step.
+
+---
+
+## 0-B. Proposal Format: Per-Visit vs. Detailed Estimation
+
+**DEFAULT RULE: Use Per-Visit ("Flat Rate per Visit") format for most projects.**
+
+Per Kyle (2026-02-17): For small/standard projects and when the drawing set is not yet available,
+send a per-visit proposal. The invoice is based on actual visits completed.
+
+**Per-Visit proposal wording (use in Exhibit C / fee section):**
+> "Inspection Services: Flat rate of $[PRICE]/visit, per discipline combo inspection.
+> Total invoice will be based on actual number of visits completed."
+
+**When to use Per-Visit:**
+- Small tenant renovations (< ~5,000 SF)
+- Projects where full permit drawings are not yet received
+- Any project needing immediate/quick submission
+- First-contact proposals before permit set is issued
+
+**When to do full estimation (visits × scope breakdown):**
+- Large projects (> 5,000 SF, multi-trade)
+- Projects where Kyle has reviewed the drawing index
+- Repeat clients where scope is well-understood
+
+**Checklist addition for Per-Visit proposals:**
+- [ ] Exhibit C states "flat rate per visit" and "invoice based on actual visits"
+- [ ] No fabricated visit count breakdown (keep simple: 1 line, $/visit)
+- [ ] Estimated total = $/visit × conservative estimated visits (note: estimate only)
 
 ---
 
