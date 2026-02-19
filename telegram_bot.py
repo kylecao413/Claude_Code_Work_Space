@@ -1,11 +1,11 @@
 """
-Telegram 手机端 AI 交互：列出待审批草稿、审批发送、今日简报，自由对话（Gemini），以及 /save 将对话封装为 Cursor 任务（写入 Inbox/ACTIVE_TASK.md）。
-需在 .env 中配置 TELEGRAM_BOT_TOKEN、TELEGRAM_ALLOWED_CHAT_IDS；自由对话与 /save 需 GEMINI_API_KEY。
+Telegram bot for BCC Sales Automation.
+Commands: pipeline status, follow-up management, draft approvals, daily briefing, Gemini chat.
+Requires in .env: TELEGRAM_BOT_TOKEN, TELEGRAM_ALLOWED_CHAT_IDS; free-text chat needs GEMINI_API_KEY.
 """
 import asyncio
 import os
 import sys
-from collections import deque
 from datetime import datetime
 from pathlib import Path
 
@@ -19,13 +19,8 @@ except ImportError:
 BASE_DIR = Path(__file__).resolve().parent
 _env_pending = os.environ.get("PENDING_APPROVAL_DIR", "").strip().strip('"')
 PENDING_DIR = Path(_env_pending) if _env_pending else BASE_DIR / "Pending_Approval"
-_env_inbox = os.environ.get("INBOX_DIR", "").strip().strip('"') or os.environ.get("BRIDGE_DIR", "").strip().strip('"')
-INBOX_DIR = Path(_env_inbox) if _env_inbox else BASE_DIR / "Inbox"
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip().strip('"')
 MAX_TELEGRAM_MESSAGE = 4000
-MAX_CHAT_HISTORY = 20
-# 每个 chat_id 最近 N 条对话（user/assistant 交替），供 /save 回溯
-_chat_history: dict[int, deque] = {}
 
 
 def get_pending_drafts():
@@ -120,63 +115,6 @@ Reply in a helpful, concise way. You can answer questions about pending drafts, 
         return f"Agent 调用出错: {e}"
     return "Agent 调用出错: 当前 API 下无可用模型，请检查 Google AI Studio 可用模型列表。"
 
-
-def _get_history(chat_id: int) -> deque:
-    if chat_id not in _chat_history:
-        _chat_history[chat_id] = deque(maxlen=MAX_CHAT_HISTORY)
-    return _chat_history[chat_id]
-
-
-def _summarize_conversation_to_task(history_list: list[dict]) -> str:
-    """用 Gemini 将对话总结为 Cursor 可执行的任务单（Markdown）。"""
-    if not history_list or not GEMINI_API_KEY:
-        return ""
-    conv = "\n".join(
-        f"**{h['role']}**: {h['text'][:2000]}" for h in history_list
-    )
-    prompt = f"""你正在为 Building Code Consulting 的 Cursor Agent 生成任务单。用户 Yue Cao (PE, MCP) 在 Telegram 上与 Bot 的对话如下：
-
-{conv}
-
-请将上述对话总结为一份**标准 Markdown 任务单**，包含：
-1. **项目/客户**：提到的项目名（如 2121 Virginia Ave、Carr Properties）或客户名。
-2. **业务逻辑与规范**：用户提到的规范章节、审查类型（如 Third-Party Peer Review、24-hour Combo Inspections）、邮件或代码相关要求。
-3. **具体执行要求**：需要 Cursor 执行的修改（如更新 Outbound 草稿、修改 gemini_web_automation 参数、增加对某项目的描述等）。
-4. 末尾加一句：**基于 Yue Cao (PE, MCP) 的专业资质建议。**
-
-输出仅包含 Markdown 任务单正文，不要额外解释。"""
-    try:
-        from google import genai
-        client = genai.Client(api_key=GEMINI_API_KEY)
-        for model_id in ("gemini-2.5-flash", "gemini-2.0-flash", "gemini-2.0-flash-001"):
-            try:
-                response = client.models.generate_content(model=model_id, contents=prompt)
-                if response and getattr(response, "text", None):
-                    return response.text.strip()
-            except Exception:
-                continue
-    except Exception:
-        pass
-    return ""
-
-
-def _write_active_task_and_archive(markdown_content: str) -> tuple[Path, Path | None]:
-    """将任务写入 Inbox/ACTIVE_TASK.md（顶部追加带时间戳的新块），并备份到 Inbox/Archive/Task_YYYYMMDD_HHMM.md。"""
-    INBOX_DIR.mkdir(parents=True, exist_ok=True)
-    archive_dir = INBOX_DIR / "Archive"
-    archive_dir.mkdir(exist_ok=True)
-    active_path = INBOX_DIR / "ACTIVE_TASK.md"
-    ts = datetime.now().strftime("%Y-%m-%d %H:%M")
-    new_block = f"---\n\n## 来自 Telegram · {ts}\n\n{markdown_content}\n\n"
-    if active_path.exists():
-        existing = active_path.read_text(encoding="utf-8")
-        active_path.write_text(new_block + existing, encoding="utf-8")
-    else:
-        active_path.write_text("# ACTIVE TASK（由 Telegram Bot /save 同步）\n\n" + new_block, encoding="utf-8")
-    archive_name = f"Task_{datetime.now().strftime('%Y%m%d_%H%M')}.md"
-    archive_path = archive_dir / archive_name
-    archive_path.write_text("# 任务备份\n\n" + new_block, encoding="utf-8")
-    return active_path, archive_path
 
 
 def get_pipeline_status() -> str:
@@ -520,29 +458,8 @@ def run_polling():
         count, msg = await loop.run_in_executor(None, lambda: mark_contact_replied(email))
         await update.message.reply_text(msg)
 
-    async def do_save_task(chat_id: int) -> str:
-        """执行保存任务：取最近对话 → Gemini 总结 → 写入 ACTIVE_TASK.md + Archive。"""
-        history = list(_get_history(chat_id))
-        if not history:
-            return "暂无对话记录，请先与我讨论要执行的任务后再用 /save 或说「存为任务」。"
-        loop = asyncio.get_event_loop()
-        task_md = await loop.run_in_executor(None, lambda: _summarize_conversation_to_task(history))
-        if not task_md:
-            return "任务总结失败，请稍后再试。"
-        active_path, archive_path = _write_active_task_and_archive(task_md)
-        return f"✅ 任务已同步至 Cursor。\n\n· 主文件：{active_path.name}（Inbox 或云盘）\n· 备份：Archive/{archive_path.name if archive_path else ''}\n\nCursor 检测到 ACTIVE_TASK.md 更新后会按任务执行，完成后会在 TASK_STATUS.md 中反馈。"
-
-    async def cmd_save(update: Update, context: ContextTypes.DEFAULT_TYPE):
-        if not _auth(update.effective_chat.id if update.effective_chat else None):
-            await update.message.reply_text("未授权使用此 bot。")
-            return
-        await update.message.reply_chat_action("typing")
-        chat_id = update.effective_chat.id if update.effective_chat else 0
-        msg = await do_save_task(chat_id)
-        await update.message.reply_text(msg)
-
     async def handle_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
-        """自由对话：记录历史、识别「存为任务」意图、或转发 Gemini 并回复。"""
+        """Free-text Gemini chat."""
         if not update.message or not update.message.text:
             return
         chat_id = update.effective_chat.id if update.effective_chat else None
@@ -552,30 +469,21 @@ def run_polling():
         user_text = update.message.text.strip()
         if not user_text:
             return
-        # 意图识别：自然语言保存任务
-        save_keywords = ("存为任务", "保存任务", "存成任务", "save as task", "保存为任务", "同步到 cursor")
-        if any(k in user_text.lower() for k in save_keywords):
-            _get_history(chat_id or 0).append({"role": "user", "text": user_text})
-            await update.message.reply_chat_action("typing")
-            msg = await do_save_task(chat_id or 0)
-            await update.message.reply_text(msg)
-            return
         if not GEMINI_API_KEY:
             await update.message.reply_text(
-                "我目前只响应命令：/pending、/summary、/approve、/save。\n\n"
-                "若要自由对话或 /save 总结任务，请在 .env 中配置 GEMINI_API_KEY，然后重启 bot。"
+                "Free-text chat requires GEMINI_API_KEY in .env.\n"
+                "Available commands: /pending /summary /approve /pipeline_status "
+                "/followup_check /followup_send /send_batch /mark_replied"
             )
             return
-        _get_history(chat_id or 0).append({"role": "user", "text": user_text})
         await update.message.reply_chat_action("typing")
         ctx = get_agent_context()
         loop = asyncio.get_event_loop()
         reply = await loop.run_in_executor(None, lambda: call_gemini_agent(user_text, ctx))
         if not reply:
-            reply = "没有收到模型回复，请稍后再试。"
+            reply = "No reply from model — please try again."
         if len(reply) > MAX_TELEGRAM_MESSAGE:
-            reply = reply[: MAX_TELEGRAM_MESSAGE - 20] + "\n…(已截断)"
-        _get_history(chat_id or 0).append({"role": "assistant", "text": reply})
+            reply = reply[: MAX_TELEGRAM_MESSAGE - 20] + "\n…(truncated)"
         await update.message.reply_text(reply)
 
     start_text = (
@@ -591,7 +499,6 @@ def run_polling():
         "  /approve <name> — approve & send a draft\n\n"
         "Info:\n"
         "  /summary — today's briefing\n"
-        "  /save    — save conversation as Cursor task\n"
         "  Free-text chat via Gemini"
     )
 
@@ -602,7 +509,6 @@ def run_polling():
     app.add_handler(CommandHandler("pending",         cmd_pending))
     app.add_handler(CommandHandler("summary",         cmd_summary))
     app.add_handler(CommandHandler("approve",         cmd_approve))
-    app.add_handler(CommandHandler("save",            cmd_save))
     app.add_handler(CommandHandler("start",           cmd_start))
     app.add_handler(CommandHandler("pipeline_status", cmd_pipeline_status))
     app.add_handler(CommandHandler("followup_check",  cmd_followup_check))
@@ -610,7 +516,7 @@ def run_polling():
     app.add_handler(CommandHandler("send_batch",      cmd_send_batch))
     app.add_handler(CommandHandler("mark_replied",    cmd_mark_replied))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_chat))
-    print("Telegram Bot 已启动。发送 /start 查看命令；直接发消息可对话（需 GEMINI_API_KEY）。")
+    print("BCC Telegram Bot started. Send /start for command list.")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
