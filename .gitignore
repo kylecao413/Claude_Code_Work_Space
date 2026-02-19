@@ -43,6 +43,12 @@ sent_log.csv
 bc_pending_projects.json
 work_log.json
 
+# Pipeline runtime state (not source)
+pipeline_checkpoint.json
+cw_leads_raw_*.json
+DC_Leads_Report_*.md
+DC_Top100_*.md
+
 # Chrome/Gemini login helper scripts (no longer used)
 *.bat
 *.cmd

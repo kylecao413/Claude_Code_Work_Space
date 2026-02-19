@@ -42,7 +42,6 @@ from constructionwire_login import COOKIES_PATH, has_saved_cookies, is_logged_in
 from constructionwire_dc_leads import (
     scrape_leads_from_current_page,
     scrape_detail_page,
-    DC_SEARCH_URL,
     BASE_URL,
 )
 from deep_search_contacts import deep_search_contacts
@@ -51,6 +50,7 @@ from deep_search_contacts import deep_search_contacts
 BASE_DIR = Path(__file__).resolve().parent
 OUTBOUND_DIR = BASE_DIR / "Pending_Approval" / "Outbound"
 OUTBOUND_DIR.mkdir(parents=True, exist_ok=True)
+CHECKPOINT_PATH = BASE_DIR / "pipeline_checkpoint.json"
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "").strip()
 CHAT_IDS_RAW = os.getenv("TELEGRAM_ALLOWED_CHAT_IDS", "").strip()
@@ -58,6 +58,125 @@ CHAT_ID = CHAT_IDS_RAW.split(",")[0].strip() if CHAT_IDS_RAW else ""
 
 NOW_STR = datetime.now().strftime("%Y%m%d_%H%M")
 TODAY = datetime.now().strftime("%Y-%m-%d")
+
+# ─── Checkpoint utilities ─────────────────────────────────────────────────────
+
+def _checkpoint_load() -> dict:
+    """Load pipeline checkpoint. Returns {} if none exists or is corrupt."""
+    if not CHECKPOINT_PATH.exists():
+        return {}
+    try:
+        return json.loads(CHECKPOINT_PATH.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def _checkpoint_save(updates: dict) -> None:
+    """Merge updates into the checkpoint file atomically."""
+    cp = _checkpoint_load()
+    cp.update(updates)
+    cp["last_updated"] = datetime.now().isoformat()
+    CHECKPOINT_PATH.write_text(json.dumps(cp, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _checkpoint_clear() -> None:
+    """Remove checkpoint file after successful pipeline completion."""
+    if CHECKPOINT_PATH.exists():
+        CHECKPOINT_PATH.unlink()
+        print("Checkpoint cleared (pipeline complete).")
+
+
+def _checkpoint_resume_phase(cp: dict) -> int:
+    """
+    Return the phase number to resume from (1–7).
+    Inspects which phases are marked done and returns the first incomplete one.
+    """
+    for phase, key in [
+        (1, "phase1_done"), (2, "phase2_done"), (3, "phase3_done"),
+        (4, "phase4_done"), (5, "phase5_done"), (6, "phase6_done"), (7, "phase7_done"),
+    ]:
+        if not cp.get(key):
+            return phase
+    return 8  # all done
+
+
+# ─── Stage codes & service focus ─────────────────────────────────────────────
+# CW pcstgs codes (confirmed by inspection of search URL params):
+#   1 = Planning   2 = Proposed   3 = Starts 1-3 mo   4 = Starts 4-12 mo
+#   5 = Starts 7-12 mo (some accounts combine 4+5)   6 = Groundbreaking   7 = Under Construction
+DEFAULT_STAGES = [1, 2, 3, 4, 5, 6, 7]
+
+
+def _build_search_url(stages: list[int]) -> str:
+    params = "&".join(f"pcstgs={s}" for s in stages)
+    return f"{BASE_URL}/Client/Report?rtid=1&rss=DC&{params}&p=1"
+
+
+def _stage_service_focus(stage_text: str) -> tuple[str, int]:
+    """
+    Map scraped stage label → (service_focus, priority_score 1-10).
+    Earlier stages → Plan Review priority. Later stages → Inspection priority.
+    """
+    s = (stage_text or "").lower()
+    if any(x in s for x in ("planning", "proposed", "pre-design", "design development")):
+        return "Plan Review", 9
+    elif any(x in s for x in ("1-3", "1 to 3", "starts in 1", "1–3")):
+        return "Both (Inspection Lead)", 10
+    elif any(x in s for x in ("4-6", "4 to 6", "4–6", "4-12", "4 to 12", "7-12", "7 to 12", "7–12")):
+        return "Inspection", 8
+    elif any(x in s for x in ("groundbreaking", "breaking ground")):
+        return "Inspection (Imminent)", 9
+    elif any(x in s for x in ("under construction", "early construction", "construction")):
+        return "Inspection (Active)", 7
+    else:
+        return "Both", 6
+
+
+def _parse_value_millions(value_str: str) -> float:
+    """Parse estimated value string → float in millions. Returns 0.0 on failure."""
+    if not value_str:
+        return 0.0
+    s = value_str.lower().replace(",", "").replace("$", "").strip()
+    m = re.search(r"[\d.]+", s)
+    if not m:
+        return 0.0
+    try:
+        num = float(m.group())
+    except ValueError:
+        return 0.0
+    if "billion" in s or "b" == s[-1:]:
+        return num * 1000
+    if "million" in s or s.endswith("m"):
+        return num
+    # Raw number — assume dollars
+    return num / 1_000_000
+
+
+def _score_lead(lead: dict, company_research: dict) -> float:
+    """Score a lead for top-100 ranking. Higher = better opportunity for BCC."""
+    _, stage_score = _stage_service_focus(lead.get("stage", ""))
+    score = float(stage_score)
+
+    # Value: up to +5 for large projects (capped at $50M+)
+    value_m = _parse_value_millions(lead.get("estimated_value") or lead.get("value") or "")
+    score += min(value_m / 10.0, 5.0)
+
+    # Contact quality: +3 if any CW detail contact has a verified email
+    has_email = any(dc.get("email") for dc in lead.get("detail_contacts", []))
+    if has_email:
+        score += 3.0
+
+    # Role desirability
+    for (_, role) in lead.get("companies_parsed", []):
+        if role in ("Developer/Owner", "Developer", "Owner"):
+            score += 2.0
+            break
+        elif role in ("GC/Contractor", "Architect", "Construction Manager"):
+            score += 1.0
+            break
+
+    return round(score, 2)
+
 
 # ─── Company role codes from ConstructionWire ─────────────────────────────────
 # Ordered longest-first to avoid partial match (e.g. "(D/O)" before "(D)")
@@ -155,11 +274,17 @@ def _clean_company_name(name: str) -> str:
 
 
 # ─── Phase 1: Playwright scraping ─────────────────────────────────────────────
-async def phase1_scrape_leads(headless: bool = False, max_pages: int = 10) -> list[dict]:
+async def phase1_scrape_leads(
+    headless: bool = False, max_pages: int = 10, stages: list[int] | None = None
+) -> list[dict]:
     """
-    Scrape all DC leads (stages 1–12 months) with detail pages for every lead.
+    Scrape DC leads for the given stage codes with detail pages for every lead.
+    stages: list of CW pcstgs codes (1=Planning,2=Proposed,3-5=1-12mo,6=Groundbreaking,7=Early Construction)
     Returns list of lead dicts with companies_parsed, detail_contacts, construction_start, etc.
     """
+    if stages is None:
+        stages = DEFAULT_STAGES
+    search_url = _build_search_url(stages)
     if not has_saved_cookies():
         print("No saved CW cookies. Please run first: python constructionwire_login.py")
         return []
@@ -191,9 +316,10 @@ async def phase1_scrape_leads(headless: bool = False, max_pages: int = 10) -> li
                 return []
             print("Login via cookies: OK")
 
+            print(f"Stages: {stages} | URL: {search_url}")
             # Scrape list pages
             for pagenum in range(1, max_pages + 1):
-                url = DC_SEARCH_URL.replace("p=1", f"p={pagenum}")
+                url = search_url.replace("p=1", f"p={pagenum}")
                 await page.goto(url, wait_until="domcontentloaded")
                 await page.wait_for_load_state("networkidle", timeout=20000)
                 try:
@@ -276,12 +402,18 @@ def _search_phone(contact_name: str, company: str) -> str:
 
 
 def phase2_research_companies(
-    leads: list[dict], max_contacts: int = 3
+    leads: list[dict],
+    max_contacts: int = 3,
+    existing_research: dict | None = None,
+    skip_companies: set | None = None,
 ) -> dict[str, dict]:
     """
     Deep-search every unique company found across all leads.
     Returns: company_name -> {role, contacts: [{name, role, email, phone, source}]}
     Priority: ConstructionWire detail-page contacts (verified) then deep search supplements.
+
+    existing_research: partial results from a previous interrupted run (checkpoint resume).
+    skip_companies: set of company names already fully researched (skip them).
     """
     print(f"\n{'='*60}")
     print("Phase 2: Deep-Searching Companies for Key Contacts")
@@ -309,8 +441,15 @@ def phase2_research_companies(
 
     print(f"Unique companies to research: {len(company_role_map)}")
 
-    results: dict[str, dict] = {}
+    # Start from existing partial results (checkpoint resume)
+    results: dict[str, dict] = dict(existing_research) if existing_research else {}
+    _skip = set(skip_companies) if skip_companies else set()
+    if _skip:
+        print(f"  [RESUME] Skipping {len(_skip)} already-researched companies.")
+
     for idx, (company, role) in enumerate(company_role_map.items()):
+        if company in _skip:
+            continue
         print(f"\n  [{idx+1}/{len(company_role_map)}] {company} ({role})")
 
         # Step A: collect verified contacts from CW detail pages
@@ -364,8 +503,14 @@ def phase2_research_companies(
                     print(f"    Phone found for {c['name']}: {phone}")
 
         results[company] = {"role": role, "contacts": final_contacts}
+        _skip.add(company)
         found = sum(1 for c in final_contacts if c.get("email"))
         print(f"    Contacts with email: {found} / {len(final_contacts)}")
+        # Incremental checkpoint save so a crash mid-phase is recoverable
+        _checkpoint_save({
+            "phase2_company_research": results,
+            "phase2_researched": list(_skip),
+        })
 
     print(f"\nPhase 2 complete: {len(results)} companies researched.")
     return results
@@ -464,6 +609,75 @@ def phase4_send_report_telegram(report_md: str, report_path: Path) -> None:
     print("Report sent to Telegram.")
 
 
+# ─── Phase 3b: Rank Top 100 Leads ─────────────────────────────────────────────
+def phase_rank_top100(leads: list[dict], company_research: dict[str, dict]) -> str:
+    """
+    Score and rank all scraped leads. Return a Markdown report of the top 100.
+    Columns: Rank, Project, Stage, Service Focus, Est. Value, Company/Role, Contact, Email
+    Earlier stages → Plan Review emphasis. Later stages → Inspection emphasis.
+    """
+    print(f"\n{'='*60}")
+    print("Phase 3b: Ranking Top 100 Leads")
+    print(f"{'='*60}")
+
+    scored = []
+    for lead in leads:
+        score = _score_lead(lead, company_research)
+        service_focus, _ = _stage_service_focus(lead.get("stage") or "")
+        # Best contact from detail page (prefer email-verified)
+        best_contact = next(
+            (dc for dc in lead.get("detail_contacts", []) if dc.get("email")),
+            (lead.get("detail_contacts") or [{}])[0] if lead.get("detail_contacts") else {}
+        )
+        contact_name = _clean_company_name(best_contact.get("name") or best_contact.get("contact") or "")
+        contact_email = best_contact.get("email") or ""
+        contact_company = _clean_company_name(best_contact.get("company") or "")
+        contact_role = best_contact.get("role") or ""
+
+        # Fall back to companies_parsed if no detail contact
+        if not contact_company and lead.get("companies_parsed"):
+            contact_company, contact_role = lead["companies_parsed"][0]
+
+        scored.append({
+            "lead": lead,
+            "score": score,
+            "service_focus": service_focus,
+            "contact_name": contact_name,
+            "contact_email": contact_email,
+            "contact_company": contact_company,
+            "contact_role": contact_role,
+        })
+
+    scored.sort(key=lambda x: x["score"], reverse=True)
+    top100 = scored[:100]
+
+    lines = [
+        "# BCC DC Leads — Top 100 Prioritized List",
+        f"_Generated: {TODAY} | Scored by: stage priority + project value + contact quality_\n",
+        "**Scoring guide:** Earlier stage = Plan Review focus | Later stage = Inspection focus\n",
+        "---\n",
+        "| # | Project | Stage | Focus | Est. Value | Company | Role | Contact | Email | Score |",
+        "|---|---------|-------|-------|------------|---------|------|---------|-------|-------|",
+    ]
+
+    for i, item in enumerate(top100, 1):
+        lead = item["lead"]
+        project = (lead.get("project_name") or "").strip()[:45]
+        stage = (lead.get("stage") or "").strip()[:25]
+        focus = item["service_focus"][:20]
+        value = (lead.get("estimated_value") or lead.get("value") or "—").strip()[:12]
+        company = item["contact_company"][:30]
+        role = item["contact_role"][:20]
+        contact = item["contact_name"][:20]
+        email = item["contact_email"][:35]
+        score = item["score"]
+        lines.append(f"| {i} | {project} | {stage} | {focus} | {value} | {company} | {role} | {contact} | {email} | {score} |")
+
+    report = "\n".join(lines)
+    print(f"Top 100 ranking complete. Top lead: {top100[0]['lead'].get('project_name', '')} (score {top100[0]['score']})")
+    return report
+
+
 # ─── Phase 5: Generate cold outreach emails ────────────────────────────────────
 def _map_cw_role(raw_role: str) -> str:
     """
@@ -493,19 +707,20 @@ def _role_is_architect(role: str) -> bool:
 
 
 def _generate_email_body(
-    contact_name: str, company: str, role: str, project_name: str
+    contact_name: str, company: str, role: str, project_name: str,
+    service_focus: str = "Inspection",
 ) -> str:
     """
-    Generate cold outreach email body per BCC rules § 0-C / § 0-E:
-    - GC/CM targets: DC Inspections ONLY — no plan review mention
-    - Developer/Owner: include plan review note
-    - Architect: include peer review + inspection
-    - No signature (admin@ auto-signature handles it)
-    - No ellipses
-    - Always include billing disclaimer in the billing bullet
+    Generate cold outreach email body per BCC rules § 0-C / § 0-E / § 0-G / § 0-H.
+    - GC/CM: Inspection ONLY — no plan review mention (regardless of stage)
+    - Developer/Owner / Architect: stage-aware pitch
+      - service_focus "Plan Review" → lead with Plan Review, mention inspections as follow-on
+      - otherwise → lead with Inspections, note plan review as add-on
+    - No signature, no ellipses, correct PE credentials (Civil and Electrical)
     """
     first = _first_name(contact_name)
     salutation = f"Hi {first}," if first else "Hi,"
+    is_plan_review_focus = "Plan Review" in service_focus and not _role_is_gc_or_cm(role)
 
     bullet_expertise = (
         "Multi-Discipline Expertise: Our team holds PE licenses (Civil and Electrical) and ICC "
@@ -525,7 +740,7 @@ def _generate_email_body(
     )
 
     if _role_is_gc_or_cm(role):
-        # GC / Construction Manager: inspection pitch only, DC-specific
+        # GC / CM: inspection pitch only, no plan review (rules § 0-C)
         parts = [
             salutation,
             "",
@@ -551,83 +766,163 @@ def _generate_email_body(
         ]
 
     elif _role_is_developer_or_owner(role):
-        # Developer / Owner: inspection + plan review note
-        parts = [
-            salutation,
-            "",
-            f"I came across {project_name} and wanted to briefly introduce Building Code "
-            f"Consulting LLC (BCC) as a resource for {company}'s Third-Party Inspection "
-            f"and Plan Review needs.",
-            "",
-            f"BCC is a DC-based firm specializing in Third-Party Code Compliance Inspections "
-            f"and Plan Review. A few highlights:",
-            "",
-            bullet_expertise,
-            "",
-            bullet_scheduling,
-            "",
-            bullet_billing,
-            "",
-            "Also, as a quick note — BCC also offers Third-Party Plan Review Services for DC "
-            "and nationwide jurisdictions. If your team needs expedited pre-submission code "
-            "review or peer review, we would be glad to assist.",
-            "",
-            f"We are not submitting a formal proposal at this stage, but if you would like to "
-            f"learn more about our services for {project_name}, we would welcome the conversation.",
-            "",
-            "Are you open to a quick 5-minute call?",
-        ]
+        if is_plan_review_focus:
+            # Early-stage Developer/Owner: lead with Plan Review
+            parts = [
+                salutation,
+                "",
+                f"I came across {project_name} and wanted to briefly introduce Building Code "
+                f"Consulting LLC (BCC) as a resource for {company}'s Third-Party Plan Review "
+                f"and Code Compliance Inspection needs.",
+                "",
+                f"BCC is a DC-based firm specializing in Third-Party Plan Review and Code "
+                f"Compliance Inspections. At this stage of the project, our plan review services "
+                f"can help identify and resolve code issues before submission — saving time and "
+                f"avoiding costly revision cycles. A few highlights:",
+                "",
+                bullet_expertise,
+                "",
+                "Plan Review Services: We provide expedited Third-Party Plan Review for DC and "
+                "nationwide jurisdictions. Our reviews identify code deficiencies before "
+                "submission, reducing agency review cycles and keeping your schedule on track.",
+                "",
+                bullet_billing,
+                "",
+                f"We are not submitting a formal proposal at this stage, but if you would like "
+                f"to learn more about how BCC can support {project_name} through plan review or "
+                f"future inspections, we would welcome the conversation.",
+                "",
+                "Are you open to a quick 5-minute call?",
+            ]
+        else:
+            # Later-stage Developer/Owner: lead with Inspections, note plan review
+            parts = [
+                salutation,
+                "",
+                f"I came across {project_name} and wanted to briefly introduce Building Code "
+                f"Consulting LLC (BCC) as a resource for {company}'s Third-Party Inspection "
+                f"and Plan Review needs.",
+                "",
+                f"BCC is a DC-based firm specializing in Third-Party Code Compliance Inspections "
+                f"and Plan Review. A few highlights:",
+                "",
+                bullet_expertise,
+                "",
+                bullet_scheduling,
+                "",
+                bullet_billing,
+                "",
+                "Also, as a quick note — BCC also offers Third-Party Plan Review Services for DC "
+                "and nationwide jurisdictions. If your team needs expedited pre-submission code "
+                "review or peer review, we would be glad to assist.",
+                "",
+                f"We are not submitting a formal proposal at this stage, but if you would like to "
+                f"learn more about our services for {project_name}, we would welcome the conversation.",
+                "",
+                "Are you open to a quick 5-minute call?",
+            ]
 
     elif _role_is_architect(role):
-        # Architect: peer review + inspection, technical framing
-        parts = [
-            salutation,
-            "",
-            f"I came across {project_name} and wanted to briefly introduce Building Code "
-            f"Consulting LLC (BCC). We often collaborate with architects on Third-Party Code "
-            f"Compliance reviews and inspections for DC projects.",
-            "",
-            f"BCC is a DC-based firm specializing in DC Third-Party Code Compliance and Plan "
-            f"Review. A few highlights relevant to {company}:",
-            "",
-            bullet_expertise,
-            "",
-            bullet_scheduling,
-            "",
-            bullet_billing,
-            "",
-            "We also offer Third-Party Plan Review and peer review services that can help "
-            "identify code issues before submission — reducing revision cycles and protecting "
-            "your project schedule.",
-            "",
-            f"We are not submitting a formal proposal at this stage, but would welcome the "
-            f"opportunity to discuss how BCC can support {project_name}.",
-            "",
-            "Are you open to a quick 5-minute call?",
-        ]
+        if is_plan_review_focus:
+            # Early-stage Architect: lead with peer review / plan review
+            parts = [
+                salutation,
+                "",
+                f"I came across {project_name} and wanted to briefly introduce Building Code "
+                f"Consulting LLC (BCC). We frequently collaborate with architects on Third-Party "
+                f"Plan Review and peer review for DC projects — particularly at the design stage "
+                f"when code issues are most efficiently resolved.",
+                "",
+                f"BCC is a DC-based firm specializing in DC Third-Party Code Compliance and Plan "
+                f"Review. A few highlights relevant to {company}:",
+                "",
+                bullet_expertise,
+                "",
+                "Plan Review and Peer Review: We provide expedited Third-Party Plan Review for "
+                "DC and nationwide jurisdictions. Our team can review drawings for code compliance "
+                "before submission — catching issues early and protecting your project schedule.",
+                "",
+                bullet_billing,
+                "",
+                f"We are not submitting a formal proposal at this stage, but would welcome the "
+                f"opportunity to discuss how BCC can support {project_name} during design and "
+                f"into construction.",
+                "",
+                "Are you open to a quick 5-minute call?",
+            ]
+        else:
+            # Later-stage Architect: peer review + inspections
+            parts = [
+                salutation,
+                "",
+                f"I came across {project_name} and wanted to briefly introduce Building Code "
+                f"Consulting LLC (BCC). We often collaborate with architects on Third-Party Code "
+                f"Compliance reviews and inspections for DC projects.",
+                "",
+                f"BCC is a DC-based firm specializing in DC Third-Party Code Compliance and Plan "
+                f"Review. A few highlights relevant to {company}:",
+                "",
+                bullet_expertise,
+                "",
+                bullet_scheduling,
+                "",
+                bullet_billing,
+                "",
+                "We also offer Third-Party Plan Review and peer review services that can help "
+                "identify code issues before submission — reducing revision cycles and protecting "
+                "your project schedule.",
+                "",
+                f"We are not submitting a formal proposal at this stage, but would welcome the "
+                f"opportunity to discuss how BCC can support {project_name}.",
+                "",
+                "Are you open to a quick 5-minute call?",
+            ]
 
     else:
-        # Default: conservative inspection-only pitch
-        parts = [
-            salutation,
-            "",
-            f"I came across {project_name} and wanted to briefly introduce Building Code "
-            f"Consulting LLC (BCC) as a potential resource for Third-Party Inspection needs.",
-            "",
-            "BCC is a DC-based engineering firm specializing in Washington, D.C. Third-Party "
-            "Code Compliance Inspections. A few reasons we may be a strong fit:",
-            "",
-            bullet_expertise,
-            "",
-            bullet_scheduling,
-            "",
-            bullet_billing,
-            "",
-            "We are not submitting a formal proposal at this stage, but if you are exploring "
-            "inspection vendors for this project, we would welcome a brief conversation.",
-            "",
-            "Are you open to a quick 5-minute call?",
-        ]
+        # Default: conservative pitch based on stage focus
+        if is_plan_review_focus:
+            parts = [
+                salutation,
+                "",
+                f"I came across {project_name} and wanted to briefly introduce Building Code "
+                f"Consulting LLC (BCC) as a resource for Third-Party Plan Review and Inspection needs.",
+                "",
+                "BCC is a DC-based engineering firm specializing in Washington, D.C. Third-Party "
+                "Code Compliance Plan Review and Inspections. A few reasons we may be a strong fit:",
+                "",
+                bullet_expertise,
+                "",
+                "Plan Review Services: We offer expedited Third-Party Plan Review for DC and "
+                "nationwide jurisdictions — helping identify code issues before submission.",
+                "",
+                bullet_billing,
+                "",
+                "We are not submitting a formal proposal at this stage, but if you are exploring "
+                "plan review or inspection resources for this project, we would welcome a brief conversation.",
+                "",
+                "Are you open to a quick 5-minute call?",
+            ]
+        else:
+            parts = [
+                salutation,
+                "",
+                f"I came across {project_name} and wanted to briefly introduce Building Code "
+                f"Consulting LLC (BCC) as a potential resource for Third-Party Inspection needs.",
+                "",
+                "BCC is a DC-based engineering firm specializing in Washington, D.C. Third-Party "
+                "Code Compliance Inspections. A few reasons we may be a strong fit:",
+                "",
+                bullet_expertise,
+                "",
+                bullet_scheduling,
+                "",
+                bullet_billing,
+                "",
+                "We are not submitting a formal proposal at this stage, but if you are exploring "
+                "inspection vendors for this project, we would welcome a brief conversation.",
+                "",
+                "Are you open to a quick 5-minute call?",
+            ]
 
     return "\n".join(parts)
 
@@ -645,19 +940,48 @@ def phase5_generate_emails(
     print("Phase 5: Generating Cold Outreach Emails")
     print(f"{'='*60}")
 
+    # Load sent_log to avoid re-contacting anyone emailed in the last 60 days
+    import csv as _csv
+    from datetime import timedelta as _td
+    _recently_emailed: set[str] = set()
+    _cutoff = datetime.now() - _td(days=60)
+    try:
+        with open(BASE_DIR / "sent_log.csv", newline="", encoding="utf-8") as _f:
+            for row in _csv.DictReader(_f):
+                _ts_str = row.get("sent_at") or row.get("followup_sent_at") or ""
+                try:
+                    from datetime import timezone as _tz
+                    _ts = datetime.fromisoformat(_ts_str.replace("Z", "+00:00"))
+                    if _ts.tzinfo:
+                        _ts = _ts.replace(tzinfo=None)  # make naive for comparison
+                except Exception:
+                    _ts = None
+                if _ts and _ts >= _cutoff:
+                    _recently_emailed.add((row.get("contact_email") or "").strip().lower())
+    except FileNotFoundError:
+        pass
+    if _recently_emailed:
+        print(f"  Dedup: {len(_recently_emailed)} contacts emailed in the last 60 days — will skip.")
+
     emails: list[dict] = []
     seen: set[tuple[str, str]] = set()  # (email_lower, project)
 
     def _add_email(project_name: str, company: str, role: str,
-                   contact_name: str, contact_role: str, email_addr: str, phone: str) -> None:
+                   contact_name: str, contact_role: str, email_addr: str, phone: str,
+                   service_focus: str = "Inspection") -> None:
         key = (email_addr.lower(), project_name)
         if key in seen:
             return
+        # Skip contacts we've already emailed in the past 60 days
+        if email_addr.lower() in _recently_emailed:
+            return
         seen.add(key)
-        subject = (
-            f"Third-Party Inspection Services for {project_name} | Building Code Consulting LLC"
-        )
-        body = _generate_email_body(contact_name, company, role, project_name)
+        # Adjust subject based on service focus
+        if "Plan Review" in service_focus and not _role_is_gc_or_cm(role):
+            subject = f"Third-Party Plan Review & Inspection Services for {project_name} | Building Code Consulting LLC"
+        else:
+            subject = f"Third-Party Inspection Services for {project_name} | Building Code Consulting LLC"
+        body = _generate_email_body(contact_name, company, role, project_name, service_focus)
         safe_slug = re.sub(r"[^\w]", "_", f"{company}_{contact_name or 'Contact'}")[:48]
         safe_slug = re.sub(r"_+", "_", safe_slug).strip("_")
         emails.append({
@@ -678,6 +1002,9 @@ def phase5_generate_emails(
         if not project_name:
             continue
 
+        stage_text = lead.get("stage") or lead.get("construction_start") or ""
+        service_focus, _ = _stage_service_focus(stage_text)
+
         # ── Source 1: CW detail-page contacts (highest quality — verified emails) ──
         for dc in lead.get("detail_contacts", []):
             email_addr = (dc.get("email") or "").strip()
@@ -688,9 +1015,8 @@ def phase5_generate_emails(
                 continue
             contact_name = (dc.get("name") or "").strip()
             role = (dc.get("role") or "").strip()
-            # Map CW role strings to our role categories for email body selection
             role_mapped = _map_cw_role(role)
-            _add_email(project_name, company, role_mapped, contact_name, role, email_addr, "")
+            _add_email(project_name, company, role_mapped, contact_name, role, email_addr, "", service_focus)
 
         # ── Source 2: Deep-search contacts for companies in companies_parsed ──
         for (company, role) in lead.get("companies_parsed", []):
@@ -702,7 +1028,7 @@ def phase5_generate_emails(
                 contact_name = (contact.get("name") or "").strip()
                 contact_role = (contact.get("role") or role).strip()
                 phone = (contact.get("phone") or "").strip()
-                _add_email(project_name, company, role, contact_name, contact_role, email_addr, phone)
+                _add_email(project_name, company, role, contact_name, contact_role, email_addr, phone, service_focus)
 
     print(f"Phase 5 complete: {len(emails)} email drafts generated.")
     return emails
@@ -750,41 +1076,56 @@ def phase6_save_drafts(email_drafts: list[dict]) -> list[Path]:
 
 # ─── Phase 7: Send drafts to Telegram ─────────────────────────────────────────
 def phase7_send_drafts_telegram(email_drafts: list[dict], saved_paths: list[Path]) -> None:
-    """Send summary + each draft file to Telegram for Kyle's review."""
+    """
+    Send a summary to Telegram.
+    When > 20 drafts, skip individual previews (too many for Telegram rate limits).
+    Drafts are reviewed locally via the Top-100 file + send_cw_outreach.py.
+    """
+    import time
+
     print(f"\n{'='*60}")
-    print("Phase 7: Sending Email Drafts to Telegram")
+    print("Phase 7: Sending Email Drafts Summary to Telegram")
     print(f"{'='*60}")
 
-    # Group by company to give a clean overview
     by_company: dict[str, list[dict]] = {}
     for em in email_drafts:
         by_company.setdefault(em["company"], []).append(em)
 
+    # Build compact company list (max 50 lines to stay under TG limit)
+    lines = []
+    for company, ems in sorted(by_company.items())[:50]:
+        contacts = ", ".join(e["contact_name"] for e in ems if e["contact_name"])
+        lines.append(f"• {company}: {contacts or '(no name)'}")
+    company_list = "\n".join(lines)
+    if len(by_company) > 50:
+        company_list += f"\n... and {len(by_company) - 50} more companies"
+
     tg_message(
         f"📧 *BCC CW Cold Outreach Drafts — {TODAY}*\n\n"
-        f"Total drafts: {len(email_drafts)}\n"
-        f"Companies: {len(by_company)}\n\n"
-        f"All drafts saved locally to Pending_Approval/Outbound/CW_*.md\n"
-        f"These are cold outreach emails — NO PDF attached.\n\n"
-        f"After review, run: `python send_cw_outreach.py`"
+        f"✅ {len(email_drafts)} drafts generated across {len(by_company)} companies.\n\n"
+        f"{company_list}\n\n"
+        f"📂 Drafts saved locally: Pending_Approval/Outbound/CW_*.md\n"
+        f"📋 Review the Top-100 list (attached above) to decide who to send.\n\n"
+        f"To send all:\n`python send_cw_outreach.py --all --attachment \"<pdf_path>\"`\n"
+        f"To preview without sending:\n`python send_cw_outreach.py --dry-run`\n"
+        f"To filter by company:\n`python send_cw_outreach.py --company \"Carr\"`"
     )
 
-    # Send each draft as text preview + file
-    for em, fpath in zip(email_drafts, saved_paths):
-        preview = (
-            f"📨 *{em['company']}* ({em['company_role']})\n"
-            f"Project: {em['project']}\n"
-            f"To: {em['contact_name']} <{em['to_email']}>"
-            + (f"\nPhone: {em['phone']}" if em["phone"] else "")
-            + f"\nSubject: {em['subject']}\n\n---\n{em['body'][:700]}"
-        )
-        tg_message(preview)
+    # Only send individual previews if count is small enough
+    MAX_INDIVIDUAL_PREVIEWS = 15
+    if len(email_drafts) <= MAX_INDIVIDUAL_PREVIEWS:
+        for em, fpath in zip(email_drafts, saved_paths):
+            preview = (
+                f"📨 *{em['company']}* ({em['company_role']})\n"
+                f"Project: {em['project']}\n"
+                f"To: {em['contact_name']} <{em['to_email']}>"
+                + (f"\nPhone: {em['phone']}" if em["phone"] else "")
+                + f"\nSubject: {em['subject']}\n\n---\n{em['body'][:600]}"
+            )
+            tg_message(preview)
+            time.sleep(1.5)  # stay well under Telegram rate limits
 
-    tg_message(
-        "✅ All drafts sent above.\n"
-        "Review and reply with approval, then run: python send_cw_outreach.py"
-    )
-    print(f"Phase 7 complete: {len(email_drafts)} drafts sent to Telegram.")
+    print(f"Phase 7 complete: summary sent. {len(email_drafts)} drafts ready locally.")
 
 
 # ─── Main ──────────────────────────────────────────────────────────────────────
@@ -792,86 +1133,219 @@ def main() -> int:
     ap = argparse.ArgumentParser(
         description="ConstructionWire Full DC Leads Pipeline — scrape, research, generate emails"
     )
-    ap.add_argument("--pages", type=int, default=5, help="Max list pages to scrape (default: 5)")
-    ap.add_argument("--headless", action="store_true", help="Run Playwright browser headless")
-    ap.add_argument("--max-contacts", type=int, default=3, help="Max contacts per company (default: 3)")
-    ap.add_argument("--skip-research", action="store_true", help="Use only CW detail-page contacts (no deep search)")
-    ap.add_argument("--skip-telegram", action="store_true", help="Skip all Telegram sends (local output only)")
+    ap.add_argument("--pages",        type=int, default=10, help="Max list pages to scrape (default: 10)")
+    ap.add_argument("--headless",     action="store_true",  help="Run Playwright browser headless")
+    ap.add_argument("--max-contacts", type=int, default=3,  help="Max contacts per company (default: 3)")
+    ap.add_argument("--skip-research",action="store_true",  help="Use only CW detail-page contacts (no deep search)")
+    ap.add_argument("--skip-telegram",action="store_true",  help="Skip all Telegram sends (local output only)")
+    ap.add_argument(
+        "--stages", default=",".join(str(s) for s in DEFAULT_STAGES),
+        help="Comma-separated CW stage codes (default: 1,2,3,4,5,6,7 = all stages)"
+    )
+    # ── Checkpoint / resume flags ──────────────────────────────────────────────
+    ap.add_argument("--resume",     action="store_true", help="Resume from last saved checkpoint")
+    ap.add_argument("--from-phase", type=int, default=0, metavar="N",
+                    help="Skip to phase N using checkpoint data (1=scrape…7=tg-drafts)")
+    ap.add_argument("--status",     action="store_true", help="Show checkpoint status and exit")
+    ap.add_argument("--clear-checkpoint", action="store_true", help="Delete checkpoint file and exit")
     args = ap.parse_args()
 
-    # ── Phase 1: Scrape ──────────────────────────────────────────────────────
-    leads = asyncio.run(phase1_scrape_leads(headless=args.headless, max_pages=args.pages))
-    if not leads:
-        print("No leads found. Exiting.")
-        return 1
-
-    # Save raw JSON for debugging / resume
-    raw_path = BASE_DIR / f"cw_leads_raw_{NOW_STR}.json"
-    raw_path.write_text(json.dumps(leads, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"Raw leads JSON: {raw_path.name}")
-
-    # ── Phase 2: Research ────────────────────────────────────────────────────
-    if args.skip_research:
-        print("\n[--skip-research] Using CW detail-page contacts only.")
-        company_research: dict[str, dict] = {}
-        for lead in leads:
-            for (company, role) in lead.get("companies_parsed", []):
-                if company not in company_research:
-                    company_research[company] = {"role": role, "contacts": []}
-            for dc in lead.get("detail_contacts", []):
-                comp = (dc.get("company") or "").strip()
-                if not comp:
-                    continue
-                if comp not in company_research:
-                    company_research[comp] = {"role": dc.get("role", ""), "contacts": []}
-                company_research[comp]["contacts"].append({
-                    "name": (dc.get("name") or dc.get("contact", "").split("\n")[0]).strip(),
-                    "role": (dc.get("role") or "").strip(),
-                    "email": (dc.get("email") or "").strip(),
-                    "phone": "",
-                    "source": "CW detail page",
-                })
-    else:
-        company_research = phase2_research_companies(leads, max_contacts=args.max_contacts)
-
-    # ── Phase 3: Report ──────────────────────────────────────────────────────
-    report_md = phase3_compile_report(leads, company_research)
-    report_path = BASE_DIR / f"DC_Leads_Report_{NOW_STR}.md"
-    report_path.write_text(report_md, encoding="utf-8")
-    print(f"\nReport saved: {report_path.name}")
-
-    # Also print summary to terminal for Kyle to review now
-    summary_end = report_md.find("## Detailed Contacts per Project")
-    print("\n" + ("=" * 60))
-    print(report_md[:summary_end] if summary_end > 0 else report_md[:2000])
-
-    # ── Phase 4: Telegram report ─────────────────────────────────────────────
-    if not args.skip_telegram:
-        phase4_send_report_telegram(report_md, report_path)
-
-    # ── Phase 5: Generate emails ─────────────────────────────────────────────
-    email_drafts = phase5_generate_emails(leads, company_research)
-    if not email_drafts:
-        print("\nNo email drafts generated (no contacts with emails found).")
-        print("Tip: Run without --skip-research or check that CW detail pages have contacts.")
+    # ── Checkpoint utility commands ───────────────────────────────────────────
+    if args.status:
+        cp = _checkpoint_load()
+        if not cp:
+            print("No checkpoint found. Pipeline has not been started or was completed cleanly.")
+            return 0
+        print(f"Checkpoint status (last updated: {cp.get('last_updated', 'unknown')}):")
+        for i, (phase, key) in enumerate([
+            (1, "phase1_done"), (2, "phase2_done"), (3, "phase3_done"),
+            (4, "phase4_done"), (5, "phase5_done"), (6, "phase6_done"), (7, "phase7_done"),
+        ], 1):
+            status = "✅ done" if cp.get(key) else "⏳ pending"
+            label = ["scrape", "research", "report", "telegram report",
+                     "generate emails", "save drafts", "telegram drafts"][i - 1]
+            print(f"  Phase {phase} ({label}): {status}")
+        if cp.get("phase2_researched"):
+            print(f"  Phase 2 partial: {len(cp['phase2_researched'])} companies researched so far")
         return 0
 
-    # ── Phase 6: Save drafts ─────────────────────────────────────────────────
-    saved_paths = phase6_save_drafts(email_drafts)
+    if args.clear_checkpoint:
+        _checkpoint_clear()
+        return 0
 
-    # ── Phase 7: Telegram drafts ─────────────────────────────────────────────
-    if not args.skip_telegram:
+    try:
+        stages = [int(s.strip()) for s in args.stages.split(",") if s.strip()]
+    except ValueError:
+        print(f"ERROR: --stages must be comma-separated integers, got: {args.stages}")
+        return 1
+
+    # ── Determine resume point ─────────────────────────────────────────────────
+    cp: dict = {}
+    resume_from: int = 1  # default: run everything from phase 1
+
+    if args.resume or args.from_phase:
+        cp = _checkpoint_load()
+        if not cp and not args.from_phase:
+            print("No checkpoint found — starting fresh.")
+        elif cp:
+            if args.from_phase:
+                resume_from = args.from_phase
+                print(f"Resuming from phase {resume_from} (forced via --from-phase).")
+            else:
+                resume_from = _checkpoint_resume_phase(cp)
+                print(f"Resuming from phase {resume_from} (last updated: {cp.get('last_updated', '?')}).")
+        if args.from_phase:
+            resume_from = args.from_phase
+
+    # Preserve the original timestamp across resume runs (keeps file names consistent)
+    now_str = cp.get("now_str", NOW_STR)
+
+    if resume_from == 1:
+        # Fresh run: initialize checkpoint with args
+        _checkpoint_save({
+            "now_str": now_str,
+            "args": {
+                "pages": args.pages, "stages": stages, "headless": args.headless,
+                "max_contacts": args.max_contacts, "skip_research": args.skip_research,
+            },
+        })
+
+    # ── Phase 1: Scrape ───────────────────────────────────────────────────────
+    if resume_from <= 1:
+        leads = asyncio.run(
+            phase1_scrape_leads(headless=args.headless, max_pages=args.pages, stages=stages)
+        )
+        if not leads:
+            print("No leads found. Exiting.")
+            return 1
+        raw_path = BASE_DIR / f"cw_leads_raw_{now_str}.json"
+        raw_path.write_text(json.dumps(leads, ensure_ascii=False, indent=2), encoding="utf-8")
+        print(f"Raw leads JSON: {raw_path.name}")
+        _checkpoint_save({"phase1_done": True, "phase1_leads_file": str(raw_path)})
+    else:
+        leads_file = cp.get("phase1_leads_file", "")
+        if not leads_file or not Path(leads_file).exists():
+            print("ERROR: Checkpoint phase1_leads_file missing or gone. Run without --resume.")
+            return 1
+        leads = json.loads(Path(leads_file).read_text(encoding="utf-8"))
+        print(f"[RESUME] Phase 1: {len(leads)} leads loaded from {Path(leads_file).name}")
+
+    # ── Phase 2: Research ─────────────────────────────────────────────────────
+    if resume_from <= 2:
+        if args.skip_research:
+            print("\n[--skip-research] Using CW detail-page contacts only.")
+            company_research: dict[str, dict] = {}
+            for lead in leads:
+                for (company, role) in lead.get("companies_parsed", []):
+                    if company not in company_research:
+                        company_research[company] = {"role": role, "contacts": []}
+                for dc in lead.get("detail_contacts", []):
+                    comp = (dc.get("company") or "").strip()
+                    if not comp:
+                        continue
+                    if comp not in company_research:
+                        company_research[comp] = {"role": dc.get("role", ""), "contacts": []}
+                    company_research[comp]["contacts"].append({
+                        "name": (dc.get("name") or dc.get("contact", "").split("\n")[0]).strip(),
+                        "role": (dc.get("role") or "").strip(),
+                        "email": (dc.get("email") or "").strip(),
+                        "phone": "",
+                        "source": "CW detail page",
+                    })
+        else:
+            # On partial resume (e.g., crashed mid-phase-2), reload partial results
+            existing = cp.get("phase2_company_research", {}) if resume_from == 2 else {}
+            skip_cos = set(cp.get("phase2_researched", [])) if resume_from == 2 else set()
+            company_research = phase2_research_companies(
+                leads, max_contacts=args.max_contacts,
+                existing_research=existing, skip_companies=skip_cos,
+            )
+        _checkpoint_save({"phase2_done": True, "phase2_company_research": company_research})
+    else:
+        company_research = cp.get("phase2_company_research", {})
+        print(f"[RESUME] Phase 2: {len(company_research)} companies loaded from checkpoint")
+
+    # ── Phase 3: Report + Top-100 ─────────────────────────────────────────────
+    if resume_from <= 3:
+        report_md = phase3_compile_report(leads, company_research)
+        report_path = BASE_DIR / f"DC_Leads_Report_{now_str}.md"
+        report_path.write_text(report_md, encoding="utf-8")
+        print(f"\nReport saved: {report_path.name}")
+        summary_end = report_md.find("## Detailed Contacts per Project")
+        print("\n" + ("=" * 60))
+        print(report_md[:summary_end] if summary_end > 0 else report_md[:2000])
+
+        top100_md = phase_rank_top100(leads, company_research)
+        top100_path = BASE_DIR / f"DC_Top100_{now_str}.md"
+        top100_path.write_text(top100_md, encoding="utf-8")
+        print(f"Top-100 report saved: {top100_path.name}")
+        _checkpoint_save({
+            "phase3_done": True,
+            "phase3_report_file": str(report_path),
+            "phase3b_done": True,
+            "phase3b_top100_file": str(top100_path),
+        })
+    else:
+        report_path = Path(cp.get("phase3_report_file", ""))
+        top100_path = Path(cp.get("phase3b_top100_file", ""))
+        report_md = report_path.read_text(encoding="utf-8") if report_path.exists() else ""
+        print(f"[RESUME] Phase 3: report={report_path.name}, top100={top100_path.name}")
+
+    # ── Phase 4: Telegram report ──────────────────────────────────────────────
+    if resume_from <= 4 and not args.skip_telegram:
+        phase4_send_report_telegram(report_md, report_path)
+        tg_message("📋 Top-100 prioritized leads list attached (score = stage priority + value + contact quality):")
+        tg_document(top100_path, caption=f"Top100 leads — {TODAY}")
+        _checkpoint_save({"phase4_done": True})
+    elif args.skip_telegram:
+        print("[--skip-telegram] Skipping Telegram report.")
+    else:
+        print("[RESUME] Phase 4: Telegram report already sent.")
+
+    # ── Phase 5: Generate emails ──────────────────────────────────────────────
+    if resume_from <= 5:
+        email_drafts = phase5_generate_emails(leads, company_research)
+        if not email_drafts:
+            print("\nNo email drafts generated (no contacts with emails found).")
+            print("Tip: Run without --skip-research or check CW detail pages have contacts.")
+            _checkpoint_clear()
+            return 0
+        _checkpoint_save({"phase5_done": True, "phase5_email_count": len(email_drafts)})
+    else:
+        # Re-generate emails from loaded data (drafts may have been deleted)
+        email_drafts = phase5_generate_emails(leads, company_research)
+        print(f"[RESUME] Phase 5: {len(email_drafts)} emails re-generated from checkpoint data")
+
+    # ── Phase 6: Save drafts ──────────────────────────────────────────────────
+    if resume_from <= 6:
+        saved_paths = phase6_save_drafts(email_drafts)
+        _checkpoint_save({"phase6_done": True})
+    else:
+        saved_paths = sorted(OUTBOUND_DIR.glob("CW_*.md"))
+        print(f"[RESUME] Phase 6: {len(saved_paths)} draft files found in Outbound/")
+
+    # ── Phase 7: Telegram drafts ──────────────────────────────────────────────
+    if resume_from <= 7 and not args.skip_telegram:
         phase7_send_drafts_telegram(email_drafts, saved_paths)
+        _checkpoint_save({"phase7_done": True})
+    elif args.skip_telegram:
+        print("[--skip-telegram] Skipping Telegram drafts send.")
+    else:
+        print("[RESUME] Phase 7: Telegram drafts already sent.")
 
+    # ── Done ──────────────────────────────────────────────────────────────────
+    _checkpoint_clear()
     print(f"\n{'='*60}")
     print("Pipeline COMPLETE")
     print(f"  Leads scraped:        {len(leads)}")
     print(f"  Companies researched: {len(company_research)}")
     print(f"  Email drafts:         {len(email_drafts)}")
     print(f"  Report:               {report_path.name}")
+    print(f"  Top-100 list:         {top100_path.name}")
     print(f"  Drafts:               Pending_Approval/Outbound/CW_*.md")
-    print(f"\nNext step — after reviewing drafts on Telegram:")
-    print(f"  python send_cw_outreach.py")
+    print(f"\nNext step — after reviewing drafts:")
+    print(f"  python send_cw_outreach.py --all --attachment \"<pdf_path>\"")
+    print(f"  python daily_sender.py    # rate-limited: max 20/day")
     print(f"{'='*60}\n")
     return 0
 

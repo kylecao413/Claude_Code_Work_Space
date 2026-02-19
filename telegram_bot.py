@@ -179,6 +179,98 @@ def _write_active_task_and_archive(markdown_content: str) -> tuple[Path, Path | 
     return active_path, archive_path
 
 
+def get_pipeline_status() -> str:
+    """Read pipeline_checkpoint.json and return a status summary."""
+    cp_path = BASE_DIR / "pipeline_checkpoint.json"
+    if not cp_path.exists():
+        # Check if drafts are ready instead
+        drafts = list((BASE_DIR / "Pending_Approval" / "Outbound").glob("CW_*.md"))
+        if drafts:
+            return (f"📋 No active pipeline run.\n"
+                    f"But {len(drafts)} CW draft(s) are ready in Outbound/.\n"
+                    f"Send with: python send_cw_outreach.py --all")
+        return "📋 No active pipeline run. No checkpoint found."
+    try:
+        import json as _json
+        cp = _json.loads(cp_path.read_text(encoding="utf-8"))
+    except Exception as e:
+        return f"Error reading checkpoint: {e}"
+
+    phase_names = ["scrape leads", "research companies", "compile report",
+                   "send report to Telegram", "generate emails", "save drafts", "send drafts to Telegram"]
+    phase_keys  = ["phase1_done", "phase2_done", "phase3_done",
+                   "phase4_done", "phase5_done", "phase6_done", "phase7_done"]
+    lines = [f"🔄 Pipeline Checkpoint ({cp.get('last_updated', '?')[:16]}):"]
+    for i, (name, key) in enumerate(zip(phase_names, phase_keys), 1):
+        icon = "✅" if cp.get(key) else "⏳"
+        lines.append(f"  {icon} Phase {i}: {name}")
+    if cp.get("phase2_researched"):
+        lines.append(f"  (Phase 2 partial: {len(cp['phase2_researched'])} companies done)")
+    next_phase = next((i + 1 for i, k in enumerate(phase_keys) if not cp.get(k)), 8)
+    if next_phase <= 7:
+        lines.append(f"\nResume with: python run_cw_leads_pipeline.py --resume")
+    else:
+        lines.append("\nAll phases complete.")
+    return "\n".join(lines)
+
+
+def get_followup_due(days: int = 4) -> list[dict]:
+    """Return contacts due for follow-up."""
+    import csv as _csv
+    from datetime import datetime as _dt, timedelta as _td, timezone as _tz
+    log_path = BASE_DIR / "sent_log.csv"
+    if not log_path.exists():
+        return []
+    cutoff = _dt.now(_tz.utc) - _td(days=days)
+    due = []
+    with open(log_path, newline="", encoding="utf-8") as f:
+        for row in _csv.DictReader(f):
+            if row.get("replied", "").strip() in ("1", "true", "yes"):
+                continue
+            if row.get("followup_sent_at", "").strip():
+                continue
+            ts_str = row.get("sent_at", "")
+            try:
+                ts = _dt.fromisoformat(ts_str.replace("Z", "+00:00"))
+                if ts.tzinfo is None:
+                    ts = ts.replace(tzinfo=_tz.utc)
+            except Exception:
+                continue
+            if ts <= cutoff:
+                due.append(row)
+    return due
+
+
+def mark_contact_replied(email: str) -> tuple[int, str]:
+    """Mark a contact as replied in sent_log.csv. Returns (count, message)."""
+    import csv as _csv
+    log_path = BASE_DIR / "sent_log.csv"
+    if not log_path.exists():
+        return 0, "sent_log.csv not found."
+    rows = []
+    fieldnames = None
+    count = 0
+    with open(log_path, newline="", encoding="utf-8") as f:
+        reader = _csv.DictReader(f)
+        fieldnames = reader.fieldnames or []
+        for row in reader:
+            if row.get("contact_email", "").strip().lower() == email.strip().lower():
+                row["replied"] = "1"
+                count += 1
+            rows.append(row)
+    if count == 0:
+        return 0, f"No contact found with email: {email}"
+    # Ensure new columns present
+    for col in ("replied", "followup_sent_at"):
+        if col not in fieldnames:
+            fieldnames = list(fieldnames) + [col]
+    with open(log_path, "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+    return count, f"✅ Marked {count} row(s) as replied for {email}"
+
+
 def approve_and_send(base_name: str) -> str:
     """
     将指定草稿“审批”：在 Outbound/Replies 下查找匹配的 .md，复制为 -OK.md 后调用 approval_monitor 处理。
@@ -260,6 +352,174 @@ def run_polling():
         msg = approve_and_send(name)
         await update.message.reply_text(msg)
 
+    async def cmd_pipeline_status(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        loop = asyncio.get_event_loop()
+        msg = await loop.run_in_executor(None, get_pipeline_status)
+        await update.message.reply_text(msg)
+
+    async def cmd_followup_check(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        loop = asyncio.get_event_loop()
+        due = await loop.run_in_executor(None, get_followup_due)
+        if not due:
+            await update.message.reply_text("✅ No follow-ups due. Everyone has replied or is still within the 4-day window.")
+            return
+        from datetime import datetime as _dt, timezone as _tz, timedelta as _td
+        lines = [f"📬 {len(due)} contact(s) due for follow-up:\n"]
+        now = _dt.now(_tz.utc)
+        for row in due[:20]:
+            try:
+                ts = _dt.fromisoformat(row.get("sent_at", "").replace("Z", "+00:00"))
+                if ts.tzinfo is None:
+                    ts = ts.replace(tzinfo=_tz.utc)
+                age = (now - ts).days
+            except Exception:
+                age = "?"
+            lines.append(f"• {row.get('contact_name', '?')} ({row.get('company', '?')}) — {age}d ago")
+        if len(due) > 20:
+            lines.append(f"... and {len(due) - 20} more")
+        lines.append("\nTo send follow-ups: /followup_send\nTo mark someone replied: /mark_replied <email>")
+        await update.message.reply_text("\n".join(lines))
+
+    _pending_followup_send: dict[int, bool] = {}
+
+    async def cmd_followup_send(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        chat_id = update.effective_chat.id if update.effective_chat else 0
+        loop = asyncio.get_event_loop()
+        due = await loop.run_in_executor(None, get_followup_due)
+        if not due:
+            await update.message.reply_text("No follow-ups due right now.")
+            return
+
+        # Two-step: first call shows list + asks confirmation, second call (within 60s) sends
+        if not _pending_followup_send.get(chat_id):
+            _pending_followup_send[chat_id] = True
+            lines = [f"⚠️ About to send {len(due)} follow-up email(s) from admin@buildingcodeconsulting.com:\n"]
+            for row in due[:15]:
+                lines.append(f"• {row.get('contact_name', '?')} <{row.get('contact_email', '?')}>")
+            if len(due) > 15:
+                lines.append(f"... and {len(due) - 15} more")
+            lines.append("\nRun /followup_send again within 60 seconds to confirm and send.")
+            await update.message.reply_text("\n".join(lines))
+            # Auto-reset after 60 seconds
+            async def _reset():
+                await asyncio.sleep(60)
+                _pending_followup_send.pop(chat_id, None)
+            asyncio.create_task(_reset())
+        else:
+            _pending_followup_send.pop(chat_id, None)
+            await update.message.reply_text(f"📤 Sending {len(due)} follow-up(s)...")
+            from email_sender import send_from_admin
+            from datetime import datetime as _dt, timezone as _tz
+            import csv as _csv
+            sent_count = 0
+            log_path = BASE_DIR / "sent_log.csv"
+            rows_all = []
+            fieldnames = None
+            with open(log_path, newline="", encoding="utf-8") as f:
+                reader = _csv.DictReader(f)
+                fieldnames = list(reader.fieldnames or [])
+                rows_all = list(reader)
+            for col in ("replied", "followup_sent_at"):
+                if col not in fieldnames:
+                    fieldnames.append(col)
+            sent_emails = {r.get("contact_email", "").lower() for r in due}
+            for row in rows_all:
+                if row.get("contact_email", "").lower() not in sent_emails:
+                    continue
+                if row.get("followup_sent_at", "").strip():
+                    continue
+                name = row.get("contact_name", "")
+                first = name.split()[0] if name else "there"
+                project = row.get("project", "") or row.get("subject", "")
+                body = (f"Hi {first},\n\nI wanted to follow up on my earlier message"
+                        + (f" regarding {project}" if project else "")
+                        + ". I understand you're busy — just wanted to make sure this didn't get lost.\n\n"
+                        "If you have any questions or would like to set up a quick call, "
+                        "I'm happy to make time. Looking forward to connecting.")
+                ok, _ = await loop.run_in_executor(
+                    None, lambda r=row, b=body: send_from_admin(r["contact_email"], f"Re: {r.get('subject', '')}", b)
+                )
+                if ok:
+                    row["followup_sent_at"] = _dt.now(_tz.utc).isoformat()
+                    sent_count += 1
+            with open(log_path, "w", newline="", encoding="utf-8") as f:
+                w = _csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+                w.writeheader()
+                w.writerows(rows_all)
+            await update.message.reply_text(f"✅ Sent {sent_count}/{len(due)} follow-up(s). sent_log updated.")
+
+    _pending_send_batch: dict[int, list] = {}
+
+    async def cmd_send_batch(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Send top N CW drafts from Outbound/. Two-step confirm."""
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        chat_id = update.effective_chat.id if update.effective_chat else 0
+        try:
+            n = int(context.args[0]) if context.args else 10
+        except (ValueError, IndexError):
+            n = 10
+        outbound = BASE_DIR / "Pending_Approval" / "Outbound"
+        drafts = sorted(outbound.glob("CW_*.md"))[:n]
+        if not drafts:
+            await update.message.reply_text("No CW drafts found in Outbound/. Run the pipeline first.")
+            return
+        if not _pending_send_batch.get(chat_id):
+            _pending_send_batch[chat_id] = drafts
+            lines = [f"⚠️ About to send {len(drafts)} draft(s) from admin@:\n"]
+            import re as _re
+            for d in drafts[:15]:
+                to_m = _re.search(r"\*\*TO:\*\*\s*(.+?)(?:\n|$)", d.read_text(encoding="utf-8"))
+                to_line = to_m.group(1).strip() if to_m else d.stem
+                lines.append(f"• {to_line}")
+            if len(drafts) > 15:
+                lines.append(f"... and {len(drafts) - 15} more")
+            lines.append(f"\nRun /send_batch {n} again within 60s to confirm.")
+            await update.message.reply_text("\n".join(lines))
+            async def _reset_batch():
+                await asyncio.sleep(60)
+                _pending_send_batch.pop(chat_id, None)
+            asyncio.create_task(_reset_batch())
+        else:
+            confirmed_drafts = _pending_send_batch.pop(chat_id)
+            await update.message.reply_text(f"📤 Sending {len(confirmed_drafts)} email(s)...")
+            import subprocess
+            loop = asyncio.get_event_loop()
+            # Build file filter from draft names
+            names = ",".join(d.stem for d in confirmed_drafts)
+            result = await loop.run_in_executor(
+                None,
+                lambda: subprocess.run(
+                    ["python", "send_cw_outreach.py", "--all", "--files", names],
+                    capture_output=True, text=True,
+                    cwd=str(BASE_DIR)
+                )
+            )
+            out = (result.stdout or "") + (result.stderr or "")
+            await update.message.reply_text(f"Result:\n{out[:3000]}")
+
+    async def cmd_mark_replied(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        email = " ".join(context.args).strip() if context.args else ""
+        if not email or "@" not in email:
+            await update.message.reply_text("Usage: /mark_replied <email@domain.com>")
+            return
+        loop = asyncio.get_event_loop()
+        count, msg = await loop.run_in_executor(None, lambda: mark_contact_replied(email))
+        await update.message.reply_text(msg)
+
     async def do_save_task(chat_id: int) -> str:
         """执行保存任务：取最近对话 → Gemini 总结 → 写入 ACTIVE_TASK.md + Archive。"""
         history = list(_get_history(chat_id))
@@ -319,20 +579,36 @@ def run_polling():
         await update.message.reply_text(reply)
 
     start_text = (
-        "BCC 销售自动化 Bot。\n"
-        "命令: /pending 待审批 | /summary 今日简报 | /approve <名称> 审批发送 | /save 将最近对话存为 Cursor 任务\n"
-        "直接发文字可与我对话；说「存为任务」或发 /save 可将讨论同步到 Inbox/ACTIVE_TASK.md，由 Cursor 执行。"
+        "BCC Sales Automation Bot\n\n"
+        "Pipeline:\n"
+        "  /pipeline_status — checkpoint status\n"
+        "  /followup_check  — who's due for follow-up\n"
+        "  /followup_send   — send follow-ups (confirm twice)\n"
+        "  /send_batch N    — send top N CW drafts (confirm twice)\n"
+        "  /mark_replied <email> — mark contact as replied\n\n"
+        "Approvals:\n"
+        "  /pending  — list pending drafts\n"
+        "  /approve <name> — approve & send a draft\n\n"
+        "Info:\n"
+        "  /summary — today's briefing\n"
+        "  /save    — save conversation as Cursor task\n"
+        "  Free-text chat via Gemini"
     )
 
     async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(start_text)
 
     app = Application.builder().token(token).build()
-    app.add_handler(CommandHandler("pending", cmd_pending))
-    app.add_handler(CommandHandler("summary", cmd_summary))
-    app.add_handler(CommandHandler("approve", cmd_approve))
-    app.add_handler(CommandHandler("save", cmd_save))
-    app.add_handler(CommandHandler("start", cmd_start))
+    app.add_handler(CommandHandler("pending",         cmd_pending))
+    app.add_handler(CommandHandler("summary",         cmd_summary))
+    app.add_handler(CommandHandler("approve",         cmd_approve))
+    app.add_handler(CommandHandler("save",            cmd_save))
+    app.add_handler(CommandHandler("start",           cmd_start))
+    app.add_handler(CommandHandler("pipeline_status", cmd_pipeline_status))
+    app.add_handler(CommandHandler("followup_check",  cmd_followup_check))
+    app.add_handler(CommandHandler("followup_send",   cmd_followup_send))
+    app.add_handler(CommandHandler("send_batch",      cmd_send_batch))
+    app.add_handler(CommandHandler("mark_replied",    cmd_mark_replied))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_chat))
     print("Telegram Bot 已启动。发送 /start 查看命令；直接发消息可对话（需 GEMINI_API_KEY）。")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
