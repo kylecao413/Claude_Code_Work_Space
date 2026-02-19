@@ -209,6 +209,99 @@ def mark_contact_replied(email: str) -> tuple[int, str]:
     return count, f"✅ Marked {count} row(s) as replied for {email}"
 
 
+def get_call_list_text(show_all: bool = False) -> str:
+    """Return formatted call list from phone_log.csv for Telegram."""
+    import csv as _csv
+    from datetime import date as _date
+    phone_log = BASE_DIR / "phone_log.csv"
+    if not phone_log.exists():
+        return "phone_log.csv not found. Run: python phone_tracker.py --seed"
+    rows = []
+    with open(phone_log, newline="", encoding="utf-8") as f:
+        rows = list(_csv.DictReader(f))
+    if not rows:
+        return "phone_log.csv is empty. Run: python phone_tracker.py --seed"
+
+    today = _date.today().isoformat()
+    due = []
+    for r in rows:
+        status = r.get("call_status", "not_called")
+        if status in ("declined", "connected"):
+            continue
+        if show_all:
+            due.append(r)
+            continue
+        if status == "not_called" and r.get("email_sent_date"):
+            due.append(r)
+        elif status == "no_answer":
+            nc = r.get("next_call_date", "")
+            if not nc or nc <= today:
+                due.append(r)
+
+    if not due:
+        return "✅ No calls due today."
+
+    lines = [f"📞 {len(due)} call(s) due today ({today}):\n"]
+    for i, r in enumerate(due[:20], 1):
+        phone  = r.get("phone") or "(no phone)"
+        status = r.get("call_status", "not_called")
+        tag    = "1st call" if status == "not_called" else f"no-answer ({r.get('last_call_date','')})"
+        lines.append(f"{i}. {r['contact_name']} — {r.get('company','')}")
+        lines.append(f"   📱 {phone}  [{tag}]")
+        lines.append(f"   ✉️ {r.get('email','')}")
+    if len(due) > 20:
+        lines.append(f"... and {len(due) - 20} more")
+    lines.append("\nCommands:\n/call_no_answer <email> — no answer, call back in 2 days\n/call_declined <email> — turned down, stop contacting\n/call_connected <email> — spoke to them")
+    return "\n".join(lines)
+
+
+def update_phone_status(email: str, status: str, days: int = 2, notes: str = "") -> str:
+    """Update call status in phone_log.csv. status: no_answer|declined|connected"""
+    import csv as _csv
+    from datetime import date as _date, timedelta as _td
+    phone_log = BASE_DIR / "phone_log.csv"
+    if not phone_log.exists():
+        return "phone_log.csv not found. Run: python phone_tracker.py --seed"
+    rows = []
+    fieldnames = None
+    with open(phone_log, newline="", encoding="utf-8") as f:
+        reader = _csv.DictReader(f)
+        fieldnames = list(reader.fieldnames or [])
+        rows = list(reader)
+
+    el = email.strip().lower()
+    found = False
+    today = _date.today().isoformat()
+    for r in rows:
+        if r.get("email", "").strip().lower() == el:
+            r["call_status"]    = status
+            r["last_call_date"] = today
+            if status == "no_answer":
+                r["next_call_date"] = (_date.today() + _td(days=days)).isoformat()
+            else:
+                r["next_call_date"] = ""
+            if notes:
+                r["notes"] = notes
+            found = True
+            break
+
+    if not found:
+        return f"Contact not found: {email}"
+
+    with open(phone_log, "w", newline="", encoding="utf-8") as f:
+        w = _csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+        w.writeheader()
+        w.writerows(rows)
+
+    if status == "no_answer":
+        next_d = (_date.today() + _td(days=days)).isoformat()
+        return f"✅ Marked NO ANSWER for {email}\n📅 Next follow-up: {next_d}"
+    elif status == "declined":
+        return f"🚫 Marked DECLINED for {email} — will not contact again for this project."
+    else:
+        return f"✅ Marked CONNECTED for {email}."
+
+
 def approve_and_send(base_name: str) -> str:
     """
     将指定草稿“审批”：在 Outbound/Replies 下查找匹配的 .md，复制为 -OK.md 后调用 approval_monitor 处理。
@@ -458,6 +551,73 @@ def run_polling():
         count, msg = await loop.run_in_executor(None, lambda: mark_contact_replied(email))
         await update.message.reply_text(msg)
 
+    # ── Call tracking ──────────────────────────────────────────────────────────
+    async def cmd_call_list(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Show contacts due for a call today."""
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        show_all = bool(context.args and context.args[0].lower() in ("all", "--all"))
+        loop = asyncio.get_event_loop()
+        msg = await loop.run_in_executor(None, lambda: get_call_list_text(show_all=show_all))
+        await update.message.reply_text(msg[:4000])
+
+    async def cmd_call_no_answer(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Mark no answer, schedule callback in 2 days (or N if specified)."""
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        if not context.args:
+            await update.message.reply_text("Usage: /call_no_answer <email> [days]\nDefault: 2 days until next call")
+            return
+        email = context.args[0].strip()
+        days = 2
+        if len(context.args) >= 2:
+            try:
+                days = int(context.args[1])
+            except ValueError:
+                pass
+        if "@" not in email:
+            await update.message.reply_text("Please provide a valid email address.")
+            return
+        loop = asyncio.get_event_loop()
+        msg = await loop.run_in_executor(None, lambda: update_phone_status(email, "no_answer", days=days))
+        await update.message.reply_text(msg)
+
+    async def cmd_call_declined(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Mark contact as declined — stop contacting for this project."""
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        if not context.args:
+            await update.message.reply_text("Usage: /call_declined <email> [notes]")
+            return
+        email = context.args[0].strip()
+        notes = " ".join(context.args[1:]) if len(context.args) > 1 else ""
+        if "@" not in email:
+            await update.message.reply_text("Please provide a valid email address.")
+            return
+        loop = asyncio.get_event_loop()
+        msg = await loop.run_in_executor(None, lambda: update_phone_status(email, "declined", notes=notes))
+        await update.message.reply_text(msg)
+
+    async def cmd_call_connected(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        """Mark contact as connected (you spoke to them)."""
+        if not _auth(update.effective_chat.id if update.effective_chat else None):
+            await update.message.reply_text("未授权使用此 bot。")
+            return
+        if not context.args:
+            await update.message.reply_text("Usage: /call_connected <email> [notes]")
+            return
+        email = context.args[0].strip()
+        notes = " ".join(context.args[1:]) if len(context.args) > 1 else ""
+        if "@" not in email:
+            await update.message.reply_text("Please provide a valid email address.")
+            return
+        loop = asyncio.get_event_loop()
+        msg = await loop.run_in_executor(None, lambda: update_phone_status(email, "connected", notes=notes))
+        await update.message.reply_text(msg)
+
     async def handle_chat(update: Update, context: ContextTypes.DEFAULT_TYPE):
         """Free-text Gemini chat."""
         if not update.message or not update.message.text:
@@ -490,10 +650,15 @@ def run_polling():
         "BCC Sales Automation Bot\n\n"
         "Pipeline:\n"
         "  /pipeline_status — checkpoint status\n"
-        "  /followup_check  — who's due for follow-up\n"
-        "  /followup_send   — send follow-ups (confirm twice)\n"
+        "  /followup_check  — who's due for email follow-up\n"
+        "  /followup_send   — send email follow-ups (confirm twice)\n"
         "  /send_batch N    — send top N CW drafts (confirm twice)\n"
         "  /mark_replied <email> — mark contact as replied\n\n"
+        "Phone Calls:\n"
+        "  /call_list       — who to call today\n"
+        "  /call_no_answer <email> [days] — no answer, call back in 2 days\n"
+        "  /call_declined <email> — turned down, stop contacting\n"
+        "  /call_connected <email> — spoke to them\n\n"
         "Approvals:\n"
         "  /pending  — list pending drafts\n"
         "  /approve <name> — approve & send a draft\n\n"
@@ -515,6 +680,10 @@ def run_polling():
     app.add_handler(CommandHandler("followup_send",   cmd_followup_send))
     app.add_handler(CommandHandler("send_batch",      cmd_send_batch))
     app.add_handler(CommandHandler("mark_replied",    cmd_mark_replied))
+    app.add_handler(CommandHandler("call_list",       cmd_call_list))
+    app.add_handler(CommandHandler("call_no_answer",  cmd_call_no_answer))
+    app.add_handler(CommandHandler("call_declined",   cmd_call_declined))
+    app.add_handler(CommandHandler("call_connected",  cmd_call_connected))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_chat))
     print("BCC Telegram Bot started. Send /start for command list.")
     app.run_polling(allowed_updates=Update.ALL_TYPES)

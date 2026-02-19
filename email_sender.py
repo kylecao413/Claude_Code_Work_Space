@@ -21,6 +21,7 @@ except ImportError:
     pass
 
 ADMIN_FROM = "admin@buildingcodeconsulting.com"
+YCAO_FROM  = "ycao@buildingcodeconsulting.com"
 CC_YCAO    = "ycao@buildingcodeconsulting.com"
 
 # ── Signature ─────────────────────────────────────────────────────────────────
@@ -136,12 +137,20 @@ def _build_html_message(
     return outer
 
 
-def _smtp_send(msg: MIMEMultipart, from_addr: str, recipients: list[str]) -> tuple[bool, str]:
-    user     = os.environ.get("PRIV_MAIL1_USER", "").strip().strip('"')
-    password = os.environ.get("PRIV_MAIL1_PASS", "").strip().strip('"')
-    host     = os.environ.get("PRIV_MAIL1_SMTP", "smtp.privateemail.com").strip().strip('"')
+def _smtp_send(
+    msg: MIMEMultipart,
+    from_addr: str,
+    recipients: list[str],
+    user_env: str = "PRIV_MAIL1_USER",
+    pass_env: str = "PRIV_MAIL1_PASS",
+    host_env: str = "PRIV_MAIL1_SMTP",
+    host_default: str = "smtp.privateemail.com",
+) -> tuple[bool, str]:
+    user     = os.environ.get(user_env, "").strip().strip('"')
+    password = os.environ.get(pass_env, "").strip().strip('"')
+    host     = os.environ.get(host_env, host_default).strip().strip('"')
     if not user or not password:
-        return False, "Missing PRIV_MAIL1_USER / PRIV_MAIL1_PASS in .env"
+        return False, f"Missing {user_env} / {pass_env} in .env"
     try:
         with smtplib.SMTP(host, 587) as server:
             server.starttls()
@@ -188,3 +197,45 @@ def send_from_admin_with_attachment(
 
     msg = _build_html_message(ADMIN_FROM, to_email, subject, body_plain, cc_list, attachment_path)
     return _smtp_send(msg, ADMIN_FROM, [to_email] + cc_list)
+
+
+def send_from_ycao(
+    to_email: str, subject: str, body_plain: str, cc: str | None = None
+) -> tuple[bool, str]:
+    """Send HTML email from ycao@ (uses PRIV_MAIL2_* SMTP). CC admin@ automatically."""
+    cc_list = [ADMIN_FROM]
+    if cc:
+        for e in cc.replace(",", " ").split():
+            e = e.strip()
+            if e and e not in (ADMIN_FROM, to_email):
+                cc_list.append(e)
+
+    msg = _build_html_message(YCAO_FROM, to_email, subject, body_plain, cc_list)
+    return _smtp_send(
+        msg, YCAO_FROM, [to_email] + cc_list,
+        user_env="PRIV_MAIL2_USER", pass_env="PRIV_MAIL2_PASS",
+        host_env="PRIV_MAIL2_SMTP",
+    )
+
+
+def send_from_ycao_with_attachment(
+    to_email: str, subject: str, body_plain: str, attachment_path: str,
+    cc: str | None = None,
+) -> tuple[bool, str]:
+    """Send HTML email from ycao@ with PDF attachment. CC admin@ automatically."""
+    if not os.path.isfile(attachment_path):
+        return False, f"Attachment not found: {attachment_path}"
+
+    cc_list = [ADMIN_FROM]
+    if cc:
+        for e in cc.replace(",", " ").split():
+            e = e.strip()
+            if e and e not in (ADMIN_FROM, to_email):
+                cc_list.append(e)
+
+    msg = _build_html_message(YCAO_FROM, to_email, subject, body_plain, cc_list, attachment_path)
+    return _smtp_send(
+        msg, YCAO_FROM, [to_email] + cc_list,
+        user_env="PRIV_MAIL2_USER", pass_env="PRIV_MAIL2_PASS",
+        host_env="PRIV_MAIL2_SMTP",
+    )
