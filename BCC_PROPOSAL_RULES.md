@@ -73,12 +73,12 @@ def _clean_company_name(name):
 Violations must be corrected immediately and this section updated.
 
 ### Approved PE Description
-- ✅ **Correct**: `PE licenses (Civil and Electrical)`
-- ❌ **Never**: `PE (Civil & Structural)` — Structural is a subset of Civil, not a separate discipline
-- ❌ **Never**: `Licensed PE (Civil & Structural)`
+- ✅ **Correct**: "PE licenses across all major disciplines" (team includes subs/collaborators spanning all disciplines; FPE coming soon)
+- ❌ **Never**: `PE (Civil & Structural)` — Structural is a subset of Civil
+- ❌ **Never**: `PE licenses (Civil and Electrical)` — outdated, undersells the full team
 
 ### Approved Framing (Team-Focused, No "Led By")
-- ✅ **Correct**: "Our team holds PE licenses (Civil and Electrical) and ICC Master Code Professional (MCP) certifications."
+- ✅ **Correct**: "Our team brings together licensed Professional Engineers across all major disciplines and multiple ICC Master Code Professionals (MCP)."
 - ✅ **Correct**: "Our team is comprised of multiple disciplinary licensed Professional Engineers (PE) and ICC-certified Master Code Professionals (MCP)." *(from company introduction PDF)*
 - ❌ **Never**: "BCC is led by..." — sounds boastful and unnecessary
 - ❌ **Never**: "Our team is led by a Licensed PE..." — same problem
@@ -86,9 +86,11 @@ Violations must be corrected immediately and this section updated.
 
 ### Approved Expertise Bullet (for cold outreach emails)
 ```
-Multi-Discipline Expertise: Our team holds PE licenses (Civil and Electrical) and ICC Master
-Code Professional (MCP) certifications. We handle Building, Mechanical, Electrical, Plumbing,
-and Fire inspections under one roof and resolve technical code questions on-site to prevent delays.
+Multi-Discipline Expertise: Our team brings together licensed Professional Engineers across all
+major disciplines and multiple ICC Master Code Professionals (MCP). We handle Building,
+Mechanical, Electrical, Plumbing, and Fire Protection code inspections and plan review — and
+serve as a hands-on technical resource for code compliance questions, providing professional
+guidance when issues arise.
 ```
 
 ### Approved Scheduling Bullet
@@ -128,16 +130,41 @@ CW_PASSWORD=your-cw-password
 ```
 Currently: login is MANUAL only (no credential auto-fill implemented).
 
+### CW Stage Codes (pcstgs parameter)
+| Code | Stage | Service Focus | Email Pitch |
+|------|-------|---------------|-------------|
+| 1 | Planning | Plan Review (primary) | Lead with Plan Review, mention inspections as follow-on |
+| 2 | Proposed | Plan Review (primary) | Lead with Plan Review, mention inspections as follow-on |
+| 3 | Starts in 1-3 months | Both (Inspection lead) | Both services, Inspection urgent |
+| 4 | Starts in 4-6 months | Inspection | Inspection primary, Plan Review note |
+| 5 | Starts in 7-12 months | Inspection | Inspection primary, Plan Review note |
+| 6 | Groundbreaking | Inspection (Imminent) | Inspection only — project is breaking ground |
+| 7 | Under/Early Construction | Inspection (Active) | Inspection only — construction underway |
+
 ### DC Leads Scrape + Research + Email Pipeline
 ```bash
-# Full pipeline (scrape → research → emails → send to Telegram for review)
-python run_cw_leads_pipeline.py --pages 5
+# Full pipeline — all stages 1-7 (Planning → Early Construction), top 10 pages
+python run_cw_leads_pipeline.py --pages 10
+
+# Specific stage subset only:
+python run_cw_leads_pipeline.py --stages 1,2         # Planning + Proposed only (Plan Review focus)
+python run_cw_leads_pipeline.py --stages 3,4,5       # 1-12 months only (original scope)
+python run_cw_leads_pipeline.py --stages 6,7         # Groundbreaking + Under Construction (Inspection focus)
+
+# Skip deep search (faster, CW contacts only):
+python run_cw_leads_pipeline.py --skip-research
 
 # After Kyle approves on Telegram:
-python send_cw_outreach.py          # interactive per-email confirmation
-python send_cw_outreach.py --all    # single Y confirmation for all
+python send_cw_outreach.py --all --attachment "path/to/BCC Introduction.pdf"
 python send_cw_outreach.py --dry-run  # preview without sending
 ```
+
+### Top-100 Ranked List
+Pipeline automatically generates `DC_Top100_[TIMESTAMP].md` — scored by:
+- Stage priority score (Planning=9, Groundbreaking=9, 1-3mo=10, etc.)
+- Project value (up to +5 for $50M+)
+- Contact quality (+3 if verified CW email exists)
+- Role (+2 for Developer/Owner, +1 for GC/Architect)
 
 ### ConstructionWire Company Role Codes
 | Code   | Meaning              | Email Strategy |

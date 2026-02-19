@@ -723,10 +723,11 @@ def _generate_email_body(
     is_plan_review_focus = "Plan Review" in service_focus and not _role_is_gc_or_cm(role)
 
     bullet_expertise = (
-        "Multi-Discipline Expertise: Our team holds PE licenses (Civil and Electrical) and ICC "
-        "Master Code Professional (MCP) certifications. We handle Building, Mechanical, "
-        "Electrical, Plumbing, and Fire inspections under one roof and resolve technical code "
-        "questions on-site to prevent delays."
+        "Multi-Discipline Expertise: Our team brings together licensed Professional Engineers "
+        "across all major disciplines and multiple ICC Master Code Professionals (MCP). We handle "
+        "Building, Mechanical, Electrical, Plumbing, and Fire Protection code inspections and plan "
+        "review — and serve as a hands-on technical resource for code compliance questions, "
+        "providing professional guidance when issues arise."
     )
     bullet_scheduling = (
         "Responsive Scheduling: We offer same-day or next-business-day inspection availability "
