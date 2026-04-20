@@ -5,11 +5,18 @@ Building Code Consulting 批量调研流水线：
 3. 生成 Research_[公司名].md，并为每家公司生成 Pending_Approval 草稿（含 2–4 位关键人、个性化邮件草稿）。
 4. 估算金额 >= 1000 万美元的项目打上 High Value 标签。
 """
+import argparse
+import concurrent.futures
+import contextlib
 import csv
+import io
 import os
+import random
 import re
 import subprocess
 import sys
+import threading
+import time
 from pathlib import Path
 
 try:
@@ -70,10 +77,30 @@ def is_pre_construction(stage: str) -> bool:
 
 
 def run_research_for_company(company: str) -> bool:
-    """调用 deep_search_contacts.py 对单家公司做深度调研。"""
+    """调用 deep_search_contacts.py 对单家公司做深度调研（子进程；保留作为 fallback）。"""
     cmd = [sys.executable, str(BASE_DIR / "deep_search_contacts.py"), company]
     r = subprocess.run(cmd, cwd=str(BASE_DIR), timeout=120)
     return r.returncode == 0
+
+
+_print_lock = threading.Lock()
+
+
+def _research_one_inproc(company: str) -> tuple[str, bool, str, list]:
+    """并行 worker：in-process 调用 deep_search_contacts，捕获 stdout/stderr。
+
+    返回 (company, ok, captured_output, contacts)。
+    """
+    # 错峰启动，减少 DDGS 429（最多 5 workers × 3 queries = 15 次/短窗口）
+    time.sleep(random.uniform(0, 1.5))
+    buf = io.StringIO()
+    try:
+        from deep_search_contacts import deep_search_contacts
+        with contextlib.redirect_stdout(buf), contextlib.redirect_stderr(buf):
+            contacts = deep_search_contacts(company, max_contacts=5, use_gemini=True)
+        return company, bool(contacts), buf.getvalue(), contacts or []
+    except Exception as e:
+        return company, False, f"{buf.getvalue()}\n[ERROR] {e}", []
 
 
 def add_subject_and_body_to_draft(draft_path: Path, company_name: str, project_name: str, high_value: bool) -> None:
@@ -127,6 +154,14 @@ def add_subject_and_body_to_draft(draft_path: Path, company_name: str, project_n
 
 
 def main():
+    ap = argparse.ArgumentParser(description="批量调研 leads.csv 中 Pre-construction 项目的 GC/Developer。")
+    ap.add_argument("--workers", type=int, default=5,
+                    help="并行 worker 数（默认 5；设 1 为串行；DDGS 限速建议 ≤ 5）")
+    ap.add_argument("--top", type=int, default=5, help="取前 N 条 Pre-construction 项目（默认 5）")
+    ap.add_argument("--serial-subprocess", action="store_true",
+                    help="使用旧版 subprocess 串行模式（fallback，debug 用）")
+    args = ap.parse_args()
+
     leads = load_leads(LEADS_CSV)
     if not leads:
         print("leads.csv 为空或不存在。请先运行 ConstructionWire 抓取并导出：")
@@ -134,12 +169,12 @@ def main():
         return 1
 
     pre = [l for l in leads if is_pre_construction(l.get("stage", ""))]
-    top5 = pre[:5]
+    top5 = pre[:args.top]
     if not top5:
         print("没有处于 Pre-construction 阶段（Starts in 1-3/4-12/12+ months）的 Lead。")
         return 1
 
-    print(f"筛选出 Pre-construction 前 5 条：")
+    print(f"筛选出 Pre-construction 前 {len(top5)} 条：")
     for i, L in enumerate(top5, 1):
         val = L.get("estimated_value", "")
         v = _parse_value_millions(val)
@@ -155,13 +190,9 @@ def main():
 
     outbound_dir = PENDING_DIR / OUTBOUND_SUBDIR
     outbound_dir.mkdir(parents=True, exist_ok=True)
-    for company in sorted(companies):
-        print(f"\n正在调研: {company}")
-        ok = run_research_for_company(company)
-        if not ok:
-            print(f"  跳过后续草稿增强（调研未成功）")
-            continue
-        # 找到该项目名（用于主题与正文引用）
+
+    def _post_process(company: str) -> None:
+        """为单家公司写/增强草稿（读已完成 research 后调用）。"""
         project_name = ""
         high_value = False
         for L in top5:
@@ -175,9 +206,42 @@ def main():
         safe_name = re.sub(r"\s+", "_", safe_name).strip("_") or "Company"
         draft_path = outbound_dir / f"{safe_name}_Draft.md"
         add_subject_and_body_to_draft(draft_path, company, project_name, high_value)
-        print(f"  草稿已增强: {draft_path.name}")
+        with _print_lock:
+            print(f"  草稿已增强: {draft_path.name}")
 
-    print(f"\n批量调研完成。请审阅 Pending_Approval/{OUTBOUND_SUBDIR}/ 下草稿，将需发送的改为 XXX-OK.md 后由 approval_monitor 或 mobile_sync_manager 发送。")
+    companies_sorted = sorted(companies)
+    start_ts = time.time()
+
+    if args.serial_subprocess or args.workers <= 1:
+        # Fallback: 旧版串行 subprocess 模式
+        for company in companies_sorted:
+            print(f"\n正在调研: {company}")
+            ok = run_research_for_company(company)
+            if not ok:
+                print(f"  跳过后续草稿增强（调研未成功）")
+                continue
+            _post_process(company)
+    else:
+        workers = min(args.workers, len(companies_sorted))
+        print(f"\n并行调研 {len(companies_sorted)} 家公司（workers={workers}，in-process）…")
+        with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as ex:
+            futures = {ex.submit(_research_one_inproc, c): c for c in companies_sorted}
+            for f in concurrent.futures.as_completed(futures):
+                company, ok, output, _contacts = f.result()
+                with _print_lock:
+                    print(f"\n=== {company} {'✓' if ok else '✗'} ===")
+                    if output.strip():
+                        print(output.strip())
+                if not ok:
+                    with _print_lock:
+                        print("  跳过后续草稿增强（调研未成功）")
+                    continue
+                _post_process(company)
+
+    elapsed = time.time() - start_ts
+    print(f"\n批量调研完成（{elapsed:.1f}s，{len(companies_sorted)} 家公司）。"
+          f"请审阅 Pending_Approval/{OUTBOUND_SUBDIR}/ 下草稿，"
+          f"将需发送的改为 XXX-OK.md 后由 approval_monitor 或 mobile_sync_manager 发送。")
     return 0
 
 
