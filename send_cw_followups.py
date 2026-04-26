@@ -546,4 +546,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # Cross-machine lock only on real sends; previews and dry-runs run unwrapped
+    # so the other machine can preview/draft in parallel without blocking.
+    if "--send" in sys.argv and "--dry-run" not in sys.argv:
+        from core_tools.active_operator import operator_lock
+        with operator_lock("send_cw_followups.py"):
+            sys.exit(main())
+    else:
+        sys.exit(main())

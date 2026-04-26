@@ -233,4 +233,12 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # Cross-machine lock on real sends; --dry-run runs unwrapped so the other
+    # machine can preview/draft in parallel. (No --send flag here — script
+    # sends by default with per-email Y/N prompts.)
+    if "--dry-run" not in sys.argv:
+        from core_tools.active_operator import operator_lock
+        with operator_lock("send_cw_outreach.py"):
+            sys.exit(main())
+    else:
+        sys.exit(main())
