@@ -1438,4 +1438,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # Lock for actual scraping; --status / --clear-checkpoint are local-only
+    # metadata paths and don't need the lock.
+    if "--status" in sys.argv or "--clear-checkpoint" in sys.argv:
+        sys.exit(main())
+    else:
+        from core_tools.active_operator import operator_lock
+        with operator_lock("run_cw_leads_pipeline.py"):
+            sys.exit(main())

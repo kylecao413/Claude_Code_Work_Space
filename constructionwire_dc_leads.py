@@ -318,4 +318,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Always lock — every invocation hits the CW site and touches cookies.
+    from core_tools.active_operator import operator_lock
+    with operator_lock("constructionwire_dc_leads.py"):
+        main()
