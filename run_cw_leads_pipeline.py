@@ -310,7 +310,10 @@ async def phase1_scrape_leads(
         try:
             # Verify login via saved cookies
             await page.goto(LOGIN_URL, wait_until="domcontentloaded")
-            await page.wait_for_load_state("networkidle", timeout=15000)
+            try:
+                await page.wait_for_load_state("networkidle", timeout=8000)
+            except Exception:
+                pass  # CW long-polls XHRs — networkidle is unreliable, URL check below is the real signal
             if not is_logged_in_url(page.url):
                 print("CW cookies expired. Please re-run: python constructionwire_login.py")
                 return []
@@ -321,10 +324,11 @@ async def phase1_scrape_leads(
             for pagenum in range(1, max_pages + 1):
                 url = search_url.replace("p=1", f"p={pagenum}")
                 await page.goto(url, wait_until="domcontentloaded")
-                await page.wait_for_load_state("networkidle", timeout=20000)
+                # CW has long-polling XHRs so networkidle never fires — wait directly
+                # for the results-grid selector instead.
                 try:
                     await page.wait_for_selector(
-                        "#search-results-grid tr[data-report-id]", timeout=15000
+                        "#search-results-grid tr[data-report-id]", timeout=20000
                     )
                 except Exception:
                     print(f"  Page {pagenum}: no results found — stopping pagination.")
@@ -706,6 +710,67 @@ def _role_is_architect(role: str) -> bool:
     return "Architect" in role
 
 
+# ── Contact title whitelist/blacklist (2026-04-24) ────────────────────────────
+# Valid outreach targets (contact TITLE at the company), per Kyle's clarification:
+#   Architects (all AIA) = plan-review main buyer
+#   Estimator family = GC/CM TPI buyer
+#   PM / APM / Principal / VP / President / Owner / Developer
+#   Permit Manager / Expediter
+# Always skip: back-office roles that can't buy BCC services.
+_TITLE_BLACKLIST = [
+    "accounts payable", "accounting", "bookkeep", "controller", "cfo",
+    "human resources", " hr ", "hr manager", "recruit", "talent acquisition",
+    "marketing", "communications", "public relations", " pr ",
+    "receptionist", "front desk", "office manager", "administrative assistant",
+    "executive assistant", "secretary",
+    "it manager", "it director", "tech support", "systems admin", "sysadmin",
+    "legal counsel", "general counsel", "attorney", "paralegal",
+    "safety officer", "ehs",
+]
+
+_TITLE_WHITELIST_KEYWORDS = [
+    # Architect family (plan review)
+    "architect", "designer", "design principal", "design director",
+    # Estimator family (GC TPI buyer)
+    "estimat", "cost engineer", "quantity surveyor", "preconstruction",
+    "proposal manager", "bid coordinator", "bid manager",
+    # PM family
+    "project manager", "project executive", "project engineer",
+    "assistant project manager", "apm ", " apm",
+    "superintendent", "general superintendent",
+    # GC/CM-role tags that CW uses for bidding contractors (they DO hire TPI)
+    "general contractor", "bidding general", "construction manager", "cm ",
+    "subcontractor",
+    # Leadership
+    "principal", "partner", "president", "vice president", " vp ", "vp of",
+    "chief executive", "ceo", "chief operating", "coo", "founder",
+    "owner", "developer", "managing director",
+    # Permit
+    "permit manager", "permit expedit", "expediter", "expeditor",
+    # Generic PM-adjacent
+    "director of construction", "director of development",
+    "construction manager", "development manager",
+]
+
+
+def _title_is_valid_target(title: str) -> tuple[bool, str]:
+    """
+    Return (is_valid, reason). Blacklist first (hard reject), then whitelist
+    (positive match). Empty/missing titles fall through as valid (we lean permissive
+    when CW doesn't provide a title — the company role still filters).
+    """
+    t = f" {(title or '').lower().strip()} "
+    for bad in _TITLE_BLACKLIST:
+        if bad in t:
+            return (False, f"title blacklist: '{bad.strip()}'")
+    if not t.strip():
+        return (True, "no title — fall through to company role")
+    for good in _TITLE_WHITELIST_KEYWORDS:
+        if good in t:
+            return (True, f"matched '{good.strip()}'")
+    return (False, f"title '{title.strip()}' not on whitelist")
+
+
 def _generate_email_body(
     contact_name: str, company: str, role: str, project_name: str,
     service_focus: str = "Inspection",
@@ -824,60 +889,34 @@ def _generate_email_body(
             ]
 
     elif _role_is_architect(role):
-        if is_plan_review_focus:
-            # Early-stage Architect: lead with peer review / plan review
-            parts = [
-                salutation,
-                "",
-                f"I came across {project_name} and wanted to briefly introduce Building Code "
-                f"Consulting LLC (BCC). We frequently collaborate with architects on Third-Party "
-                f"Plan Review and peer review for DC projects — particularly at the design stage "
-                f"when code issues are most efficiently resolved.",
-                "",
-                f"BCC is a DC-based firm specializing in DC Third-Party Code Compliance and Plan "
-                f"Review. A few highlights relevant to {company}:",
-                "",
-                bullet_expertise,
-                "",
-                "Plan Review and Peer Review: We provide expedited Third-Party Plan Review for "
-                "DC and nationwide jurisdictions. Our team can review drawings for code compliance "
-                "before submission — catching issues early and protecting your project schedule.",
-                "",
-                bullet_billing,
-                "",
-                f"We are not submitting a formal proposal at this stage, but would welcome the "
-                f"opportunity to discuss how BCC can support {project_name} during design and "
-                f"into construction.",
-                "",
-                "Are you open to a quick 5-minute call?",
-            ]
-        else:
-            # Later-stage Architect: peer review + inspections
-            parts = [
-                salutation,
-                "",
-                f"I came across {project_name} and wanted to briefly introduce Building Code "
-                f"Consulting LLC (BCC). We often collaborate with architects on Third-Party Code "
-                f"Compliance reviews and inspections for DC projects.",
-                "",
-                f"BCC is a DC-based firm specializing in DC Third-Party Code Compliance and Plan "
-                f"Review. A few highlights relevant to {company}:",
-                "",
-                bullet_expertise,
-                "",
-                bullet_scheduling,
-                "",
-                bullet_billing,
-                "",
-                "We also offer Third-Party Plan Review and peer review services that can help "
-                "identify code issues before submission — reducing revision cycles and protecting "
-                "your project schedule.",
-                "",
-                f"We are not submitting a formal proposal at this stage, but would welcome the "
-                f"opportunity to discuss how BCC can support {project_name}.",
-                "",
-                "Are you open to a quick 5-minute call?",
-            ]
+        # Architect pitch — Plan Review ONLY. Drop visit-billing (not their cost),
+        # drop generic "schedule" language, lead with DOB deficiency pain.
+        parts = [
+            salutation,
+            "",
+            f"Quick note on {project_name} — I'm with Building Code Consulting LLC (BCC), "
+            f"a DC firm that does Third-Party Plan Review for architects. Wanted to flag us "
+            f"as a resource before {company} submits to DOB.",
+            "",
+            "Most of the value for architects is catching code issues before they come back "
+            "as DOB deficiency comments:",
+            "",
+            "• Pre-submission peer review across all five disciplines — Building, Mechanical, "
+            "Electrical, Plumbing, Fire Protection. Our team has licensed PEs in each + "
+            "multiple ICC Master Code Professionals.",
+            "",
+            "• Expedited turnaround — we typically return mark-ups in days, not weeks, so "
+            "your permit path doesn't slip while waiting on us.",
+            "",
+            "• Gap-coverage for disciplines your sub-consultants don't carry (e.g., fire "
+            "protection on smaller projects). We seal what's needed.",
+            "",
+            f"Not pitching a formal engagement here — just wanted you to know we're available "
+            f"if DOB push-back on {project_name} becomes a schedule risk, or if a second set "
+            f"of eyes before submittal would be useful.",
+            "",
+            "Worth a 10-minute call to walk through a recent DC project we reviewed?",
+        ]
 
     else:
         # Default: conservative pitch based on stage focus
@@ -967,21 +1006,64 @@ def phase5_generate_emails(
     emails: list[dict] = []
     seen: set[tuple[str, str]] = set()  # (email_lower, project)
 
+    # DC Government exclusion filter (BCC_PROPOSAL_RULES.md § 0-H)
+    _GOV_EMAIL_DOMAINS = {"dc.gov", "wmata.com"}
+    _GOV_COMPANY_KEYWORDS = [
+        "government of the district of columbia", "district of columbia",
+        "dmped", "office of the deputy mayor", "department of general services",
+        "department of buildings", "office of contracting and procurement",
+        "dc public schools", "dcps", "dc housing authority", "dcha", "wmata",
+    ]
+
+    def _is_dc_government(email_addr: str, company: str) -> bool:
+        """Return True if contact is a DC Government entity (skip per § 0-H)."""
+        domain = email_addr.lower().split("@")[-1] if "@" in email_addr else ""
+        if domain in _GOV_EMAIL_DOMAINS:
+            return True
+        comp_lower = company.lower()
+        return any(kw in comp_lower for kw in _GOV_COMPANY_KEYWORDS)
+
+    _gov_skipped = 0
+    _title_skipped = 0
+
     def _add_email(project_name: str, company: str, role: str,
                    contact_name: str, contact_role: str, email_addr: str, phone: str,
                    service_focus: str = "Inspection") -> None:
+        nonlocal _gov_skipped, _title_skipped
         key = (email_addr.lower(), project_name)
         if key in seen:
+            return
+        # Skip DC Government contacts (rules § 0-H)
+        if _is_dc_government(email_addr, company):
+            _gov_skipped += 1
+            print(f"  [SKIPPED — DC GOV] {company} / {contact_name} <{email_addr}>")
+            return
+        # Skip contacts whose title is on the blacklist / not on the whitelist (2026-04-24)
+        ok, reason = _title_is_valid_target(contact_role)
+        if not ok:
+            _title_skipped += 1
+            print(f"  [SKIPPED — TITLE] {company} / {contact_name} ({contact_role}): {reason}")
             return
         # Skip contacts we've already emailed in the past 60 days
         if email_addr.lower() in _recently_emailed:
             return
         seen.add(key)
-        # Adjust subject based on service focus
-        if "Plan Review" in service_focus and not _role_is_gc_or_cm(role):
-            subject = f"Third-Party Plan Review & Inspection Services for {project_name} | Building Code Consulting LLC"
+        # Subject: short, role-specific, ≤ 55 chars so it survives mobile truncation
+        #   Architects  → "Plan Review for {Project} — BCC"
+        #   GC/CM       → "TPI Inspector for {Project} — BCC"
+        #   Owner (PR)  → "Plan Review + TPI for {Project} — BCC"
+        #   Owner (TPI) → "TPI Inspector for {Project} — BCC"
+        def _truncate_project(p: str, limit: int) -> str:
+            return p if len(p) <= limit else p[: max(1, limit - 1)].rstrip() + "…"
+
+        if _role_is_architect(role):
+            subject = f"Plan Review for {_truncate_project(project_name, 35)} — BCC"
+        elif _role_is_gc_or_cm(role):
+            subject = f"TPI Inspector for {_truncate_project(project_name, 33)} — BCC"
+        elif "Plan Review" in service_focus:
+            subject = f"Plan Review + TPI for {_truncate_project(project_name, 28)} — BCC"
         else:
-            subject = f"Third-Party Inspection Services for {project_name} | Building Code Consulting LLC"
+            subject = f"TPI Inspector for {_truncate_project(project_name, 33)} — BCC"
         body = _generate_email_body(contact_name, company, role, project_name, service_focus)
         safe_slug = re.sub(r"[^\w]", "_", f"{company}_{contact_name or 'Contact'}")[:48]
         safe_slug = re.sub(r"_+", "_", safe_slug).strip("_")
@@ -1031,6 +1113,10 @@ def phase5_generate_emails(
                 phone = (contact.get("phone") or "").strip()
                 _add_email(project_name, company, role, contact_name, contact_role, email_addr, phone, service_focus)
 
+    if _gov_skipped:
+        print(f"  DC Government contacts skipped: {_gov_skipped} (per § 0-H)")
+    if _title_skipped:
+        print(f"  Title-filtered contacts skipped: {_title_skipped} (per 2026-04-24 whitelist)")
     print(f"Phase 5 complete: {len(emails)} email drafts generated.")
     return emails
 

@@ -33,7 +33,8 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip().strip('"')
 
 
 def _search_web(company: str, max_results: int = 15) -> List[dict]:
-    """对该公司做多组搜索，返回标题+摘要列表。"""
+    """对该公司做多组搜索，返回标题+摘要列表。Rate-limit aware with retry."""
+    import time as _time
     if not HAS_DDGS:
         return []
     results = []
@@ -42,14 +43,26 @@ def _search_web(company: str, max_results: int = 15) -> List[dict]:
         f"{company} Principal construction",
         f"{company} key contacts Plan Review Inspection DC",
     ]
-    with DDGS() as ddgs:
-        for q in queries:
-            for r in ddgs.text(q, max_results=5):
-                results.append({"title": r.get("title", ""), "body": r.get("body", "")})
-                if len(results) >= max_results:
-                    break
-            if len(results) >= max_results:
-                break
+    for attempt in range(3):
+        try:
+            with DDGS() as ddgs:
+                for q in queries:
+                    for r in ddgs.text(q, max_results=5):
+                        results.append({"title": r.get("title", ""), "body": r.get("body", "")})
+                        if len(results) >= max_results:
+                            break
+                    if len(results) >= max_results:
+                        break
+            return results
+        except Exception as e:
+            if "429" in str(e) and attempt < 2:
+                wait = 15 * (attempt + 1)
+                print(f"    [DDGS 429] Rate limited, waiting {wait}s before retry...")
+                _time.sleep(wait)
+                results = []
+            else:
+                print(f"    [DDGS] Search failed: {e}")
+                return results
     return results
 
 

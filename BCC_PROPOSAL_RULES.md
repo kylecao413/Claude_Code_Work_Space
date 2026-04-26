@@ -114,6 +114,41 @@ A few highlights:
 
 ---
 
+## 0-H. DC Government Projects — EXCLUSION RULE (No Cold Outreach)
+
+**NEVER send cold outreach emails to DC Government agencies or their employees.**
+
+DC Government conducts its own plan reviews and inspections through DOB (Department of Buildings). Emailing government employees offering third-party inspection services is embarrassing and counterproductive — they will tell you to contact DOB instead.
+
+### Blocked Organizations (auto-filter)
+Any lead where the company name or contact email matches these patterns must be **automatically skipped** during pipeline email generation and sending:
+- `dc.gov` (any @dc.gov email domain)
+- `Government of the District of Columbia`
+- `DMPED` / `Office of the Deputy Mayor`
+- `DGS` / `Department of General Services`
+- `DOB` / `Department of Buildings`
+- `OCP` / `Office of Contracting and Procurement`
+- `DCPS` / `DC Public Schools` (government entity)
+- `DCHA` / `DC Housing Authority`
+- `WMATA` (quasi-government)
+- Any entity with `District of Columbia` in its name
+
+### What to Do Instead
+For DC Government projects (schools, municipal buildings, government renovations):
+- **Do NOT email government contacts directly** with cold outreach
+- These projects go through formal procurement (RFP/IFB on OCP website)
+- Monitor OCP solicitations: https://ocp.dc.gov
+- If BCC wants to pursue government work, register as a vendor on the DC Supply Schedule
+- Government project contacts found on CW are project managers/development managers — they do not select inspection vendors via cold email
+
+### Pipeline Behavior
+When the CW pipeline encounters a government lead:
+1. Log it as `[SKIPPED — DC GOV]` in the leads report
+2. Do NOT generate an email draft
+3. Do NOT include in Telegram review batch
+
+---
+
 ## 0-D. ConstructionWire Login & DC Leads Pipeline
 
 ### Login (manual — no auto-fill)

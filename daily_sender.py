@@ -226,6 +226,26 @@ def main() -> int:
         print("No parseable drafts found.")
         return 1
 
+    # DC Government exclusion filter (BCC_PROPOSAL_RULES.md § 0-H)
+    _GOV_DOMAINS = {"dc.gov", "wmata.com"}
+    _GOV_KEYWORDS = [
+        "government of the district of columbia", "district of columbia",
+        "dmped", "office of the deputy mayor", "department of general services",
+        "department of buildings", "dc public schools", "dcps",
+        "dc housing authority", "dcha", "wmata",
+    ]
+    def _is_gov(em: dict) -> bool:
+        domain = em["to_email"].lower().split("@")[-1]
+        if domain in _GOV_DOMAINS:
+            return True
+        return any(kw in em.get("company", "").lower() for kw in _GOV_KEYWORDS)
+
+    pre_gov = len(emails)
+    emails = [em for em in emails if not _is_gov(em)]
+    gov_skipped = pre_gov - len(emails)
+    if gov_skipped:
+        print(f"  [SKIPPED — DC GOV] {gov_skipped} government contact(s) filtered out (§ 0-H)")
+
     # Deduplicate against sent_log
     already_sent = _load_sent_emails()
     emails = [em for em in emails if em["to_email"].lower() not in already_sent]

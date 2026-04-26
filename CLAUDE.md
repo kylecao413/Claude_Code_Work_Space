@@ -2,6 +2,18 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## Project Skills (BCC-specific, adapted from gstack)
+
+Three local skills live under `.claude/skills/`. Invoke via slash command or natural-language trigger.
+
+| Skill | Trigger | Use for |
+|-------|---------|---------|
+| `/bcc-strategy` | "brainstorm", "should we", "is this worth it" | Pressure-test a new initiative (state expansion, new service line, new tool) with six forcing questions. Output: one-page decision doc in `Strategy/`. Do NOT write code inside this skill. |
+| `/bcc-investigate` | "debug", "why is this broken", "it was working yesterday" | Root-cause investigation for scraper / email / proposal-generator failures. Iron Law: no fixes without a verified hypothesis. Known-pattern table covers CW/BC/SMTP/Telegram failure modes. |
+| `/bcc-review` | "review this draft", "review before send", "check my diff" | Two modes: (1) outbound-draft review against BCC_PROPOSAL_RULES.md + MEMORY.md rules before Kyle approves; (2) code-diff review before running a changed script against real leads. |
+
+Proactively invoke these skills instead of answering directly when the user's request matches a trigger. Each skill's `SKILL.md` has the full workflow.
+
 ## Your Role: Executor + Self-Reviewer
 
 You write code, run tools, manipulate files, and review your own work before deploying. You do NOT need to call ask_senior for routine code work — use your own judgment.
@@ -142,3 +154,13 @@ API costs must be minimized. Follow these rules strictly:
 - Python with `python-dotenv`; credentials in `.env` (never committed)
 - Browser automation: Playwright (not Selenium)
 - Working language: Chinese + English mix; user communicates in both
+
+## Plan Review Wrap-Up Packages
+
+When the user asks to "wrap up" a plan review project or prepare final DOB submittal documents, follow the 5-document workflow documented at:
+
+- `Wrap up/CLAUDE.md` — full workflow, field conventions, fixed values, TPR number rule, date rule
+- `Wrap up/Large Stamp Template.docx` — reusable template for Doc #5
+- Canonical example: `../Projects/Plan Review from Jessica Liang/1345-1347 Conn Ave Karaoke Store FA PR/1345 Conn Ave FA/Wrap up/` (fully completed package + its own CLAUDE.md)
+
+The 5 docs per package: (1) PR NOI for DOB, (2) Deficiency Report PDF, (3) Plan Review Approval Certificate and Report, (4) Plan Review Certification Letter, (5) Large Stamp. Before generating, always ask the user for: project address, project name, discipline, TPR######-### number from the NOI, and the three key dates (Deficiency Report / Corrections Verified / Report Reflecting Approval). Do not fabricate signatures.

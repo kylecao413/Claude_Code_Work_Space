@@ -1,0 +1,275 @@
+# Master info sheet - single source of truth for all 6 state PE applications.
+# Edit values here, re-run `python fill_pdfs.py`, PDFs regenerate.
+# Fields marked [TBD: ...] are missing - Kyle to fill in before final submission.
+#
+# Data sources consolidated:
+#   - Green Card (Legal Docs/Perm ID Yue.jpg / Yue 1.jpg)
+#   - VA DPOR Experience Verification Form (Legal Docs/...F Malek.pdf)
+#   - Resume (Legal Docs/Kyle Cao's Resume.pdf)
+#   - BCC LLC Articles (Legal/KCY_PLLC_Conversion/generate_restated_articles.py)
+
+personal:
+  first: Yue
+  middle: ""
+  last: Cao
+  preferred_first: Kyle         # goes by "Kyle Cao" professionally; legal = Yue Cao
+  full_legal: "Yue Cao"
+  other_names: "Kyle Cao (preferred / professional name)"
+  dob_slash: "11/04/1986"
+  dob_nohyp: "11041986"
+  sex: "M"
+  ssn: "885-85-5389"
+  dl_num: "A65395830"
+  dl_state: "VA"
+  home_street: "3914 Tallow Tree Court"
+  home_city: "Fairfax"
+  home_state: "VA"
+  home_zip: "22033"
+  home_phone: "(806) 787-5806"
+  alt_phone: "(571) 249-0908"
+  personal_email: "caoyueno5@gmail.com"    # USE THIS on every state PE form (preferred contact)
+  citizenship: "Permanent Resident (Lawful Permanent Resident - Green Card, Category E37)"
+  alien_number: "A216-583-066"
+  resident_since: "10/18/2022"
+  card_expires: "10/18/2032"
+  i94_number: "N/A (Permanent Resident)"
+  birth_city: "Jinzhou"
+  birth_state_country: "Liaoning Province, China"
+  native_language: "Chinese (Mandarin)"
+
+business:
+  company: "Building Code Consulting LLC"
+  title: "President / Principal Engineer"
+  street: "3914 Tallow Tree Court"
+  city: "Fairfax"
+  state: "VA"
+  zip: "22033"
+  phone: "(571) 365-6937"
+  email: "ycao@buildingcodeconsulting.com"
+  start_date_slash: "08/10/2023"
+  formation_state: "Virginia"
+
+ncees:
+  id: "14-528-37"
+  record_holder: true
+  # Discipline qualifications on Record:
+  record_disciplines:
+    - "PE Electrical and Computer - Electronics, Controls, and Communications"
+    - "PE Civil - Geotechnical"
+    - "PE Fire Protection (passed 2026; awaiting NCEES Record update from VA)"
+
+# ---- Education (oldest to newest - matches chronological order on most forms) ----
+education:
+  - school: "Dalian University of Technology, Dalian, China"
+    degree: "B.S."
+    major: "Civil Engineering - Construction Management"
+    grad_date: "07/2009"
+    years_from_to: "09/2005 - 07/2009"
+    graduated: true
+    abet: "No (foreign degree - NCEES Record includes evaluation)"
+  - school: "Texas Tech University, Lubbock, TX"
+    degree: "M.S."
+    major: "Civil Engineering (transferred out, did not complete)"
+    grad_date: "N/A (transferred 11/2011)"
+    years_from_to: "09/2010 - 11/2011"
+    graduated: false
+    abet: "Yes (ABET-accredited)"
+  - school: "New Jersey Institute of Technology, Newark, NJ"
+    degree: "M.S."
+    major: "Civil Engineering"
+    grad_date: "12/2013"
+    years_from_to: "01/2012 - 12/2013"
+    graduated: true
+    abet: "Yes (ABET-accredited)"
+  - school: "Georgia Institute of Technology (Online)"
+    degree: "M.S. (in progress)"
+    major: "Computer Science"
+    grad_date: "In progress"
+    years_from_to: "09/2022 - present"
+    graduated: false
+    abet: "Yes (OMSCS - not required for PE)"
+
+# ---- Exams (all confirmed 2026-04-22) ----
+# Order: FE first, then PE exams chronologically. All Pass.
+exams:
+  fe:
+    date: "10/2013"
+    location: "Boston Area, MA"
+    discipline: "FE Civil"
+    result: "Pass"
+  pe_electrical:
+    date: "10/2021"              # Oct 20, 2021
+    location: "Virginia"
+    discipline: "PE Electrical and Computer - Electronics, Controls, and Communications"
+    result: "Pass"
+    ncees_registration: "400063613"
+  pe_civil:
+    date: "10/2017"
+    location: "Virginia"
+    discipline: "PE Civil - Geotechnical"
+    result: "Pass"
+  pe_fire:
+    date: "04/2026"              # 04-16-2026
+    location: "Virginia"
+    discipline: "PE Fire Protection"
+    result: "Pass"
+
+# ---- Licenses currently held ----
+# DC + MD PE already held - no new application needed. Just order NCEES Record
+# transmittal to those boards to add FP discipline to existing license.
+licenses:
+  # Rule confirmed 2026-04-23: each state issues ONE PE license number per person,
+  # not per discipline. Disciplines attached to the single number via NCEES Record.
+  - state: "VA"
+    number: "0402056707"
+    year_issued: "2017"         # first issued when PE Civil-Geotech passed
+    type: "Professional Engineer"
+    disciplines: "Electrical and Computer; Civil-Geotechnical; Fire Protection (newly added 04/2026)"
+    status: "Active"
+  - state: "DC"
+    number: "PE920502"
+    year_issued: "2018"              # initial issue date: 04/17/2018
+    initial_issue_date: "04/17/2018"
+    type: "Professional Engineer"
+    status: "Active - adding FP via NCEES transmittal only"
+  - state: "MD"
+    number: "0052837"
+    year_issued: "2018"              # initial issue date: 06/15/2018
+    initial_issue_date: "06/15/2018"
+    type: "Professional Engineer"
+    status: "Active - adding FP via NCEES transmittal only"
+  # Related licenses (mention on apps as 'other licenses'):
+  - state: "VA"
+    number: "[TBD: VA Master Electrician number]"
+    type: "Master Electrician (inspector status)"
+    status: "Active"
+  - state: "MD"
+    number: "[TBD: MD Master Electrician number]"
+    type: "Master Electrician (inspector status)"
+    status: "Active"
+
+# ---- Employment history (most recent first) ----
+# Corrected 2026-04-23: Kyle never worked at DEI. Fariborz Malek (DEI) is a
+# PE reference who verified Yue's work, not an employer. Actual chain:
+# BCC (current) -> CTI/UES (prior) -> DMY (before CTI) -> YIDA (China, start of career).
+employment:
+  - from_date: "08/10/2023"
+    to_date: "Present"
+    employer: "Building Code Consulting LLC, 3914 Tallow Tree Court, Fairfax, VA 22033"
+    position: "President / Principal Engineer"
+    months_full_time: "~32 months (Aug 2023 - Apr 2026)"
+    verifying_engineer: "Self (sole member)"
+    verifier_license: "VA PE 0402056707 (self)"
+    projects: "Third-party code compliance inspection, plan review, and code consulting across DC, VA, MD. Disciplines: Building, Mechanical, Electrical, Plumbing, Fire Protection."
+  - from_date: "04/2018"
+    to_date: "Present"
+    employer: "UES-CTI District Services Inc., 6856 Eastern Avenue NW, Suite 211, Washington, DC 20012"
+    position: "Professional In Charge"
+    months_full_time: "~96 months (Apr 2018 - Apr 2026)"
+    verifying_engineer: "Ray Bradner (Manager, CTI/UES) - not PE"
+    verifier_license: "N/A"
+    verifier_email: "rbradner@teamues.com"
+    projects: "Electrical / MEP / FP plan review and third-party inspection. Major project: Micron Technology Blue Ridge FAB & CUP, Manassas VA (04/2018 - 12/2025) - full-time onsite code, equipment, and system inspections + commissioning support."
+  - from_date: "01/2014"
+    to_date: "03/2018"
+    employer: "DMY Capital LLC (DMY Engineering Consultants), 4170 Lafayette Center Drive, Suite 500, Chantilly, VA 20151"
+    position: "Project Engineer"
+    months_full_time: "~50 months (Jan 2014 - Mar 2018)"
+    verifying_engineer: "[TBD: DMY supervisor name]"
+    verifier_license: "[TBD]"
+    projects: "Geotechnical, civil, and electrical engineering support on mixed-use, residential, commercial projects across NoVA / MD. Plan review and field inspection assistance."
+  - from_date: "07/2018"
+    to_date: "03/2020"
+    employer: "Frederick County, MD - Building & Permit Department"
+    position: "Combination Inspector (part-time contractor) - Electrical, Plumbing, Building"
+    months_full_time: "Part-time concurrent with UES-CTI"
+    verifying_engineer: "Bob Ensor (manager - not Building Official, not PE)"
+    verifier_license: "N/A"
+    projects: "County building, plumbing, electrical code inspections."
+  - from_date: "09/2008"
+    to_date: "09/2010"
+    employer: "YIDA Group - 5th County Project, Dalian, China"
+    position: "Structural Engineer / Assistant Construction Manager"
+    months_full_time: "24 months"
+    verifying_engineer: "[TBD: former YIDA supervisor - may not be needed given recent US experience]"
+    verifier_license: "N/A"
+    projects: "Luxury residential community structural design, pre-con management, electrical and fire protection assistant construction management."
+
+# ---- Professional References ----
+# Clarified 2026-04-23: most are NOT PE-licensed. NCEES Record already has
+# the required PE references on file — so FL / TX reference fields are
+# effectively covered by the NCEES Record and can be left blank on the main
+# application. SC may still want names, so fill them but mark license as N/A.
+# Malek is the only PE reference; listed first so it's used where PE is required.
+references:
+  # PE references (top - used for FL/TX/SC reference-engineer slots that require PE)
+  - name: "Fariborz Malek, P.E."
+    title: "President, DEI Consulting"
+    company: "DEI Consulting"
+    license: "VA PE 0402022688"
+    address: "21495 Ridgetop Circle, Suite 204, Sterling, VA 20166"
+    email: "amalek@dei-consulting.com"
+    phone: "(703) 861-4930"
+    years_known: "~12 years (since 02/2014)"
+    is_pe: true
+    notes: "Primary employment verifier (already signed VA DPOR experience form)."
+  - name: "Xuebin Huang, P.E."
+    title: "[TBD]"
+    company: "[TBD]"
+    license: "DC PE PE064574"      # confirmed 2026-04-23: DC PE
+    address: "[TBD]"
+    email: "[TBD]"
+    phone: "[TBD]"
+    years_known: "[TBD]"
+    is_pe: true
+  - name: "Yu Tan, P.E."
+    title: "[TBD]"
+    company: "[TBD]"
+    license: "VA PE 0402052555"    # format 040205#### matches VA PE license style
+    address: "[TBD]"
+    email: "[TBD]"
+    phone: "[TBD]"
+    years_known: "[TBD]"
+    is_pe: true
+  - name: "Yi Tian, P.E."
+    title: "[TBD]"
+    company: "[TBD]"
+    license: "VA PE 0402059720"
+    address: "[TBD]"
+    email: "[TBD]"
+    phone: "[TBD]"
+    years_known: "[TBD]"
+    is_pe: true
+  # Non-PE professional / character references (kept as backups; NOT used
+  # on FL's Reference Engineer slots because FL requires PE).
+  - name: "Ross Garner"
+    title: "Former coworker at CTI District Services; partner at American Plan Review Group"
+    company: "American Plan Review Group / CTI (former)"
+    license: "N/A - non-PE professional reference"
+    address: "6604 Marble Creek Loop, Austin, TX 78748"
+    email: "louis@americanplanreview.com"
+    phone: "[TBD]"
+    years_known: "[TBD - since CTI tenure]"
+    is_pe: false
+  - name: "Jeff Tan"
+    title: "Owner, Plus Engineering (Plus PES)"
+    company: "Plus Engineering"
+    license: "N/A - non-PE professional reference"
+    address: "4309 Holly Lane, Annandale, VA 22003"
+    email: "jeff@pluspes.com"
+    phone: "[TBD]"
+    years_known: "[TBD]"
+    is_pe: false
+  # Ray Bradner dropped from reference list per Kyle 2026-04-23 - no mailing address,
+  # do not send him the reference questionnaire. He remains Kyle's CTI/UES manager
+  # (listed under employment as work-verifier only, not as mailed reference).
+
+# ---- Disclosure answers (all states ask) ----
+disclosures:
+  criminal_conviction: "No"
+  previously_applied_fl: "No"
+  denied_examination: "No"
+  refused_licensure: "No"
+  disciplinary_action: "No"
+  under_investigation: "No"
+  military_service: "No"

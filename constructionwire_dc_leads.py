@@ -23,6 +23,7 @@ from constructionwire_login import (
     is_logged_in_url,
     LOGIN_URL,
 )
+from core_tools.browser_connect import open_browser, close_browser, save_storage_state
 
 # DC 地区 + “1–12 个月阶段” 搜索（与 “Search Projects DC 1 to 12 month stages Only” 一致）
 BASE_URL = "https://www.constructionwire.com"
@@ -152,7 +153,10 @@ async def scrape_detail_page(page, detail_url: str) -> dict:
     if not detail_url:
         return {}
     await page.goto(detail_url, wait_until="domcontentloaded")
-    await page.wait_for_load_state("networkidle", timeout=15000)
+    try:
+        await page.wait_for_load_state("networkidle", timeout=6000)
+    except Exception:
+        pass  # CW long-polls XHRs — networkidle is unreliable; downstream selectors handle real readiness
 
     data = {}
     # 标题
@@ -220,26 +224,50 @@ def _export_leads_csv(leads: list, path: str) -> None:
 
 
 async def run(headless: bool = False, max_pages: int = 1, scrape_details: bool = False, export_path: str | None = None):
-    if not has_saved_cookies():
-        print("未检测到已保存的登录状态。请先运行： python constructionwire_login.py")
-        return 1
-
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=headless)
-        context = await browser.new_context(
-            storage_state=COOKIES_PATH,
-            viewport={"width": 1280, "height": 720},
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        browser, context, page, attached = await open_browser(
+            p,
+            cookies_path=COOKIES_PATH if has_saved_cookies() else None,
+            cookies_format="storage_state",
+            target_url=LOGIN_URL,
+            headless=headless,
         )
-        page = await context.new_page()
+
+        if not attached and not has_saved_cookies():
+            print("未检测到 CDP 连接，也没有保存的 Cookie。")
+            print("请选择以下任一方式登录：")
+            print("  A) 双击 launch_chrome_debug.bat 启动调试 Chrome，在其中手动登录 ConstructionWire")
+            print("  B) 运行 python constructionwire_login.py 做一次性登录保存 Cookie")
+            await close_browser(browser, context, attached)
+            return 1
 
         try:
-            await page.goto(LOGIN_URL, wait_until="domcontentloaded")
-            await page.wait_for_load_state("networkidle", timeout=15000)
+            if page.url.split("?")[0] != LOGIN_URL.split("?")[0]:
+                await page.goto(LOGIN_URL, wait_until="domcontentloaded")
+            try:
+                await page.wait_for_load_state("networkidle", timeout=15000)
+            except Exception:
+                pass
 
             if not await ensure_logged_in(page):
-                print("Cookie 已失效，请先运行： python constructionwire_login.py")
-                return 1
+                if attached:
+                    print("当前 CDP Chrome 未登录 ConstructionWire。请在该窗口手动登录后回车继续…")
+                    try:
+                        await page.pause()
+                    except Exception:
+                        pass
+                    if not await ensure_logged_in(page):
+                        print("仍未登录，终止。")
+                        return 1
+                else:
+                    print("Cookie 已失效，请先运行： python constructionwire_login.py")
+                    return 1
+
+            # 登录后把最新登录态写回 cookies 文件，供未来无 CDP 时回退使用
+            try:
+                await save_storage_state(context, COOKIES_PATH)
+            except Exception:
+                pass
 
             await open_dc_leads_section(page)
             all_leads = []
@@ -264,11 +292,11 @@ async def run(headless: bool = False, max_pages: int = 1, scrape_details: bool =
                     lead["contact_names"] = [c.get("name") or (c.get("contact", "").split("\n")[0].strip()) for c in extra.get("contacts", [])]
                     print(f"  详情 [{i+1}] {lead.get('project_name', '')[:50]}… contacts={len(extra.get('contacts', []))} names={lead['contact_names']}")
 
-            # 调试时可暂停
-            if not headless:
+            # 调试时（非 CDP 模式）可暂停
+            if not headless and not attached:
                 await page.pause()
         finally:
-            await browser.close()
+            await close_browser(browser, context, attached)
 
     return 0
 

@@ -17,6 +17,8 @@ except ImportError:
 
 from playwright.async_api import async_playwright
 
+from core_tools.browser_connect import open_browser, close_browser, save_storage_state
+
 BASE_DIR = Path(__file__).resolve().parent
 COOKIES_PATH = BASE_DIR / ".buildingconnected_cookies.json"
 # BuildingConnected 典型 URL（需根据实际站点调整）
@@ -105,43 +107,47 @@ async def run(headless: bool = False, months_back: int = 3, max_projects: int = 
     主流程：加载 Cookie 或要求登录 → 打开 DC Bid Invites → 抓取列表 →
     可选抓取每项详情。返回 { "projects": [...], "not_submitted": [...] }。
     """
-    if COOKIES_PATH.exists():
-        try:
-            with open(COOKIES_PATH, "r", encoding="utf-8") as f:
-                storage = json.load(f)
-        except Exception:
-            storage = None
-    else:
-        storage = None
-
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=headless)
-        context = await browser.new_context(
-            viewport={"width": 1280, "height": 720},
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0",
+        browser, context, page, attached = await open_browser(
+            p,
+            cookies_path=str(COOKIES_PATH) if COOKIES_PATH.exists() else None,
+            cookies_format="cookies_list",
+            target_url=BC_BASE,
+            headless=headless,
         )
-        if storage:
-            await context.add_cookies(storage.get("cookies", []))
-        page = await context.new_page()
 
         try:
-            await page.goto(BC_BASE, wait_until="domcontentloaded")
-            await page.wait_for_load_state("networkidle", timeout=15000)
+            try:
+                await page.wait_for_load_state("networkidle", timeout=15000)
+            except Exception:
+                pass
             if not await ensure_logged_in(page):
-                print("未检测到登录状态。请在打开的浏览器中登录 BuildingConnected，登录成功后按 Enter 继续。")
-                if not headless:
+                print("未检测到 BC 登录状态。")
+                if attached:
+                    print("请在当前 CDP Chrome 窗口中登录 BuildingConnected，登录成功后回车继续…")
+                else:
+                    print("请在打开的浏览器中登录 BuildingConnected，登录成功后按 Enter 继续。")
+                try:
                     await page.pause()
-                await page.wait_for_load_state("networkidle", timeout=60000)
+                except Exception:
+                    pass
+                try:
+                    await page.wait_for_load_state("networkidle", timeout=60000)
+                except Exception:
+                    pass
             if not await ensure_logged_in(page):
                 print("仍未登录，请重新运行并完成登录。")
-                await browser.close()
+                await close_browser(browser, context, attached)
                 return []
 
-            # 保存 Cookie 供下次使用
-            state = await context.storage_state()
-            with open(COOKIES_PATH, "w", encoding="utf-8") as f:
-                json.dump({"cookies": state.get("cookies", [])}, f, indent=2)
-            print("已保存 Cookie 到", COOKIES_PATH)
+            # 保存 Cookie 供下次使用（传统格式，兼容现有代码）
+            try:
+                state = await context.storage_state()
+                with open(COOKIES_PATH, "w", encoding="utf-8") as f:
+                    json.dump({"cookies": state.get("cookies", [])}, f, indent=2)
+                print("已保存 Cookie 到", COOKIES_PATH)
+            except Exception as e:
+                print(f"保存 Cookie 失败（忽略）: {e}")
 
             await open_bid_invites_dc(page, months_back=months_back)
             projects = await scrape_bid_list(page)
@@ -150,11 +156,11 @@ async def run(headless: bool = False, months_back: int = 3, max_projects: int = 
             if not_submitted:
                 for i, p in enumerate(not_submitted[:max_projects], 1):
                     print(f"  {i}. {p.get('name', 'N/A')} | {p.get('client', '')} | {p.get('location', '')}")
-            await browser.close()
+            await close_browser(browser, context, attached)
             return {"projects": projects, "not_submitted": not_submitted}
         except Exception as e:
             print("运行出错:", e)
-            await browser.close()
+            await close_browser(browser, context, attached)
             return {"projects": [], "not_submitted": []}
 
 

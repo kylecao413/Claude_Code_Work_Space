@@ -140,13 +140,23 @@ def _generate_default_description(project: dict) -> str:
 
 
 def _clean_description(desc_text: str, address: str, client: str) -> str:
-    """Strip bid deadline sentences and append the standard BCC closing sentence."""
+    """Strip bid deadline sentences + any caller-supplied 'BCC's role' / address repeats,
+    then append the canonical BCC closing sentence exactly once."""
     import re
-    # Split into sentences and remove any that mention bid deadline/due date
+    # Split into sentences
     sentences = re.split(r'(?<=[.!?])\s+', desc_text.strip())
+    dropped_patterns = [
+        re.compile(r'bid\s*(due|deadline|date)|due\s*date|deadline', re.IGNORECASE),
+        # Any sentence restating BCC's role — caller sometimes writes their own version.
+        # Drop them so we emit only the canonical closing below.
+        re.compile(r"BCC[’']?s?\s+role", re.IGNORECASE),
+        re.compile(r"BCC\s+will\s+serve\s+as", re.IGNORECASE),
+        # Any sentence that re-states the project address — avoid duplicating the closing address line.
+        re.compile(r"(the\s+)?project\s+address\s+is", re.IGNORECASE),
+    ]
     filtered = [
         s for s in sentences
-        if not re.search(r'bid\s*(due|deadline|date)|due\s*date|deadline', s, re.IGNORECASE)
+        if not any(p.search(s) for p in dropped_patterns)
     ]
     cleaned = ' '.join(filtered).strip().rstrip('.')
 
@@ -163,7 +173,7 @@ def _clean_description(desc_text: str, address: str, client: str) -> str:
         f"assisting {client} with all required inspections."
     )
 
-    # Append closing only if not already present
+    # Append closing once (we've stripped any caller version above)
     if "combo inspection inspector" not in cleaned:
         cleaned = (cleaned + ". " if cleaned else "") + closing
 
@@ -206,7 +216,15 @@ def _collapse_empty_paragraphs(doc, max_consecutive: int = 2) -> None:
                 to_remove.append(p)
         else:
             empty_count = 0
+    WP_NS = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
     for p in to_remove:
+        # Never remove paragraphs containing section breaks — they control
+        # footer linkage, page numbering, and section properties.
+        pPr = p._element.find(f'{WP_NS}pPr')
+        if pPr is not None and pPr.find(f'{WP_NS}sectPr') is not None:
+            continue
+        if p._element.find(f'{WP_NS}sectPr') is not None:
+            continue
         try:
             p._element.getparent().remove(p._element)
         except (AttributeError, ValueError):
@@ -341,7 +359,14 @@ def fill_template(
         elif "01-12-2026" in full or full.strip() == "01/12/2026":
             _replace_para_preserving_format(p, today)
         elif "Flat rate of $325" in full or "(Flat rate of $325" in full:
-            _replace_para_preserving_format(p, f"Inspection Services Estimated: (Flat rate of ${price_per_visit}/visit)")
+            _replace_para_preserving_format(
+                p,
+                f"Inspection Services Estimated: (Flat rate of ${price_per_visit}/visit)  "
+                f"Note: BCC's invoice is fully based on the number of actual combo-inspection visits "
+                f"conducted. The visit count and fee total shown below are an estimate for reference only; "
+                f"each visit performed is billed separately at the flat per-visit rate, and the estimate "
+                f"is neither a cap nor a commitment to a specific visit count."
+            )
 
     # Fourth pass: ensure Project Description heading is followed by description text
     # (handles case where Exhibit A paragraph was already empty in template after replacements)
@@ -422,26 +447,277 @@ def fill_template(
         else:
             i += 1
 
-    # Seventh pass: fix fee table summary row — replace hardcoded visit total with est_visits
-    # The last row of the fee table has: blank | <old_count> | "Total" | "$<total>"
+    # Seventh pass: fix the WHOLE fee table — per-row Price/Visits/Total AND the summary row
+    # Template structure:
+    #   row 0: "Code Inspections Estimated Fee" (header, merged)
+    #   row 1: "Services | Visits | Price Per | Total" (column headers)
+    #   row 2: Underground plumbing + water column test
+    #   row 3: MEP Combo Close-in (rough-in + framing)
+    #   row 4: Air seal close-in / Insulation
+    #   row 5: Combo Final Inspections
+    #   row 6 (last): blank | <visits> | "Total" | "$<total>"
+    def _allocate_visits(total: int, n_data_rows: int) -> list[int]:
+        """把 total visits 分到 data rows: [UG plumbing, rough-in, close-in, final].
+        Aggressive 哲学 (Kyle 2026-04-22):
+          - final 默认 1 次；extras 优先加到 rough-in + close-in（实际施工按层/墙/屋顶分批的是这两阶段）
+          - rough-in + close-in 都到 4 次后才给 final 加（超大 multi-phase 项目）
+        """
+        alloc = [0] * n_data_rows
+        if total <= 0 or n_data_rows == 0:
+            return alloc
+        if n_data_rows == 4:
+            if total == 1:
+                alloc[3] = 1
+            elif total == 2:
+                alloc[1] = alloc[3] = 1
+            elif total == 3:
+                alloc[1] = alloc[2] = alloc[3] = 1
+            elif total == 4:
+                alloc = [1, 1, 1, 1]
+            else:  # > 4: extras 轮流给 rough-in (idx 1) 和 close-in (idx 2)
+                alloc = [1, 1, 1, 1]
+                extras = total - 4
+                # 轮流添加到 rough-in + close-in（alternating），两个都到 4 后再给 final
+                cursor = 1  # start with rough-in
+                while extras > 0:
+                    if alloc[1] < 4 or alloc[2] < 4:
+                        # pick the one that's smaller (alternating effect)
+                        if alloc[1] <= alloc[2] and alloc[1] < 4:
+                            alloc[1] += 1
+                        elif alloc[2] < 4:
+                            alloc[2] += 1
+                        elif alloc[1] < 4:
+                            alloc[1] += 1
+                        extras -= 1
+                    else:
+                        alloc[3] += extras
+                        extras = 0
+        else:
+            remaining = total
+            for i in range(n_data_rows - 1):
+                if remaining > 0:
+                    alloc[i] = 1
+                    remaining -= 1
+            alloc[-1] = max(1, remaining)
+        return alloc
+
     for table in doc.tables:
         rows = table.rows
-        if len(rows) >= 2:
-            last_row = rows[-1]
-            cells = last_row.cells
-            if len(cells) >= 3 and "Total" in cells[2].text:
-                for para in cells[1].paragraphs:
-                    if para.text.strip().lstrip("$").isdigit():
-                        _replace_para_preserving_format(para, str(est_visits))
-                # Also ensure total fee cell shows correct amount
-                for para in cells[3].paragraphs if len(cells) > 3 else []:
-                    if para.text.strip().startswith("$"):
-                        _replace_para_preserving_format(para, f"${price_per_visit * est_visits:,}")
+        if len(rows) < 3:
+            continue
+        last_row = rows[-1]
+        last_cells = last_row.cells
+        if len(last_cells) < 3 or "Total" not in last_cells[2].text:
+            continue  # 不是 fee table
 
-    # Eighth pass: collapse excessive consecutive empty paragraphs (max 2 in a row)
+        # Data rows = row 2 .. last-1 (skip header + column-header rows, skip total row)
+        # 但模板前两行可能是 1 header + 1 column-header, 保险起见找第一个含 "$" 的 data row 开始
+        first_data_idx = None
+        for ri in range(2, len(rows) - 1):
+            row_text = " ".join(c.text for c in rows[ri].cells)
+            if "$" in row_text:
+                first_data_idx = ri
+                break
+        if first_data_idx is None:
+            continue
+        data_rows = rows[first_data_idx:-1]
+        n_data = len(data_rows)
+        alloc = _allocate_visits(est_visits, n_data)
+
+        # Expand fee-table service descriptions with conditional sub-items.
+        # Kyle 2026-04-22, option B:
+        #   Row 3 (MEP Close-in): + sprinkler hydro/flush test (if required by code)
+        #   Row 4 (Air seal / Insulation): + exterior wall sheathing (if required by code)
+        #   Row 5 (Combo Final): + fire alarm + fire suppression acceptance test (if required by code)
+        # Use "if required by code" so GCs on projects without those systems aren't scared.
+        CLOSE_IN_SUFFIX = ", including sprinkler hydro/flush test (if required by code)"
+        AIR_SEAL_SUFFIX = ", including exterior wall sheathing (if required by code)"
+        FINAL_SUFFIX = ", including fire alarm and fire suppression system acceptance testing (if required by code)"
+        for dr in data_rows:
+            if len(dr.cells) < 1:
+                continue
+            svc_cell = dr.cells[0]
+            base_txt = (svc_cell.text or "").strip()
+            if "including" in base_txt:
+                continue  # already expanded
+            if "MEP rough-in and framing" in base_txt and "Close-in" in base_txt:
+                suffix = CLOSE_IN_SUFFIX
+            elif "Air seal" in base_txt or "Insulation" in base_txt:
+                suffix = AIR_SEAL_SUFFIX
+            elif base_txt.startswith("Combo Final Inspection"):
+                suffix = FINAL_SUFFIX
+            else:
+                continue
+            for para in svc_cell.paragraphs:
+                if para.text.strip() and para.text.strip() in base_txt:
+                    _replace_para_preserving_format(para, base_txt + suffix)
+                    break
+
+        # Update each data row
+        for i, dr in enumerate(data_rows):
+            cells = dr.cells
+            if len(cells) < 4:
+                continue
+            v = alloc[i]
+            # Visits column (cell[1])
+            for para in cells[1].paragraphs:
+                txt = para.text.strip()
+                if txt.isdigit() or not txt:
+                    _replace_para_preserving_format(para, str(v) if v > 0 else "—")
+                    break
+            # Price Per column (cell[2])
+            for para in cells[2].paragraphs:
+                if "$" in para.text:
+                    _replace_para_preserving_format(para, f"${price_per_visit}" if v > 0 else "—")
+                    break
+            # Total column (cell[3])
+            for para in cells[3].paragraphs:
+                if "$" in para.text:
+                    row_total = v * price_per_visit
+                    _replace_para_preserving_format(para, f"${row_total:,}" if v > 0 else "—")
+                    break
+
+        # Total row (last)
+        for para in last_cells[1].paragraphs:
+            if para.text.strip().lstrip("$").isdigit():
+                _replace_para_preserving_format(para, str(est_visits))
+                break
+        if len(last_cells) > 3:
+            for para in last_cells[3].paragraphs:
+                if para.text.strip().startswith("$"):
+                    _replace_para_preserving_format(para, f"${price_per_visit * est_visits:,}")
+                    break
+
+    # Eighth pass: discipline applicability (mark rows (not applicable) if outside scope)
+    disciplines = (project.get("disciplines") or set())
+    if disciplines and disciplines != {"building", "mechanical", "electrical", "plumbing", "fire_protection"}:
+        import re
+        DISCIPLINE_MAP = [
+            ("building", "Building"),
+            ("mechanical", "Mechanical"),
+            ("electrical", "Electrical"),
+            ("plumbing", "Plumbing"),
+            ("fire_protection", "Fire Protection"),
+        ]
+        paras = list(doc.paragraphs)
+        for i, p in enumerate(paras):
+            txt_stripped = p.text.strip()
+            for key, label in DISCIPLINE_MAP:
+                if re.match(rf"^{re.escape(label)}\s*\(\s*applicable\s*\)", txt_stripped, re.IGNORECASE):
+                    if key not in disciplines:
+                        new_heading = re.sub(r"\(\s*applicable\s*\)", "(not applicable)", p.text, flags=re.IGNORECASE)
+                        _replace_para_preserving_format(p, new_heading)
+                        # Replace the description paragraph (next non-empty) with N/A note
+                        for j in range(i + 1, min(i + 4, len(paras))):
+                            if paras[j].text.strip():
+                                _replace_para_preserving_format(
+                                    paras[j],
+                                    "Not within project scope — this discipline does not apply to this project."
+                                )
+                                break
+                    break
+
+    # Eighth.5 pass: Fee Schedule — compute hourly rates that back out the flat per-visit fee
+    # Logic (Kyle 2026-04-20): flat fee = 2 hrs inspector + 1 PIC review per visit
+    #   price >= 350: inspector $150/hr, PIC = price - $300
+    #   $295-$325:    inspector $125/hr, PIC = price - $250
+    #   < $295:       inspector $100/hr, PIC = price - $200
+    if price_per_visit >= 350:
+        _ins_rate = 150
+    elif price_per_visit >= 295:
+        _ins_rate = 125
+    else:
+        _ins_rate = 100
+    _pic_charge = price_per_visit - 2 * _ins_rate
+    for i, p in enumerate(doc.paragraphs):
+        t = p.text.strip()
+        if t.startswith("Hourly Rates:") and len(t) < 120:
+            _replace_para_preserving_format(
+                p,
+                f"Hourly Rates (for additional on-site time beyond the 2 hours included in each "
+                f"per-visit flat fee; minimum billing period is 30 minutes):  "
+                f"Code Inspector — ${_ins_rate}/hour.  "
+                f"Professional In Charge (PIC) review — ${_pic_charge} per visit (included in flat fee).  "
+                f"(The ${price_per_visit}/visit flat fee covers 2 hours of inspector on-site time at "
+                f"${_ins_rate}/hr = ${_ins_rate*2} plus the ${_pic_charge} PIC review charge. "
+                f"Evenings and weekends are billed at the same rate — no surcharge.)"
+            )
+            break
+
+    # Eighth.6 pass: Inspection Visits — reconcile "flat rate" with old "3 hours" language
+    for i, p in enumerate(doc.paragraphs):
+        t = p.text.strip()
+        if t.startswith("Each inspection visit entitles the Client to 3 hours"):
+            _replace_para_preserving_format(
+                p,
+                f"Each inspection visit is billed at the flat per-visit rate in Exhibit C (${price_per_visit}/visit). "
+                f"The visit fee covers up to 2 hours of on-site inspection time plus travel. "
+                f"Additional on-site time beyond 2 hours is billed per the Fee Schedule in 30-minute increments."
+            )
+            break
+    for i, p in enumerate(doc.paragraphs):
+        t = p.text.strip()
+        if t.startswith("Any time beyond 2 hours of onsite inspection"):
+            # Already covered in the combined paragraph above — blank this line
+            _replace_para_preserving_format(p, "")
+            break
+
+    # (Removed Eighth.7 Optional Scopes expansion per Kyle 2026-04-20:
+    #  - Plan Review on inspection proposal = conflict of interest
+    #  - Fire Alarm Testing is already part of Fire Protection
+    #  - BCC doesn't provide Special Inspections — don't mention
+    #  Template's existing "Elevator" optional stays as-is.)
+
+    # Ninth pass: signature block — add actual signature / name / title / date lines
+    for table in doc.tables:
+        if len(table.rows) != 1 or len(table.rows[0].cells) != 2:
+            continue
+        c0 = table.rows[0].cells[0]
+        c1 = table.rows[0].cells[1]
+        t0 = (c0.text or "").strip()
+        t1 = (c1.text or "").strip()
+        if not ("Building Code Consulting" in t0 and "For Client" in t1):
+            continue
+        # BCC side: add sig lines after existing "Yue Cao – President" text
+        bcc_lines = [
+            "",
+            "Signature: _________________________________",
+            "Printed Name: Yue (Kyle) Cao, PE, MCP",
+            "Title: President",
+            "Date: _________________________________",
+        ]
+        client_lines = [
+            "",
+            "Signature: _________________________________",
+            "Printed Name: _________________________________",
+            "Title: _________________________________",
+            "Date: _________________________________",
+        ]
+        for line in bcc_lines:
+            c0.add_paragraph(line)
+        for line in client_lines:
+            c1.add_paragraph(line)
+        break
+
+    # Tenth pass: collapse excessive consecutive empty paragraphs (max 2 in a row)
     _collapse_empty_paragraphs(doc, max_consecutive=2)
 
     set_all_text_black(doc)
+
+    # Enable automatic field update on open (TOC page numbers stay in sync)
+    try:
+        from docx.oxml import OxmlElement
+        from docx.oxml.ns import qn
+        settings = doc.settings.element
+        # Remove existing updateFields then add fresh one
+        for el in settings.findall(qn("w:updateFields")):
+            settings.remove(el)
+        uf = OxmlElement("w:updateFields")
+        uf.set(qn("w:val"), "true")
+        settings.append(uf)
+    except Exception as e:
+        print(f"[warn] 无法设置 updateFields: {e}")
+
     doc.save(str(out_path))
     return True
 
@@ -721,8 +997,24 @@ def main():
     ap.add_argument("--address", default="", help="Project address (e.g. '20 F Street NW, Suite 550, Washington, DC 20001')")
     ap.add_argument("--email", default="", help="Contact email address")
     ap.add_argument("--description", default="", help="Project description / scope notes")
+    ap.add_argument("--disciplines", default="building,mechanical,electrical,plumbing,fire_protection",
+                    help="Comma-separated applicable disciplines. Default: all 5. "
+                         "Valid values: building, mechanical, electrical, plumbing, fire_protection")
     ap.add_argument("--telegram-review", action="store_true", help="Send .md draft to Telegram, wait for approval before generating Word doc")
     args = ap.parse_args()
+
+    # Parse disciplines into a normalized set
+    disciplines_set = {
+        d.strip().lower().replace(" ", "_").replace("-", "_")
+        for d in (args.disciplines or "").split(",")
+        if d.strip()
+    }
+    # Map common aliases
+    _DISC_ALIASES = {"fp": "fire_protection", "fire": "fire_protection",
+                     "mech": "mechanical", "elec": "electrical", "plb": "plumbing",
+                     "bldg": "building", "bl": "building"}
+    disciplines_set = {_DISC_ALIASES.get(d, d) for d in disciplines_set}
+
     project = {
         "name": args.project or "St. Joseph's on Capitol Hill – Phase I",
         "client": args.client or "Sample Client",
@@ -730,6 +1022,7 @@ def main():
         "address": args.address,
         "contact_email": args.email,
         "description": args.description,
+        "disciplines": disciplines_set,
     }
     template_path = Path(args.template) if args.template else None
     result = run_single_project(

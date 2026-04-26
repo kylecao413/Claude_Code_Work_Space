@@ -3,6 +3,9 @@
 *.cookies.json
 .google_cookies.json
 
+# User-dropped screenshots (may contain sensitive form data, creds, etc.)
+Screenshots/
+
 # Chrome debug profile (huge, not source)
 chrome_debug_profile/
 
@@ -35,6 +38,11 @@ Inbox/BC_Proposals_Generated_*.md
 *.docx
 *.pdf
 
+# Whitelist: real templates (NOT outputs) that both machines need
+!**/Large Stamp Template.docx
+!**/templates/*.docx
+!BuildingConnected/templates/*.docx
+
 # Scraped HTML pages and their asset folders
 *.html
 *_files/
@@ -59,3 +67,70 @@ gemini_fresh_login.bat
 # Misc notes (but NOT requirements.txt)
 New Text Document.txt
 Carr_Properties_FollowUp.txt
+
+# === Local state — never commit, per-machine ===
+
+# Conversation history (Claude Code internal)
+.claude/
+
+# Browser profiles & sessions (per-machine, stateful, huge)
+.chrome_profile_bcc/
+Browser_Sessions/
+chrome_debug_profile/
+
+# Auth cookies (already covered by *.cookies.json but be explicit)
+.constructionwire_cookies.json
+.buildingconnected_cookies.json
+.google_cookies.json
+
+# Idempotency markers (per-machine state, prevents double-send)
+.send_*.marker
+.apology_*.marker
+*.marker
+
+# === Operational drafts (Pending_Approval/) ===
+# These are working artifacts, not source. Each machine generates its own queue.
+Pending_Approval/Outbound/Email_*.md
+Pending_Approval/Outbound/DOB_NOI_*.md
+Pending_Approval/Outbound/Proposal_Draft_*.md
+Pending_Approval/To_Review/
+Pending_Approval/Inbound/
+
+# === Operational data exports (regenerable) ===
+BCC_contacts_*.vcf
+DC_Government_Leads_*.md
+DC_Government_Projects_Procurement.md
+DC_Top100_*.md
+Call_Follow_Up_List.md
+Command_Center/Daily_Command_Center_*.md
+contacts_deep_search*.md
+
+# === Scraper artifacts (BC) ===
+# All bc_-prefixed runtime artifacts (PNGs, JSONs, dumps). bc_*.py source NOT affected.
+_bc_details/
+bc_pipeline_dump/
+bc_*.png
+bc_*.json
+bc_*.txt
+bc_*.md
+bc_*.html
+
+# === Fairfax submission artifacts ===
+fairfax_submit_*.png
+fairfax_*.json
+
+# === Operational state files ===
+proposal_send_status.json
+phone_log.csv
+*.bak
+*.bak.*
+
+# === Scraper artifacts (CW) ===
+cw_leads_*.json
+cw_leads_*.csv
+
+# === Runtime logs ===
+*.log
+
+# === claude-bridge: lives on Drive, not in git ===
+claude-bridge/
