@@ -125,4 +125,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Cross-machine lock on real sends; --dry-run runs unwrapped.
+    if "--dry-run" not in sys.argv:
+        from core_tools.active_operator import operator_lock
+        with operator_lock("send_proposals.py"):
+            main()
+    else:
+        main()
