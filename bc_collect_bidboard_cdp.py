@@ -425,4 +425,7 @@ async def run():
 
 
 if __name__ == "__main__":
-    sys.exit(asyncio.run(run()))
+    # Always lock — every invocation hits BC via Autodesk SSO + .chrome_profile_bcc.
+    from core_tools.active_operator import operator_lock
+    with operator_lock("bc_collect_bidboard_cdp.py"):
+        sys.exit(asyncio.run(run()))

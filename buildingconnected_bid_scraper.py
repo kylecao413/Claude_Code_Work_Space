@@ -176,4 +176,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    # Always lock — every invocation drives a Playwright BC session that
+    # touches Autodesk SSO cookies + .chrome_profile_bcc.
+    from core_tools.active_operator import operator_lock
+    with operator_lock("buildingconnected_bid_scraper.py"):
+        main()
