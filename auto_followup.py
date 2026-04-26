@@ -273,4 +273,13 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # Cross-machine lock only on real sends; previews and dry-runs run unwrapped.
+    # Note: --mark-replied also mutates sent_log.csv but its blast radius is one
+    # row update, not a duplicate send, so we accept the (low) lost-write risk
+    # without locking. Revisit if conflicts surface.
+    if "--send" in sys.argv and "--dry-run" not in sys.argv:
+        from core_tools.active_operator import operator_lock
+        with operator_lock("auto_followup.py"):
+            sys.exit(main())
+    else:
+        sys.exit(main())

@@ -236,4 +236,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    # Cross-machine lock on real submissions; --dry-run runs unwrapped.
+    # No --send flag (mandatory args make invocation intentional).
+    if "--dry-run" not in sys.argv:
+        from core_tools.active_operator import operator_lock
+        with operator_lock("fairfax_3pi_submit.py"):
+            sys.exit(main())
+    else:
+        sys.exit(main())
