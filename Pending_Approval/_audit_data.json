@@ -1,0 +1,4261 @@
+{
+  "generated_at": "2026-04-30T21:42:17.779654",
+  "outbound_count": 337,
+  "inbound_count": 264,
+  "replies_count": 43,
+  "buckets": {
+    "interested": [],
+    "declined": [],
+    "unclear": [
+      "daryl.thomas@dc.gov",
+      "lcaudle@hickokcole.com",
+      "dbowers@lfjennings.com",
+      "raymond@nixdevco.com",
+      "matt@builtwithbenchmark.com",
+      "michael.cecchini@whiting-turner.com",
+      "pwhite@infinitybuildinginc.com",
+      "amir@dellustration.com",
+      "eric@aandeconstructionllc.com",
+      "dob@dc.gov",
+      "chloenguyen10@gmail.com",
+      "shenelle.j.scott@gunet.georgetown.edu",
+      "nerdelyi@pwccompanies.com",
+      "nery@rexfield.us",
+      "basani.j.ruffin@medstar.net",
+      "john.falcicchio@dc.gov",
+      "artur.k.sivaslian@medstar.net",
+      "teddy@preciseengineer.com",
+      "natasha.solis@desbuild.com",
+      "sandrar@horizonretail.com",
+      "seydou.tounkara@whiting-turner.com",
+      "zzhang@dullesgeotechnical.com",
+      "khemeng@casedesign.com",
+      "ssingh@dullesgeotechnical.com"
+    ],
+    "auto_only": [
+      "senit.t.hailemariam@gunet.georgetown.edu"
+    ],
+    "no_reply": [
+      "louis@americanplanreview.com",
+      "csmith@wcsmith.com",
+      "peter.prominski@transwestern.com",
+      "larry.serota@transwestern.com",
+      "pelias@redbricklmd.com",
+      "jcausey@redbricklmd.com",
+      "mvalazak@miller.group",
+      "cmclain@idgroupdallas.com",
+      "smentus@gtmarchitects-dc.com",
+      "rtorres@gtmarchitects-dc.com",
+      "jmyers@gtmarchitects.com",
+      "rick@felicedevelopmentgroup.com",
+      "mzacarias@crescentheights.com",
+      "rgibbons@carmelpartners.com",
+      "service@seiwork.com",
+      "jwilliams@hbwconstruction.com",
+      "agrossjr@aol.com",
+      "labvictor33@gmail.com",
+      "melissae@rmtax.services",
+      "tliang@doyleconco.com",
+      "jlauer@hbwconstruction.com",
+      "tplum@winmarconstruction.com",
+      "bmiller@sachse.net",
+      "cmcbride@g3-contracting.com",
+      "epalma@capitaltradesva.com",
+      "jwhiting@pkwycon.com",
+      "tony@wkmsolutions.net",
+      "mrw@winstanleyarchitects.com",
+      "salexander@tortigallas.com",
+      "mtamaro@thorntontomasetti.com",
+      "ahayes@rappaportco.com",
+      "mark@menkitigroup.com",
+      "bo@menkitigroup.com",
+      "kpassanita@studios.com",
+      "jchoi@studios.com",
+      "jmccarthy@studios.com",
+      "dbagnoli@studiombdc.com",
+      "pearson@stpeterschool.org",
+      "whedges@mannadc.org",
+      "avasquez@mhcdo.org",
+      "amiles@tcco.com",
+      "dcoxson@cunninghamquill.com",
+      "hdedic@ceo.lacounty.gov",
+      "bknopf@quad1.com",
+      "mrowe@capritoledo.com",
+      "mcain@srsmoot.com",
+      "khartley@natrealestatedevelopment.com",
+      "gmerritt@nreuv.com",
+      "michael@mmarshalldesign.com",
+      "mabdulmalik@nhpfoundation.org",
+      "cloughry@lfjennings.com",
+      "chris@heleos.co",
+      "hd394@georgetown.edu",
+      "tswartzwelder@gilbaneco.com",
+      "egoldman@eya.com",
+      "peter.fillat@pfarc.com",
+      "anthony.freeman@howard.edu",
+      "msullivan@sullivanbarros.com",
+      "elizabeth.delens@crestlinehotels.com",
+      "njenkins@capstonedevco.com",
+      "ecolbert@eca-pc.com",
+      "toby.millman@brookfieldproperties.com",
+      "mkhamis@corenic-cg.com",
+      "shenelle.scott@medstar.net",
+      "mgorodetskaya@cannondesign.com",
+      "greg.strabo@whiting-turner.com",
+      "sgraham@balfourbeattyus.com",
+      "s.penhoet@perkinseastman.com",
+      "swelch@tortigallas.com",
+      "j.goins@pgnarchitects.com",
+      "mz@ma.com",
+      "b.swiatocha@perkinseastman-dc.com",
+      "ken@kenfulk.com",
+      "eflores@loweenterprises.com",
+      "kati.mitchell@gallaudet.edu",
+      "francisco_gonzalez@gensler.com",
+      "klyon@bigwaha.com",
+      "rcunningham@cunninghamquill.com",
+      "adam@2plys.com",
+      "kdunmire@akridge.com",
+      "sskolas@thedaviscompanies.com",
+      "jadd@donohoe.com",
+      "cynthia.beckham@smithgroupjjr.com",
+      "lrusso@slcearch.com",
+      "chamilton@redbricklmd.com",
+      "tskinner@redbrickpartners.com",
+      "ibarry@jandjconst.net",
+      "rlawrence@nrpdc.com",
+      "rmurphy@mrprealty.com",
+      "mdarby@monumentrealty.com",
+      "mmeers@midcitydev.com",
+      "jack@mentiscp.com",
+      "ekillam@mgac.com",
+      "mark.witschorik@jamestownlp.com",
+      "teresa.edmondson@howard.edu",
+      "derrek.niecwilliams@howard.edu",
+      "alfonzye.chisholm@howard.edu",
+      "christopher.cohen@hklaw.com",
+      "fpalacios@hilcoglobal.com",
+      "community.relations@gallaudet.edu",
+      "mdyer@gandgland.com",
+      "andy@fivesquaresdev.com",
+      "ronette@embolden-re.com",
+      "planier@eastbanc.com",
+      "skeller@dynamis-hc.com",
+      "pmillstein@douglasdev.com",
+      "sikder@district-properties.com",
+      "earthhouse22@gmail.com",
+      "jeremy@curtisinvestments.com",
+      "bathey@congressionalcap.com",
+      "tkinlow@childrensnational.org",
+      "hooverjm@cua.edu",
+      "joe@capitolpetro.com",
+      "tcallaham@calcohospitality.com",
+      "okarim@bannekerventures.com",
+      "agooch@akridge.com",
+      "cbell@terryadamsinc.com",
+      "firstenberg@stonebridge.us.com",
+      "k.gioconda@perkinseastman-dc.com",
+      "bboldizsar@hksinc.com",
+      "ethan.wagner@clarkconstruction.com",
+      "tswift@urban-atlantic.com",
+      "lmangini@mwe.com",
+      "potteni@bostonproperties.com",
+      "aholderness@carrprop.com",
+      "travis.boren@guardiangc.net",
+      "jlopatin@sachse.net",
+      "ulises.rodriguez@dc.gov",
+      "reduxllcdesigns@gmail.com",
+      "alperakan@outlook.com",
+      "brunhilda.mbanwie@yahoo.com",
+      "aramirez@zphibhq.org",
+      "jerald.brown@thesolargeeks.com",
+      "yodie@aandeconstructionllc.com",
+      "sammy@dfchomeimprovement.com",
+      "caoyueno5@gmail.cm",
+      "delano.hunter@dc.gov",
+      "vrobinson@eventsdc.com",
+      "brittany.hughes@dc.gov",
+      "michelle.wilson@dc.gov",
+      "thamid@dullesgeotechnical.com",
+      "thamid@dullesgeotechinical.com",
+      "achu@jpsolutionsllc.com",
+      "santiago@arqcontracting.com",
+      "bkim@jpsolutionsllc.com",
+      "caoyueno5@gmail.com",
+      "emcqueen@davisconstruction.com",
+      "nbrockmeyer@davisconstruction.com",
+      "rcarlton@khlaw.com",
+      "lkay@carrprop.com",
+      "cbsinfo@donohoe.com",
+      "receptionist@borgermanagement.com",
+      "tdcinfo@donohoe.com"
+    ]
+  },
+  "recipients": {
+    "community.relations@gallaudet.edu": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:11:22 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Gallaudet Mixed-use Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjgZ5T53z3hhTb@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:13:47 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Gallaudet Mixed-use Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1BmC2Schz3hhS2@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "fpalacios@hilcoglobal.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:11:28 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 840 18th Multifamily | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjgh3LLdz3hhV8@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:13:57 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 840 18th Multifamily | BCC",
+          "type": "followup",
+          "msgid": "<4g1BmP6gCgz3hhRv@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "christopher.cohen@hklaw.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:11:34 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 807 Maine Avenue Mixed-Use Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjgp1Jyvz3hhTb@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:14:08 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 807 Maine Avenue Mixed-Use Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bmc2gz4z3hhS2@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "alfonzye.chisholm@howard.edu": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:11:40 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Wonder Plaza | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjgw0mrWz3hhTT@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:14:19 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Wonder Plaza | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bmq02N9z3hhTT@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "anthony.freeman@howard.edu": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:11:45 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Bond Mixed-Use Project | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjh15VVGz3hhTM@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:11:57 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Howard University Hospital Medical Space | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjhF44HQz3hhTM@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:14:29 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Bond Mixed-Use Project | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bn13mb4z3hhRv@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:00:06 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Howard University Hospital Medical Space | BCC",
+          "type": "followup",
+          "msgid": "<4g1n4k5xvnz3hhTG@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:00:15 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Howard University Hospital Medical Space | BCC",
+          "type": "followup",
+          "msgid": "<4g1pQ74S5Cz3hhS2@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "derrek.niecwilliams@howard.edu": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:11:51 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Howard University Hospital Redevelopment - Phase III | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjh74YYgz3hhTM@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:14:40 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Howard University Hospital Redevelopment - Phase III | BCC",
+          "type": "followup",
+          "msgid": "<4g1BnD1hWKz3hhV8@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "teresa.edmondson@howard.edu": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:03 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Howard University Hospital Redevelopment - Phase V | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjhM1PQkz3hhTM@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:14:50 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Howard University Hospital Redevelopment - Phase V | BCC",
+          "type": "followup",
+          "msgid": "<4g1BnQ5X8Pz3hhV8@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mark.witschorik@jamestownlp.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:08 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for American Council of Life Insurers | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjhS6VJGz3hhTM@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:15:01 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for American Council of Life Insurers | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bnd2WTtz3hhTM@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "ekillam@mgac.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:14 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for 20 Massachusetts Ave NW Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjhZ48tvz3hhTM@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:15:11 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for 20 Massachusetts Ave NW Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bnq6lM2z3hhRv@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "jack@mentiscp.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:20 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Hampton East 2 | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjhh1p0tz3hhWd@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:15:22 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Hampton East 2 | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bp23S1Mz3hhTM@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mmeers@midcitydev.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:25 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Washington Apartments Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjhn6gSMz3hhTT@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:15:33 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Washington Apartments Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1BpF0Lcjz3hhTP@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mdarby@monumentrealty.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:31 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 1405 15th Street Northwest High-End Restaurant | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjhv4bKtz3hhTT@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:15:43 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 1405 15th Street Northwest High-End Restaurant | BCC",
+          "type": "followup",
+          "msgid": "<4g1BpR3jzVz3hhTP@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "rmurphy@mrprealty.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:37 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Northwest One Phase II | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjj12Sdnz3hhTT@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:15:54 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Northwest One Phase II | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bpf0sgXz3hhV8@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "rlawrence@nrpdc.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:43 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Flour Mill | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjj717rxz3hhTT@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:16:04 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Flour Mill | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bpr5Kqzz3hhV8@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tskinner@redbrickpartners.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:48 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Navy Yard Retail Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjjD5ltCz3hhV8@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:00:13 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Navy Yard Retail Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1n4s6ZqPz3hhTF@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "chamilton@redbricklmd.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:12:54 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Poplar Point Mixed-Use Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjjL5T0pz3hhV8@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:01:55 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Poplar Point Mixed-Use Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1n6q1KtLz3hhTK@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "lrusso@slcearch.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:13:00 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Georgetown West Heating Plant Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjjS3Tk4z3hhWk@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:02:00 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Georgetown West Heating Plant Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1n6x0VHrz3hhTK@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "cynthia.beckham@smithgroupjjr.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:13:06 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for MedStar NRH - National Center for Brain Injury and Stroke Rehabilitation & Research | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjjZ1sSvz3hhV8@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:03:45 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for MedStar NRH - National Center for Brain Injury and Stroke Rehabilitation & Research | BCC",
+          "type": "followup",
+          "msgid": "<4g1n8x24D1z3hhTL@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "msullivan@sullivanbarros.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:13:12 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Nash Street Apartments Conversion | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjjh1s3Lz3hhV8@mta-11.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:03:38 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Nash Street Apartments Conversion | BCC",
+          "type": "followup",
+          "msgid": "<4g1n8p3bYFz3hhTG@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:00:09 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Nash Street Apartments Conversion | BCC",
+          "type": "followup",
+          "msgid": "<4g1pQ15XKNz3hhRx@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:09:43 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 2400 20th Street NE Apartments | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjdg6YYMz3hhWv@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:11:18 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 2400 20th Street NE Apartments | BCC",
+          "type": "followup",
+          "msgid": "<4g1BjL5TYsz3hhRm@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "daryl.thomas@dc.gov": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 17:07:30 -0500 (EST)",
+          "subject": "RE: Third-Party Plan Review & Inspection Services for Reservation\r\n 13/Hill East District Development - Hotel | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<589956112.537156.1771538850357@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:10:07 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Reservation 13/Hill East District Development - Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjf71wswz3hhWv@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 19 Feb 2026 21:08:00 +0000",
+          "subject": "RE: Third-Party Plan Review & Inspection Services for Reservation\r\n 13/Hill East District Development - Hotel | Building Code Consulting LLC",
+          "snippet": "I would suggest reaching out to DOB as they conduct plan reviews and inspections. Best, Daryl Thomas | Development Manager Government of the District of Columbia Office of the Deputy Mayor for Planning & Economic Development 1350 Pennsylvania Avenue, NW, Suite 317 | Washington, DC 20004 C 202.251.8829 | F 202.727.6703 | Email<mailto:David.Howard@dc.gov> www.dmped.dc.gov<http://www.dmped.dc.gov/> [",
+          "class": "unclear"
+        }
+      ]
+    },
+    "mgorodetskaya@cannondesign.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:10 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Children's National Hospital - Establishment of MIBG Therapy | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ6V07t6z3hhVR@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:17:24 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Children's National Hospital - Establishment of MIBG Therapy | BCC",
+          "type": "followup",
+          "msgid": "<4g1nSh5Dzxz3hhTP@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "njenkins@capstonedevco.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:15 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for HU Lot 3 - The Lawson | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ6b5Fl6z3hhV9@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:21:28 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for HU Lot 3 - The Lawson | BCC",
+          "type": "followup",
+          "msgid": "<4g1nYN5lNsz3hhT9@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mkhamis@corenic-cg.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:21 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Howard University Hospital Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ6j2BN2z3hhVR@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:19:22 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Howard University Hospital Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1nVy4Ctfz3hhTP@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "elizabeth.delens@crestlinehotels.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:26 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Georgetown University Hotel and Conference Center Renovation | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ6p6LXMz3hhVR@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:22:40 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Georgetown University Hotel and Conference Center Renovation | BCC",
+          "type": "followup",
+          "msgid": "<4g1nZm35HPz3hhT9@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "ecolbert@eca-pc.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:32 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Ring Building Conversion | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ6w3RDvz3hhVF@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:21:16 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Ring Building Conversion | BCC",
+          "type": "followup",
+          "msgid": "<4g1nY833H0z3hhT9@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "egoldman@eya.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:38 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Providence Hospital Campus Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ720JH4z3hhVF@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:01:39 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Providence Hospital Campus Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1pRl4mBJz3hhS4@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "peter.fillat@pfarc.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:43 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 917 Sixth Street Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ774d6Zz3hhTn@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:01:23 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 917 Sixth Street Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1pRR0ZxCz3hhTM@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "hd394@georgetown.edu": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:49 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Georgetown University Hotel and Conference Center Renovation | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ7F3SmKz3hhTn@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:03:33 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Georgetown University Hotel and Conference Center Renovation | BCC",
+          "type": "followup",
+          "msgid": "<4g1pTx62gHz3hhSH@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tswartzwelder@gilbaneco.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:54 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Howard University Hospital Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ7L74hxz3hhVF@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:02:44 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Howard University Hospital Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1pT03QpSz3hhSF@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "chris@heleos.co": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:00 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 4608 14th Street Northwest Multifamily | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ7S44xYz3hhV9@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:05:31 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 4608 14th Street Northwest Multifamily | BCC",
+          "type": "followup",
+          "msgid": "<4g1pXC57jwz3hhTZ@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "lcaudle@hickokcole.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:06 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Former Fox 5 - Mixed-Use Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ7Z1RN4z3hhV9@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:04:05 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Former Fox 5 - Mixed-Use Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1pVY2Pvwz3hhSF@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 24 Apr 2026 08:31:39 -0400 (EDT)",
+          "subject": "Re: Following Up \u2014 Plan Review & Inspection Services for Former Fox 5 - Mixed-Use Development | BCC",
+          "type": "reply_or_fwd",
+          "msgid": "<1667304414.714658.1777033899426@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 24 Apr 2026 10:43:19 +0000",
+          "subject": "Re: Following Up \u2014 Plan Review & Inspection Services for Former Fox 5 - Mixed-Use Development | BCC",
+          "snippet": "Sorry this is no longer our project Sent from my iPhone Laurence Caudle, AIA, NCARB Senior Principal, Director of Housing 301 N Street NE, Suite 300 \u200bWashington, DC 20002 202.667.9776 | D: 202.295.6835 | M: 202.280.9932 hickokcole.com This e-mail message is for the sole use of the intended recipient(s) and may contain confidential \u200b\u200band \u200bprivileged information. If you are not the intended \u200brecipie",
+          "class": "unclear"
+        }
+      ]
+    },
+    "cloughry@lfjennings.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:11 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Compass Point Research and Trading Renovation | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ7g5lMtz3hhVP@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:07:14 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Compass Point Research and Trading Renovation | BCC",
+          "type": "followup",
+          "msgid": "<4g1pZB1nTBz3hhSb@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "dbowers@lfjennings.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:17 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Dalian Development Office Renovation | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ7n4TV3z3hhVF@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:05:59 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Dalian Development Office Renovation | BCC",
+          "type": "followup",
+          "msgid": "<4g1pXl2wPJz3hhTQ@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 24 Apr 2026 08:28:21 -0400 (EDT)",
+          "subject": "Re: Following Up \u2014 Inspection Services for Dalian Development Office Renovation | BCC",
+          "type": "reply_or_fwd",
+          "msgid": "<1267683075.714402.1777033702003@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 24 Apr 2026 10:37:56 +0000",
+          "subject": "Re: Following Up \u2014 Inspection Services for Dalian Development Office Renovation | BCC",
+          "snippet": "See attached. David Bowers | Preconstruction Manager, Corporate Interiors (c): 571.623.4154 | (o): 703.241.1200 | dbowers@lfjennings.com 407 N. Washington Street | Suite 200 | Falls Church, VA 22046 [cid:emailsignaturelogo[small]-rbg-lfj.gencon-h-full_8f8c29f2-567d-4762-bb18-46f46e2c2c1d.png]<https://www.lfjennings.com> ________________________________",
+          "class": "unclear"
+        }
+      ]
+    },
+    "michael@mmarshalldesign.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:23 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Reeves Center Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ7v1NFWz3hhVP@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:08:47 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Reeves Center Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1pbz4XVrz3hhX8@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mabdulmalik@nhpfoundation.org": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:28 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Bobbi Renovations | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ805JMwz3hhVP@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:07:51 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Bobbi Renovations | BCC",
+          "type": "followup",
+          "msgid": "<4g1pZv0Zp7z3hhWv@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "khartley@natrealestatedevelopment.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:34 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Stacks - Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ862CMwz3hhVd@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:10:04 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Stacks - Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1pdS2td6z3hhTL@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "raymond@nixdevco.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:39 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Deanwood Metro Station Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ8C6DK3z3hhVG@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 22:38:07 -0500 (EST)",
+          "subject": "Re: Third-Party Plan Review & Inspection Services for Deanwood\r\n Metro Station Redevelopment | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<15983623.660943.1771645087483@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 20 Feb 2026 11:26:13 -0500",
+          "subject": "Re: Third-Party Plan Review & Inspection Services for Deanwood Metro\r\n Station Redevelopment | Building Code Consulting LLC",
+          "snippet": "Good morning, Kevin. Thank you for reaching out. I will hold you contact info as we go through our procurement process. Appreciate you sharing your company profile. In partnership, Ray Nix Nix Development Company, LLC www.nixdevco.com Direct 301.830.3732 tm *Responsible Revitalization *tm *Keep the Faith* tm *Certified Minority Business Enterprise (MBE) | Prince George\u2019s County, Maryland* *Certifi",
+          "class": "unclear"
+        }
+      ]
+    },
+    "gmerritt@nreuv.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:45 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Deanwood Metro Station Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ8K3K19z3hhVG@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:09:01 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Deanwood Metro Station Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1pcF0PXmz3hhX8@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "bknopf@quad1.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:51 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for HU Lot 3 - The Lawson | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ8R05qGz3hhVb@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:11:56 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for HU Lot 3 - The Lawson | BCC",
+          "type": "followup",
+          "msgid": "<4g1pgc34PKz3hhXH@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mcain@srsmoot.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:35:56 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Reeves Center Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ8X4Jryz3hhVN@mta-14.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:10:12 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Reeves Center Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1pdc3mmHz3hhTL@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "matt@builtwithbenchmark.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 17:38:05 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposals for Insomnia Cookies & Joe & The Juice Union Station | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlWd6CFlz3hhSf@mta-15.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 17:37:55 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposals for Insomnia Cookies & Joe & The Juice Union Station | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlWR0K39z3hhSh@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 01:21:38 -0400 (EDT)",
+          "subject": "Re: Following Up \u2014 Inspection Proposals for Insomnia Cookies & Joe & The Juice Union Station | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g3sPG01t3z3hhT9@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 2 Feb 2026 19:43:54 -0500 (EST)",
+          "subject": "Proposal - Third-Party Code Inspections - Joe & The Juice (Union\r\n Station)",
+          "type": "other",
+          "msgid": "<1993025325.2217217.1770079434654@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 19 Mar 2026 20:54:19 +0000",
+          "subject": "Re: Following Up \u2014 Inspection Proposals for Insomnia Cookies & Joe & The Juice Union Station | Building Code Consulting LLC",
+          "snippet": "Good Afternoon, I want to apologize as there has been a big lapse in time since our last communication. We have been extremely busy over here and apologize for the lack of communication as we appreciate the time spent on this. Unfortunately, we have not been selected to do this project and unfortunately don't know who the awarded GC was. However, I do want to thank you for sending us a bid and bei",
+          "class": "unclear"
+        },
+        {
+          "date": "Thu, 19 Mar 2026 20:54:58 +0000",
+          "subject": "Re: Following Up \u2014 Inspection Proposals for Insomnia Cookies & Joe & The Juice Union Station | Building Code Consulting LLC",
+          "snippet": "Good Afternoon, I want to apologize as there has been a big lapse in time since our last communication. We have been extremely busy over here and apologize for the lack of communication as we appreciate the time spent on this. Unfortunately, we have not been selected to do this project and unfortunately don't know who the awarded GC was. However, I do want to thank you for sending us a bid and bei",
+          "class": "unclear"
+        },
+        {
+          "date": "Tue, 28 Apr 2026 23:01:13 +0000",
+          "subject": "Re: Following Up \u2014 Inspection Proposals for Insomnia Cookies & Joe & The Juice Union Station | Building Code Consulting LLC",
+          "snippet": "Good Afternoon, Unfortunately, we have not been selected to do this project. However, I do want to thank you for sending us a bid and being a part of the bidding process! If you are not opposed, we will reach out if we have any additional jobs in that area and hopefully be able to work together that way! Thank you again and have a great rest of the week! Thank you, [photo] Matthew Burich Estimator",
+          "class": "unclear"
+        }
+      ]
+    },
+    "michael.cecchini@whiting-turner.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 17:38:24 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for Diner Bar at JW Marriott (1331 Pennsylvania Ave NW) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlX04Hphz3hhSh@mta-15.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 17:38:15 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for Diner Bar at JW Marriott (1331 Pennsylvania Ave NW) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlWq1Tr1z3hhTq@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 01:21:30 -0400 (EDT)",
+          "subject": "Re: Following Up \u2014 Inspection Proposal for Diner Bar at JW Marriott (1331 Pennsylvania Ave NW) | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g3sP63btzz3hhTk@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 6 Feb 2026 17:59:19 -0500 (EST)",
+          "subject": "Rebid Proposal: JW Marriott - The Restaurant and Diner Bar -\r\n Building Code Consulting",
+          "type": "other",
+          "msgid": "<225352368.2729731.1770418759620@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 17:38:29 -0500 (EST)",
+          "subject": "Re: Rebid Proposal: JW Marriott - The Restaurant and Diner Bar -\r\n Building Code Consulting",
+          "type": "reply_or_fwd",
+          "msgid": "<43277325.577515.1771540709452@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Mon, 23 Feb 2026 15:00:14 +0000",
+          "subject": "Re: Following Up \u2014 Inspection Proposal for Diner Bar at JW Marriott (1331 Pennsylvania Ave NW) | Building Code Consulting LLC",
+          "snippet": "Hi Kevin, Yes, we received your bid. Our number went in last week so we're hoping to have some feedback from the owner this week. We'll make sure to keep you in the loop! Thanks, Mike . [cid:WT-Orange120x82_f61f6735-a787-4878-b0a6-4f1d4323bd6e.jpg]<http://www.whiting-turner.com> Michael Cecchini Project Manager The Whiting-Turner Contracting Company 300 East Joppa Road Baltimore, Maryland 21286 Mo",
+          "class": "unclear"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 05:30:33 +0000",
+          "subject": "Automatic reply: Following Up \u2014 Inspection Proposal for Diner Bar at JW Marriott (1331 Pennsylvania Ave NW) | Building Code Consulting LLC",
+          "snippet": "I am out of the office and will return on Tuesday, 4/28. . [cid:WT-Orange120x82_f61f6735-a787-4878-b0a6-4f1d4323bd6e.jpg]<http://www.whiting-turner.com> Michael Cecchini Project Manager The Whiting-Turner Contracting Company 300 East Joppa Road Baltimore, Maryland 21286 Mobile: 571-531-2690 www.whiting-turner.com .",
+          "class": "auto"
+        },
+        {
+          "date": "Tue, 28 Apr 2026 16:17:59 +0000",
+          "subject": "Re: Following Up \u2014 Inspection Proposal for Diner Bar at JW Marriott (1331 Pennsylvania Ave NW) | Building Code Consulting LLC",
+          "snippet": "Hi Kevin, The owner has decided to go another way. Appreciate your efforts on this one, we will be sure to keep you in the loop on future pursuits. . [cid:WT-Orange120x82_f61f6735-a787-4878-b0a6-4f1d4323bd6e.jpg]<http://www.whiting-turner.com> Michael Cecchini Project Manager The Whiting-Turner Contracting Company 300 East Joppa Road Baltimore, Maryland 21286 Mobile: 571-531-2690 www.whiting-turne",
+          "class": "unclear"
+        }
+      ]
+    },
+    "pwhite@infinitybuildinginc.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 17:38:43 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for House Bar (300 Morse St NE) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlXM06D6z3hhSk@mta-15.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 22:45:21 -0500 (EST)",
+          "subject": "Re: Following Up \u2014 Inspection Proposal for House Bar (300 Morse St NE) | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<1189651832.661018.1771645521723@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 17:38:33 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for House Bar (300 Morse St NE) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlX95HLjz3hhSf@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 20 Feb 2026 23:04:58 +0000",
+          "subject": "Re: Following Up \u2014 Inspection Proposal for House Bar (300 Morse St NE) | Building Code Consulting LLC",
+          "snippet": "We lost that one Paul C White Infinity Building Services, Inc 301-301-9124 ________________________________",
+          "class": "unclear"
+        },
+        {
+          "date": "Mon, 23 Feb 2026 13:03:15 +0000",
+          "subject": "RE: Following Up \u2014 Inspection Proposal for House Bar (300 Morse St NE) | Building Code Consulting LLC",
+          "snippet": "We lost that job. Paul C. White Chief Estimator www.infinitybuildinginc.com<http://www.infinitybuildinginc.com/> (301) 310-9124 (c) (410) 255-9040 (o) [cid:image001.png@01DCA49A.DC773130] 5800 Woodcliff Road, Suite 108, Bowie, Md 20720 / (410) 255-9040 Main / (410) 255-9281 Fax / pwhite@infinitybuildinginc.com<mailto:pwhite@infinitybuildinginc.com> / www.infinitybuildinginc.com<http://www.infinity",
+          "class": "unclear"
+        }
+      ]
+    },
+    "bmiller@sachse.net": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 17:39:01 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for Rivian Flagship Renovation (1100 New York Ave NW) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlXj5mBrz3hhSk@mta-15.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 17:38:52 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for Rivian Flagship Renovation (1100 New York Ave NW) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlXX3XDqz3hhSf@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 16:32:21 -0400 (EDT)",
+          "subject": "Re: Following Up \u2014 Inspection Proposal for Rivian Flagship Renovation (1100 New York Ave NW) | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4Fc50HG6z3hhTK@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tplum@winmarconstruction.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 17:39:20 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for 3050 K St NW 3rd & 4th Floors (Demo/White Box) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlY45WPSz3hhSC@mta-15.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 17:39:11 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for 3050 K St NW 3rd & 4th Floors (Demo/White Box) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlXv1vzMz3hhSk@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 16:32:28 -0400 (EDT)",
+          "subject": "Re: Following Up \u2014 Inspection Proposal for 3050 K St NW 3rd & 4th Floors | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4FcD4hQXz3hhT9@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 12 Feb 2026 11:28:02 -0500 (EST)",
+          "subject": "Proposal: Third-Party Code Inspections - 3050 K St NW (Demo / White\r\n Box)",
+          "type": "other",
+          "msgid": "<1671318201.3264740.1770913682658@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "jlauer@hbwconstruction.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 17:39:39 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for Kolmac Expansion (1025 Vermont Ave NW) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlYR3Wxrz3hhSk@mta-15.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 17:39:30 -0500 (EST)",
+          "subject": "Following Up \u2014 Inspection Proposal for Kolmac Expansion (1025 Vermont Ave NW) | Building Code Consulting LLC",
+          "type": "followup",
+          "msgid": "<4fHlYG0P0xz3hhSC@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 16:32:35 -0400 (EDT)",
+          "subject": "Re: Following Up \u2014 Inspection Proposal for Kolmac Expansion (1025 Vermont Ave NW) | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4FcM6JnWz3hhTy@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tony@wkmsolutions.net": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:21:27 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Howard University Hospital Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1dz1GS4z3hhT9@mta-06.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 19:14:41 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Howard University Hospital Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1sPF1dyQz3hhT9@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tliang@doyleconco.com": {
+      "sends": [
+        {
+          "date": "Mon, 16 Mar 2026 17:36:05 -0400 (EDT)",
+          "subject": "Third-Party Inspection Proposal: 2001 K St NW (EagleBank Branch)",
+          "type": "other",
+          "msgid": "<192276204.2928025.1773696966007@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 16:32:43 -0400 (EDT)",
+          "subject": "Re: Third-Party Inspection Proposal: 2001 K St NW (EagleBank Branch)",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4FcW3wfTz3hhTK@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "amir@dellustration.com": {
+      "sends": [
+        {
+          "date": "Fri, 3 Apr 2026 08:56:22 -0400 (EDT)",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "type": "reply_or_fwd",
+          "msgid": "<1940834934.10527.1775220982450@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 3 Apr 2026 09:34:15 -0400 (EDT)",
+          "subject": "Proposals for Third-Party Code Inspections - 3109 Oak Hill Drive\r\n (Buildings 14 & 15)",
+          "type": "other",
+          "msgid": "<644471079.13054.1775223255091@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 5 Mar 2026 20:49:59 -0500 (EST)",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "type": "reply_or_fwd",
+          "msgid": "<1108499092.1933455.1772761799702@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 5 Mar 2026 20:58:18 +0000",
+          "subject": "MODULAR HOMMES DRAWINGS",
+          "snippet": "Good afternoon, I wanted to share the foundation permit drawings for modular homes which would be located at 101 -102 OASIS WAY, LAUREL MD, please find the permit set available in the link below: \u200b[https://res.public.onecdn.static.microsoft/assets/fluentui-resources/1.1.0/app-min/assets/item-types/24/folder.png]101-102 OASIS WAY - MODULAR HOMES PERMIT SET<https://netorgft3553360-my.sharepoint.com/",
+          "class": "unclear"
+        }
+      ]
+    },
+    "eric@aandeconstructionllc.com": {
+      "sends": [
+        {
+          "date": "Fri, 3 Apr 2026 08:56:22 -0400 (EDT)",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "type": "reply_or_fwd",
+          "msgid": "<1940834934.10527.1775220982450@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 3 Apr 2026 09:34:15 -0400 (EDT)",
+          "subject": "Proposals for Third-Party Code Inspections - 3109 Oak Hill Drive\r\n (Buildings 14 & 15)",
+          "type": "other",
+          "msgid": "<644471079.13054.1775223255091@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 5 Mar 2026 20:49:59 -0500 (EST)",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "type": "reply_or_fwd",
+          "msgid": "<1108499092.1933455.1772761799702@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 01:21:59 -0400 (EDT)",
+          "subject": "Re: Proposals for Third-Party Code Inspections - 3109 Oak Hill Drive (Buildings 14 & 15)",
+          "type": "reply_or_fwd",
+          "msgid": "<4g3sPg3Tnjz3hhT9@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 5 Mar 2026 20:53:01 -0500",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "snippet": "Hi Kylie, The email has been received. Thanks, Eric Persaud On Thu, Mar 5, 2026 at 8:50 PM BCCAdmin <admin@buildingcodeconsulting.com> wrote:",
+          "class": "unclear"
+        },
+        {
+          "date": "Wed, 1 Apr 2026 12:44:15 -0400",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "snippet": "Hi Kylie, Please see attached Permeit to review for DYRS Modular Homes Project. We are currently waiting for sprinkler update. Can you provide a price propsal for this project for 3 party inspection for two modular homes Thank you, Eric Persaud President A & E Construction LLC 202-812-5311 On Thu, Mar 5, 2026 at 8:53 PM Eric Persaud <eric@aandeconstructionllc.com> wrote:",
+          "class": "unclear"
+        },
+        {
+          "date": "Fri, 3 Apr 2026 07:01:10 -0400",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "snippet": "Good Morning Kylie, I wanted to follow up with the proposal per our conversation. Please advise. Thank you, Eric R. Persaud&nbsp; President/ General Manager C:&nbsp; 202-812-5311 O:&nbsp; 202-746-0659 eric@aandeconstructionllc.com 910 Webster St. NW &nbsp;Washington D.C. 20011 &nbsp; On Apr 1, 2026, at 12:44 PM, Eric Persaud &lt;eric@aandeconstructionllc.com&gt; wrote: \ufeff Hi Kylie, Please see attac",
+          "class": "unclear"
+        }
+      ]
+    },
+    "yodie@aandeconstructionllc.com": {
+      "sends": [
+        {
+          "date": "Fri, 3 Apr 2026 08:56:22 -0400 (EDT)",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "type": "reply_or_fwd",
+          "msgid": "<1940834934.10527.1775220982450@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 3 Apr 2026 09:34:15 -0400 (EDT)",
+          "subject": "Proposals for Third-Party Code Inspections - 3109 Oak Hill Drive\r\n (Buildings 14 & 15)",
+          "type": "other",
+          "msgid": "<644471079.13054.1775223255091@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 5 Mar 2026 20:49:59 -0500 (EST)",
+          "subject": "Re: MODULAR HOMMES DRAWINGS",
+          "type": "reply_or_fwd",
+          "msgid": "<1108499092.1933455.1772761799702@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "pmillstein@douglasdev.com": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 17:12:43 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for New City DC | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bkz6T18z3hhS9@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:10:47 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for New City DC | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjfv5v1Wz3hhTb@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "skeller@dynamis-hc.com": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 17:12:54 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Providence Hospital Campus Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1BlB3KQnz3hhS0@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:10:53 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Providence Hospital Campus Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjg13BZ4z3hhTF@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "planier@eastbanc.com": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 17:13:04 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Google Retail Store Build-Out | BCC",
+          "type": "followup",
+          "msgid": "<4g1BlN6xnZz3hhS7@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:10:59 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Google Retail Store Build-Out | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjg70c1Zz3hhTb@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "ronette@embolden-re.com": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 17:13:15 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Bobbi Renovations | BCC",
+          "type": "followup",
+          "msgid": "<4g1Blb41kYz3hhRv@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:11:05 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Bobbi Renovations | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjgF0Hl9z3hhTF@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "andy@fivesquaresdev.com": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 17:13:26 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Bond Mixed-Use Project | BCC",
+          "type": "followup",
+          "msgid": "<4g1Blp1xPkz3hhRv@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:11:10 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Bond Mixed-Use Project | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjgL6g2Vz3hhV8@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mdyer@gandgland.com": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 17:13:36 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for King\u2019s Creek Apartments | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bm05PvDz3hhS9@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 01:11:16 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for King\u2019s Creek Apartments | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjgS75HLz3hhTb@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "jadd@donohoe.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:04:48 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Former Fox 5 - Mixed-Use Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1nB90d4gz3hhTF@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:32:21 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Former Fox 5 - Mixed-Use Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ4P3fVkz3hhTP@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "kdunmire@akridge.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:05:55 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Burnham Place at Union Station Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1nCR3NSCz3hhTG@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:32:32 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Burnham Place at Union Station Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ4c6rVWz3hhTl@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "rcunningham@cunninghamquill.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:07:39 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Chinatown Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1nFR3dZfz3hhT9@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:32:44 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Chinatown Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ4r1Snlz3hhTQ@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "francisco_gonzalez@gensler.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:08:53 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Gensler Office Expansion & Renovation | BCC",
+          "type": "followup",
+          "msgid": "<4g1nGt0NCzz3hhTL@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:32:55 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Gensler Office Expansion & Renovation | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ534rlPz3hhTP@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "eflores@loweenterprises.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:10:17 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 1250 Maryland Avenue Mixed-Use | BCC",
+          "type": "followup",
+          "msgid": "<4g1nJT6GX8z3hhT9@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:33:06 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 1250 Maryland Avenue Mixed-Use | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ5G5sqRz3hhTQ@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "b.swiatocha@perkinseastman-dc.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:11:41 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Waterfront Station West Building | BCC",
+          "type": "followup",
+          "msgid": "<4g1nL54YDzz3hhTK@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:33:17 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Waterfront Station West Building | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ5T68zqz3hhV1@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "j.goins@pgnarchitects.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:12:56 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for La Lomita Mixed-Use | BCC",
+          "type": "followup",
+          "msgid": "<4g1nMX1tj3z3hhTG@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:33:29 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for La Lomita Mixed-Use | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ5j1jFZz3hhVB@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "swelch@tortigallas.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:14:36 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Skyland Senior Housing | BCC",
+          "type": "followup",
+          "msgid": "<4g1nPS4mfRz3hhTK@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:33:40 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Skyland Senior Housing | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ5w3BpQz3hhV1@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "sgraham@balfourbeattyus.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 16:15:37 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for 1250 Maryland Avenue Mixed-Use | BCC",
+          "type": "followup",
+          "msgid": "<4g1nQd3LBkz3hhTF@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:33:58 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for 1250 Maryland Avenue Mixed-Use | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ6G0NYpz3hhV8@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mrowe@capritoledo.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 17:11:16 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Reeves Center Redevelopment Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1pfr5X9gz3hhTX@mta-13.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 24 Feb 2026 10:19:06 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Reeves Center Redevelopment Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1bG15mKz3hhTB@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "whedges@mannadc.org": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 19:00:17 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for S Street Village | BCC",
+          "type": "followup",
+          "msgid": "<4g1s4d2qpsz3hhTN@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 24 Feb 2026 10:19:21 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for S Street Village | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1bZ0Xwtz3hhT9@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "pearson@stpeterschool.org": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 19:06:40 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Saint Peter School Addition | BCC",
+          "type": "followup",
+          "msgid": "<4g1sD03vthz3hhTH@mta-06.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 24 Feb 2026 10:19:51 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Saint Peter School Addition | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1c74Fmhz3hhT6@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "jmccarthy@studios.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 19:06:52 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Square 695 | BCC",
+          "type": "followup",
+          "msgid": "<4g1sDF04nSz3hhTF@mta-06.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 24 Feb 2026 10:20:06 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Square 695 | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1cQ48bYz3hhTr@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "kpassanita@studios.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 19:07:03 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Square 695 | BCC",
+          "type": "followup",
+          "msgid": "<4g1sDR6XStz3hhT6@mta-06.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 24 Feb 2026 10:20:21 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Square 695 | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1cj3jplz3hhTB@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mark@menkitigroup.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 19:07:38 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Bond Mixed-Use Project | BCC",
+          "type": "followup",
+          "msgid": "<4g1sF667yQz3hhTB@mta-06.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 24 Feb 2026 10:20:36 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Bond Mixed-Use Project | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1d02JF7z3hhTB@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "salexander@tortigallas.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 19:14:29 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Former Fox 5 - Mixed-Use Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1sP130kQz3hhT9@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 24 Feb 2026 10:21:04 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Former Fox 5 - Mixed-Use Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1dX69GLz3hhTk@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mrw@winstanleyarchitects.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 19:14:35 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Poplar Point Mixed-Use Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1sP730XDz3hhT9@mta-07.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 24 Feb 2026 10:21:19 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Poplar Point Mixed-Use Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1dq55hNz3hhTF@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "larry.serota@transwestern.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:34:40 -0400 (EDT)",
+          "subject": "Plan Review + TPI for Convene Hospitality TI \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4ky80tCrz3hhS5@mta-09.privateemail.com>",
+          "account": "admin",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "cbell@terryadamsinc.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 11:31:17 -0500 (EST)",
+          "subject": "Third Party Inspection Proposal - Rivian Flagship Shop (1100 New\r\n York Ave NW)",
+          "type": "other",
+          "msgid": "<1090676956.2117807.1770049877707@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 2 Feb 2026 15:31:36 -0500 (EST)",
+          "subject": "Bid Inquiry - Rivian Build-Out - Third-Party Code Inspections",
+          "type": "other",
+          "msgid": "<844034391.2136481.1770064296788@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Wed, 18 Feb 2026 16:48:45 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Rivian Build-Out | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVWd25pKz3hhTq@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:10:36 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Rivian Build-Out | BCC",
+          "type": "followup",
+          "msgid": "<4g1BhX381Sz3hhRp@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tswift@urban-atlantic.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 12:33:21 -0500 (EST)",
+          "subject": "Bid Inquiry - 4801 Sargent Road Duplex Townhomes - Third-Party Code\r\n Inspections",
+          "type": "other",
+          "msgid": "<1354924120.2118468.1770053601503@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 2 Feb 2026 15:47:14 -0500 (EST)",
+          "subject": "Bid Inquiry - DC Third-Party Plan Review & Inspections - 4801\r\n Sargent Road Duplex Townhomes",
+          "type": "cw_intro",
+          "msgid": "<228763152.2138129.1770065234483@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Wed, 18 Feb 2026 16:38:09 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for 4801 Sargent Road Duplex Townhomes | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVHP1fdhz3hhVr@mta-12.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:09:42 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for 4801 Sargent Road Duplex Townhomes | BCC",
+          "type": "followup",
+          "msgid": "<4g1BgV2qQgz3hhTd@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "aholderness@carrprop.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 13:03:22 -0500 (EST)",
+          "subject": "Bid Inquiry - 2121 Virginia Avenue Northwest Conversion -\r\n Third-Party Code Inspections",
+          "type": "other",
+          "msgid": "<1505564528.2121698.1770055402457@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 2 Feb 2026 14:59:52 -0500 (EST)",
+          "subject": "Bid Inquiry - 2121 Virginia Avenue Northwest Conversion -\r\n Third-Party Code Inspections",
+          "type": "other",
+          "msgid": "<1321497776.2133472.1770062392772@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 5 Feb 2026 11:14:16 -0500 (EST)",
+          "subject": "Third Party Plan Review & Inspection Services - 2121 Virginia NW /\r\n Carr Properties Bid List",
+          "type": "other",
+          "msgid": "<878670614.2494623.1770308056438@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:09:09 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Carr Properties DC Projects | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bfs6YwSz3hhTd@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "ethan.wagner@clarkconstruction.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 15:08:17 -0500 (EST)",
+          "subject": "Bid Inquiry - 1999 Eye Street Mixed-Use - Third-Party Code\r\n Inspections",
+          "type": "other",
+          "msgid": "<436917367.2134335.1770062897796@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Wed, 18 Feb 2026 16:48:29 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for 1999 Eye Street Mixed-Use | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVWK4bKxz3hhTD@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:09:52 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for 1999 Eye Street Mixed-Use | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bgh6lZTz3hhTG@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "vrobinson@eventsdc.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 16:15:54 -0500 (EST)",
+          "subject": "Bid Inquiry - DC Third-Party Plan Review & Inspections - Washington\r\n Commanders Stadium (2400 East Capitol Street Southeast)",
+          "type": "cw_intro",
+          "msgid": "<652355693.2140777.1770066954661@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Wed, 18 Feb 2026 16:48:32 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Washington Commanders Stadium | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVWN50Ryz3hhTD@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "potteni@bostonproperties.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 16:27:39 -0500 (EST)",
+          "subject": "Bid Inquiry - DC Third-Party Plan Review & Inspections - 725 12th\r\n Street Northwest Office Building",
+          "type": "cw_intro",
+          "msgid": "<2109531792.2141656.1770067659973@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 5 Feb 2026 11:23:24 -0500 (EST)",
+          "subject": "Third Party Plan Review & Inspection Services - 725 12th St NW /\r\n Boston Properties Bid List",
+          "type": "other",
+          "msgid": "<179216133.2495878.1770308604440@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Wed, 18 Feb 2026 16:37:59 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for 725 12th Street Northwest Office Building | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVHC6gwWz3hhVt@mta-12.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:09:21 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for 725 12th Street Northwest Office Building | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bg51Ptrz3hhTd@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "dob@dc.gov": {
+      "sends": [
+        {
+          "date": "Thu, 5 Feb 2026 09:37:32 -0500 (EST)",
+          "subject": "Re: Request for NOI Approval \u2013 1156 15th ST NW Fire Protection Plan Review",
+          "type": "reply_or_fwd",
+          "msgid": "<616307143.2479783.1770302252821@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Tue, 21 Apr 2026 16:58:11 -0400 (EDT)",
+          "subject": "Re: Notice of Intent - Third-Party Fire Protection Plan Review -\r\n 1522 Rhode Island Ave NE",
+          "type": "reply_or_fwd",
+          "msgid": "<1706061704.306015.1776805091431@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 17 Apr 2026 18:40:44 -0400 (EDT)",
+          "subject": "Notice of Intent - Third-Party Fire Protection Plan Review - 1522 Rhode Island Ave NE",
+          "type": "other",
+          "msgid": "<4fy8wr1ZjLz3hhTP@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Wed, 04 Feb 2026 17:28:13 +0000",
+          "subject": "Re: Request for NOI Approval \u2013 1156 15th ST NW Fire Protection Plan Review",
+          "snippet": "Hello Kevin, *Thank you for your inquiry* \\- We are transferring you to the appropriate representative to assist with your question. Take care and have a great day,",
+          "class": "unclear"
+        },
+        {
+          "date": "Fri, 06 Feb 2026 16:13:02 +0000",
+          "subject": "Re: Re: Request for NOI Approval \u2013 1156 15th ST NW Fire Protection Plan Review",
+          "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> <html xmlns=\"http://www.w3.org/1999/xhtml\"> <head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /> <title></title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /> <link href=\"https://fonts.googleapis.com/css?family=Roboto\" rel=\"sty",
+          "class": "unclear"
+        },
+        {
+          "date": "Fri, 17 Apr 2026 22:41:01 +0000",
+          "subject": "Re: Notice of Intent - Third-Party Fire Protection Plan Review - 1522\r\n Rhode Island Ave NE",
+          "snippet": "Automatic Notification of New Conversation",
+          "class": "unclear"
+        },
+        {
+          "date": "Fri, 24 Apr 2026 13:14:32 +0000",
+          "subject": "Re: Notice of Intent - Third-Party Fire Protection Plan Review - 1522\r\n Rhode Island Ave NE",
+          "snippet": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> <html xmlns=\"http://www.w3.org/1999/xhtml\"> <head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" /> <title></title> <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /> <link href=\"https://fonts.googleapis.com/css?family=Roboto\" rel=\"sty",
+          "class": "unclear"
+        }
+      ]
+    },
+    "ulises.rodriguez@dc.gov": {
+      "sends": [
+        {
+          "date": "Thu, 5 Feb 2026 09:37:32 -0500 (EST)",
+          "subject": "Re: Request for NOI Approval \u2013 1156 15th ST NW Fire Protection Plan Review",
+          "type": "reply_or_fwd",
+          "msgid": "<616307143.2479783.1770302252821@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Tue, 21 Apr 2026 16:58:11 -0400 (EDT)",
+          "subject": "Re: Notice of Intent - Third-Party Fire Protection Plan Review -\r\n 1522 Rhode Island Ave NE",
+          "type": "reply_or_fwd",
+          "msgid": "<1706061704.306015.1776805091431@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 17 Apr 2026 18:40:44 -0400 (EDT)",
+          "subject": "Notice of Intent - Third-Party Fire Protection Plan Review - 1522 Rhode Island Ave NE",
+          "type": "other",
+          "msgid": "<4fy8wr1ZjLz3hhTP@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "lkay@carrprop.com": {
+      "sends": [
+        {
+          "date": "Thu, 5 Feb 2026 11:15:25 -0500 (EST)",
+          "subject": "Inquiry: Point of Contact for 2121 Virginia NW Project - Third\r\n Party Services",
+          "type": "other",
+          "msgid": "<1371452494.2494880.1770308125759@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "rcarlton@khlaw.com": {
+      "sends": [
+        {
+          "date": "Thu, 5 Feb 2026 12:00:21 -0500 (EST)",
+          "subject": "Inquiry: Point of Contact for 1100 New York Ave NW Build-Out -\r\n Third Party Services",
+          "type": "other",
+          "msgid": "<810381279.2500342.1770310821810@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "emcqueen@davisconstruction.com": {
+      "sends": [
+        {
+          "date": "Thu, 5 Feb 2026 12:03:55 -0500 (EST)",
+          "subject": "Third Party Inspection Services - Keller and Heckman Build-Out\r\n (1100 New York Ave NW)",
+          "type": "other",
+          "msgid": "<1212533787.2500792.1770311035970@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "nbrockmeyer@davisconstruction.com": {
+      "sends": [
+        {
+          "date": "Thu, 5 Feb 2026 12:03:55 -0500 (EST)",
+          "subject": "Third Party Inspection Services - Keller and Heckman Build-Out\r\n (1100 New York Ave NW)",
+          "type": "other",
+          "msgid": "<1212533787.2500792.1770311035970@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "caoyueno5@gmail.com": {
+      "sends": [
+        {
+          "date": "Fri, 6 Feb 2026 22:15:20 -0500 (EST)",
+          "subject": "Re: Chloe project in DC",
+          "type": "reply_or_fwd",
+          "msgid": "<1212083812.2667454.1770434120750@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "chloenguyen10@gmail.com": {
+      "sends": [
+        {
+          "date": "Fri, 6 Feb 2026 22:15:20 -0500 (EST)",
+          "subject": "Re: Chloe project in DC",
+          "type": "reply_or_fwd",
+          "msgid": "<1212083812.2667454.1770434120750@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 9 Feb 2026 10:47:02 -0500 (EST)",
+          "subject": "Plan Review Proposal & NOI for Signature - 917 F ST NW (Souvenir\r\n Headquarter)",
+          "type": "other",
+          "msgid": "<1723955594.2842635.1770652022225@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 6 Feb 2026 22:10:37 -0500",
+          "subject": "Chloe project in DC",
+          "snippet": "Hi Kevin, I submitted the permit application to DOB, the permit number is B2603010. I would like to get approve quickly. Let me know what the process, thank you Chloe Sent from my iPhone",
+          "class": "unclear"
+        }
+      ]
+    },
+    "bkim@jpsolutionsllc.com": {
+      "sends": [
+        {
+          "date": "Thu, 12 Feb 2026 08:56:32 -0500 (EST)",
+          "subject": "1001 Connecticut Ave NW Final",
+          "type": "other",
+          "msgid": "<498150193.3237141.1770904593027@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "achu@jpsolutionsllc.com": {
+      "sends": [
+        {
+          "date": "Thu, 12 Feb 2026 13:40:36 -0500",
+          "subject": "Fwd: 1001 Connecticut Ave NW Final",
+          "type": "reply_or_fwd",
+          "msgid": "<Mime4j.1.df4dbe92a8348710.19c5327b17a@imap.gmail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "shenelle.j.scott@gunet.georgetown.edu": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 22:40:52 -0500 (EST)",
+          "subject": "RE: [EXTERNAL] Third-Party Inspection Services for MedStar\r\n Georgetown University Hospital Cyberknife Equipment Addition | Building\r\n Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<996158796.660985.1771645252345@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 19:23:36 -0400 (EDT)",
+          "subject": "RE: [EXTERNAL] Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "type": "reply_or_fwd",
+          "msgid": "<165078225.550061.1776986616142@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 24 Apr 2026 09:37:09 -0400 (EDT)",
+          "subject": "RE: [EXTERNAL] Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g2DXP6ddRz3hhVF@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 20 Feb 2026 15:39:19 +0000",
+          "subject": "RE: [EXTERNAL] Third-Party Inspection Services for MedStar Georgetown\r\n University Hospital Cyberknife Equipment Addition | Building Code Consulting\r\n LLC",
+          "snippet": "Hello Kevin, I am not a part of this project and am not sure whom you should be contacting. Thanks Thanks, Shenelle Scott Supervisor of Operations PCCM-4Main/ MGUH Pulmonary Rehab 202-444-8024 Shenelle.j.scott@gunet.georgetown.edu Upcoming PTO: 3/4/2026",
+          "class": "unclear"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 22:40:33 +0000",
+          "subject": "RE: [EXTERNAL] Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "snippet": "Hello, I do not support the Cyberknife Clinic. @Ruffin, Basani J<mailto:Basani.J.Ruffin@medstar.net> who would be the contact for Cyberknife clinic? Thanks, Shenelle Scott Interim Practice Manager PCCM-4Main/ 5PHC/MGUH Pulmonary Rehab 202-444-8024 Shenelle.j.scott@gunet.georgetown.edu Upcoming PTO:",
+          "class": "unclear"
+        },
+        {
+          "date": "Fri, 24 Apr 2026 01:58:46 +0000",
+          "subject": "RE: [EXTERNAL] Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "snippet": "Hello, Basani is not the point of contact for Cyberknife either. We do not directly support Cyberknife clinic and have no knowledge of this project. Basani does Senit support Cyberknife? Thanks, Shenelle Scott Interim Practice Manager PCCM-4Main/ 5PHC/MGUH Pulmonary Rehab 202-444-8024 Shenelle.j.scott@gunet.georgetown.edu Upcoming PTO:",
+          "class": "unclear"
+        }
+      ]
+    },
+    "labvictor33@gmail.com": {
+      "sends": [
+        {
+          "date": "Wed, 25 Feb 2026 22:10:10 -0500 (EST)",
+          "subject": "Code Compliance Inspection Proposal - 4900 Georgia Ave NW",
+          "type": "other",
+          "msgid": "<393845501.1122165.1772075410084@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 16:32:51 -0400 (EDT)",
+          "subject": "Re: Code Compliance Inspection Proposal - 4900 Georgia Ave NW",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4Fcg5jHMz3hhTy@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 2 Mar 2026 22:52:12 -0500 (EST)",
+          "subject": "ANSI 117",
+          "type": "other",
+          "msgid": "<1261825420.1621395.1772509932758@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 2 Mar 2026 22:54:12 -0500 (EST)",
+          "subject": "Grease interceptor and food disposal code requirements",
+          "type": "other",
+          "msgid": "<138390575.1621666.1772510052750@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "melissae@rmtax.services": {
+      "sends": [
+        {
+          "date": "Wed, 25 Feb 2026 22:10:10 -0500 (EST)",
+          "subject": "Code Compliance Inspection Proposal - 4900 Georgia Ave NW",
+          "type": "other",
+          "msgid": "<393845501.1122165.1772075410084@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 16:32:51 -0400 (EDT)",
+          "subject": "Re: Code Compliance Inspection Proposal - 4900 Georgia Ave NW",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4Fcg5jHMz3hhTy@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "agrossjr@aol.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Mar 2026 11:51:02 -0500 (EST)",
+          "subject": "Inspection Proposals for 1154 4th ST NE & 6024 8th ST NW",
+          "type": "other",
+          "msgid": "<1475748848.1491051.1772470262276@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 16:32:58 -0400 (EDT)",
+          "subject": "Re: Third-Party Code Inspection Proposal - 1154 4th St NE (Rear Stairs Installation)",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4Fcp725tz3hhTt@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 6 Apr 2026 12:55:29 -0400 (EDT)",
+          "subject": "Third-Party Code Inspection Proposal - 1154 4th St NE (Rear Stairs\r\n Installation)",
+          "type": "other",
+          "msgid": "<277122282.152460.1775494529968@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "louis@americanplanreview.com": {
+      "sends": [
+        {
+          "date": "Wed, 4 Mar 2026 14:18:00 -0500",
+          "subject": "BCC proposal example",
+          "type": "other",
+          "msgid": "<6221105B-5EA5-D944-84D9-20FBB2659E5E@hxcore.ol>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 30 Apr 2026 18:12:13 -0400 (EDT)",
+          "subject": "BCC Master Inspection Contract template + intro to my AI agent (Claude Code)",
+          "type": "other",
+          "msgid": "<4g67gx6l71z3hhTC@mta-10.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "caoyueno5@gmail.cm": {
+      "sends": [
+        {
+          "date": "Wed, 4 Mar 2026 17:12:34 -0500 (EST)",
+          "subject": "Third-Party Code Compliance Inspection Proposal from Building Code Consulting LLC \u2013 Washington Endometriosis",
+          "type": "bc_proposal",
+          "msgid": "<238064881.1801059.1772662354752@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "jwilliams@hbwconstruction.com": {
+      "sends": [
+        {
+          "date": "Wed, 4 Mar 2026 17:12:34 -0500 (EST)",
+          "subject": "Third-Party Code Compliance Inspection Proposal from Building Code Consulting LLC \u2013 Washington Endometriosis",
+          "type": "bc_proposal",
+          "msgid": "<238064881.1801059.1772662354752@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 16:33:06 -0400 (EDT)",
+          "subject": "Re: Third-Party Code Compliance Inspection Proposal - Washington Endometriosis",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4Fcy1MGNz3hhTv@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "alperakan@outlook.com": {
+      "sends": [
+        {
+          "date": "Tue, 17 Mar 2026 09:59:49 -0400",
+          "subject": "",
+          "type": "other",
+          "msgid": "<AF2E6BB4-8B9D-8F4D-9437-B664C47571D7@hxcore.ol>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Sat, 11 Apr 2026 16:40:19 -0400 (EDT)",
+          "subject": "Proposal for 1410 & 1412 Meridian Place & Ground-Up Project\r\n Examples RE:",
+          "type": "other",
+          "msgid": "<1671290528.741388.1775940019470@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Sat, 11 Apr 2026 17:15:08 -0400 (EDT)",
+          "subject": "Re: Proposal for 1410 & 1412 Meridian Place & Ground-Up Project\r\n Examples RE:",
+          "type": "reply_or_fwd",
+          "msgid": "<1970223803.727188.1775942109043@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "jerald.brown@thesolargeeks.com": {
+      "sends": [
+        {
+          "date": "Sat, 4 Apr 2026 16:12:34 -0400 (EDT)",
+          "subject": "Master Proposal for DC Solar System Inspections",
+          "type": "other",
+          "msgid": "<784026210.72910.1775333554936@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "aramirez@zphibhq.org": {
+      "sends": [
+        {
+          "date": "Wed, 8 Apr 2026 17:42:39 -0400 (EDT)",
+          "subject": "permit expedite",
+          "type": "other",
+          "msgid": "<927798770.451932.1775684559617@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "brunhilda.mbanwie@yahoo.com": {
+      "sends": [
+        {
+          "date": "Wed, 8 Apr 2026 19:09:24 -0400 (EDT)",
+          "subject": "128 53rd ST SE Field Observation Report for Code Consulting",
+          "type": "other",
+          "msgid": "<1584953937.457461.1775689764631@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "nerdelyi@pwccompanies.com": {
+      "sends": [
+        {
+          "date": "Thu, 9 Apr 2026 15:36:05 -0400 (EDT)",
+          "subject": "Third-Party Code Inspection Proposal - WIT Interior Alteration",
+          "type": "other",
+          "msgid": "<1502443258.572701.1775763365211@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 9 Apr 2026 15:36:32 -0400 (EDT)",
+          "subject": "Re: Third-Party Code Inspection Proposal - WIT Interior Alteration",
+          "type": "reply_or_fwd",
+          "msgid": "<1544628790.572790.1775763392220@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu,  5 Mar 2026 13:12:45 -0500 (EST)",
+          "subject": "Third-Party Code Compliance Inspection Proposal - 1300 Girard Street NW",
+          "type": "bc_proposal",
+          "msgid": "<4fRd1T4b2Qz3hhTH@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 12:41:51 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 GPO NARA 4th Floor Renovation (732 N Capitol St NW)",
+          "type": "bc_proposal",
+          "msgid": "<4g1hgz1wyFz3hhTp@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 27 Apr 2026 01:21:52 -0400 (EDT)",
+          "subject": "Re: Third-Party Code Inspection Proposal - WIT Interior Alteration | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g3sPX1wjmz3hhT9@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 9 Apr 2026 19:40:21 +0000",
+          "subject": "Re: Third-Party Code Inspection Proposal - WIT Interior Alteration",
+          "snippet": "Received - thanks! Nicole Erdelyi Direct (703) 772-6796 Email nerdelyi@pwccompanies.com<mailto:nerdelyi@pwccompanies.com> Website PWC Companies | Home<https://pwccompanies.com/> [cid:240271b5-7e92-4821-a1de-14c1f35754fd] 8201 Greensboro Dr. | Suite 445 | McLean, VA | 22102 The information contained in this email and any attachments is confidential and/or proprietary and is intended solely for the ",
+          "class": "unclear"
+        }
+      ]
+    },
+    "ibarry@jandjconst.net": {
+      "sends": [
+        {
+          "date": "Tue, 14 Apr 2026 10:58:32 -0400 (EDT)",
+          "subject": "Third-Party Code Inspection Proposal - 1724 F Street NW (1st & 3rd\r\n Floors)",
+          "type": "other",
+          "msgid": "<1143803539.988643.1776178712896@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Tue, 14 Apr 2026 10:54:34 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal from Building Code Consulting LLC - 1724 Floor 1 & 3 Renovations",
+          "type": "bc_proposal",
+          "msgid": "<4fw6kL50DCz3hhWd@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 12:41:57 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 Interior Renovations (Multi-Floor), 717 Madison Place NW",
+          "type": "bc_proposal",
+          "msgid": "<4g1hh54kDDz3hhTt@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "nery@rexfield.us": {
+      "sends": [
+        {
+          "date": "Fri, 17 Apr 2026 16:13:30 -0400 (EDT)",
+          "subject": "1522 Rhode Island Ave NE \u2014 Third-Party Plan Review Proposal",
+          "type": "cw_intro",
+          "msgid": "<1953914043.1379891.1776456811018@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 17 Apr 2026 16:35:22 -0400 (EDT)",
+          "subject": "Re: 1522 Rhode Island Ave NE \u2014 Third-Party Plan Review Proposal",
+          "type": "reply_or_fwd",
+          "msgid": "<4fy68B64jpz3hhWN@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Tue, 28 Apr 2026 19:41:53 -0400 (EDT)",
+          "subject": "1522 Rhode Island Ave NE \u2014 Plan Review Approval Package (DOB Submittal)",
+          "type": "other",
+          "msgid": "<4g4xmK1XThz3hhcl@mta-10.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 17 Apr 2026 16:53:39 -0400",
+          "subject": "Re: 1522 Rhode Island Ave NE \u2014 Third-Party Plan Review Proposal",
+          "snippet": "Kyle see attached",
+          "class": "unclear"
+        }
+      ]
+    },
+    "reduxllcdesigns@gmail.com": {
+      "sends": [
+        {
+          "date": "Tue, 21 Apr 2026 15:34:30 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 427 Ridge St NW | Building Code Consulting LLC",
+          "type": "bc_proposal",
+          "msgid": "<229888215.297513.1776800070178@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "basani.j.ruffin@medstar.net": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 19:23:36 -0400 (EDT)",
+          "subject": "RE: [EXTERNAL] Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "type": "reply_or_fwd",
+          "msgid": "<165078225.550061.1776986616142@privateemail.com>",
+          "account": "admin",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 24 Apr 2026 09:37:09 -0400 (EDT)",
+          "subject": "RE: [EXTERNAL] Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g2DXP6ddRz3hhVF@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 24 Apr 2026 12:38:06 +0000",
+          "subject": "RE: [EXTERNAL] Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "snippet": "Good Morning All, Senit Haileman may be a good starting point. Best regards, Basani Basani Ruffin Executive Assistant The Division of Interventional Pulmonology Dr. Eric Anderson and Dr. Rebecca Krochmal Executive Assistant to: Dr. Daniel Jamieson and Dr. Bhavik Gupta Medstar Georgetown University Hospital Pulmonary/Sleep Medicine 3800 Reservoir Road, NW, 4north Washington, DC 20007 Tel: 202-444-2",
+          "class": "unclear"
+        },
+        {
+          "date": "Fri, 24 Apr 2026 13:52:57 +0000",
+          "subject": "RE: [EXTERNAL] Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "snippet": "Good Morning Kevin, Her email address is: Senit.T.Hailemariam@gunet.georgetown.edu<mailto:Senit.T.Hailemariam@gunet.georgetown.edu> Have a great weekend, Basani Basani Ruffin Executive Assistant The Division of Interventional Pulmonology Dr. Eric Anderson and Dr. Rebecca Krochmal Executive Assistant to: Dr. Daniel Jamieson and Dr. Bhavik Gupta Medstar Georgetown University Hospital Pulmonary/Sleep",
+          "class": "unclear"
+        }
+      ]
+    },
+    "michelle.wilson@dc.gov": {
+      "sends": [
+        {
+          "date": "Wed, 18 Feb 2026 16:38:03 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for DC CDF Replacement Housing | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVHH3Z8bz3hhVw@mta-12.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "lmangini@mwe.com": {
+      "sends": [
+        {
+          "date": "Wed, 18 Feb 2026 16:38:06 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for 725 12th Street Northwest Office Building | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVHL2RM2z3hhVr@mta-12.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:09:31 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for 725 12th Street Northwest Office Building | BCC",
+          "type": "followup",
+          "msgid": "<4g1BgH5BLGz3hhTG@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "brittany.hughes@dc.gov": {
+      "sends": [
+        {
+          "date": "Wed, 18 Feb 2026 16:48:26 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Ward 8 Senior Wellness Center | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVWG2LnXz3hhTD@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "bboldizsar@hksinc.com": {
+      "sends": [
+        {
+          "date": "Wed, 18 Feb 2026 16:48:35 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Rivian Build-Out | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVWR38H0z3hhTq@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:10:04 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Rivian Build-Out | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bgw3KLvz3hhTD@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "k.gioconda@perkinseastman-dc.com": {
+      "sends": [
+        {
+          "date": "Wed, 18 Feb 2026 16:48:38 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Ward 8 Senior Wellness Center | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVWV2JZrz3hhTq@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:10:15 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Ward 8 Senior Wellness Center | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bh71twzz3hhTG@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "firstenberg@stonebridge.us.com": {
+      "sends": [
+        {
+          "date": "Wed, 18 Feb 2026 16:48:42 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for 1999 Eye Street Mixed-Use | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGVWZ4HdCz3hhTq@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:10:25 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for 1999 Eye Street Mixed-Use | BCC",
+          "type": "followup",
+          "msgid": "<4g1BhK6KS3z3hhRm@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "agooch@akridge.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:09:26 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Stacks - Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjdL0hp6z3hhV5@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:10:47 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Stacks - Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bhl0pCSz3hhRm@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "okarim@bannekerventures.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:09:32 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Saint Elizabeth's East Parcel 6 Mixed-Use | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjdS1lgmz3hhTB@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:10:57 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Saint Elizabeth's East Parcel 6 Mixed-Use | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bhx59y7z3hhRm@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tcallaham@calcohospitality.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:09:38 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 601 Indiana Ave Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjdZ17QSz3hhTB@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:11:08 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 601 Indiana Ave Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bj823MXz3hhRm@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "joe@capitolpetro.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:09:49 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 917 Sixth Street Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjdn58F2z3hhTB@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:11:29 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 917 Sixth Street Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1BjY1p0Nz3hhRw@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "hooverjm@cua.edu": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:09:55 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Athletic Facility | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjdv4BzCz3hhWw@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:11:39 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Athletic Facility | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bjl6RT3z3hhRr@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tkinlow@childrensnational.org": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:10:01 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Children's National Hospital - Establishment of MIBG Therapy | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjf13GV3z3hhV8@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:11:50 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Children's National Hospital - Establishment of MIBG Therapy | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bjy3p9Vz3hhS0@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "delano.hunter@dc.gov": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:10:13 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Hillcrest Recreation Center Expansion | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjfF0mCQz3hhV8@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "john.falcicchio@dc.gov": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:10:18 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Saint Elizabeths East Development - District\u2019s Department of Behavioral Health HQ Office | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjfL6hxWz3hhV8@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 19 Feb 2026 06:10:42 +0000",
+          "subject": "Automatic reply: Third-Party Plan Review & Inspection Services for Saint Elizabeths East Development - District\u2019s Department of Behavioral Health HQ Office | Building Code Consulting LLC",
+          "snippet": "This email account is no longer being monitored. If you are attempting to reach the Mayor's office, please contact Lindsey Parker at lindsey@dc.gov. If you are attempting to reach the Deputy Mayor for Planning & Economic Development's office, please contact Sharon Carney at Sharon.Carney@dc.gov",
+          "class": "unclear"
+        }
+      ]
+    },
+    "bathey@congressionalcap.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:10:24 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 4347 Hunt Place Apartments | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjfS5zhSz3hhTb@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:12:01 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 4347 Hunt Place Apartments | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bk90RPlz3hhS0@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "jeremy@curtisinvestments.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:10:30 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Reunion Square Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjfZ5KfFz3hhTb@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:12:12 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Reunion Square Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1BkN0PPyz3hhVF@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "earthhouse22@gmail.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:10:36 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 4608 14th Street Northwest Multifamily | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjfh3BbRz3hhTb@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:12:22 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 4608 14th Street Northwest Multifamily | BCC",
+          "type": "followup",
+          "msgid": "<4g1BkZ4sMmz3hhS0@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "sikder@district-properties.com": {
+      "sends": [
+        {
+          "date": "Thu, 19 Feb 2026 01:10:42 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 1326 Anacostia Road Apartments | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fGjfp1850z3hhTb@mta-11.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 17:12:33 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 1326 Anacostia Road Apartments | BCC",
+          "type": "followup",
+          "msgid": "<4g1Bkn30NZz3hhS0@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "sskolas@thedaviscompanies.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:32:15 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Ring Building Conversion | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ4H42DBz3hhTl@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:05:30 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Ring Building Conversion | BCC",
+          "type": "followup",
+          "msgid": "<4g1nBy1RTwz3hhT9@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "adam@2plys.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:32:27 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 2328 Green Street SE Apartments | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ4W2Lp2z3hhVT@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:07:27 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 2328 Green Street SE Apartments | BCC",
+          "type": "followup",
+          "msgid": "<4g1nFC2td8z3hhTK@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "klyon@bigwaha.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:32:38 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for Wegmans Store - Checkouts Remodel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ4k3sHKz3hhTP@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:08:45 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for Wegmans Store - Checkouts Remodel | BCC",
+          "type": "followup",
+          "msgid": "<4g1nGj1sTxz3hhTM@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "kati.mitchell@gallaudet.edu": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:32:50 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Gallaudet Mixed-use Development - Parcel II | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ4y0BfLz3hhTP@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:10:08 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Gallaudet Mixed-use Development - Parcel II | BCC",
+          "type": "followup",
+          "msgid": "<4g1nJJ4WNhz3hhT9@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "ken@kenfulk.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:33:01 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Starr Restaurant | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ591rYsz3hhTP@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:11:28 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Starr Restaurant | BCC",
+          "type": "followup",
+          "msgid": "<4g1nKr3ZWQz3hhTM@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mz@ma.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:33:12 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Gallaudet Mixed-use Development | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ5N2PZhz3hhTr@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:12:49 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Gallaudet Mixed-use Development | BCC",
+          "type": "followup",
+          "msgid": "<4g1nMP1lhYz3hhTL@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "s.penhoet@perkinseastman.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:33:23 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Howard University Hospital Redevelopment | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ5b4nw5z3hhVK@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:14:42 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Howard University Hospital Redevelopment | BCC",
+          "type": "followup",
+          "msgid": "<4g1nPZ1TMdz3hhTK@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "greg.strabo@whiting-turner.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:33:34 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for HU Lot 3 - The Lawson | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ5p6Vrhz3hhV1@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:16:15 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for HU Lot 3 - The Lawson | BCC",
+          "type": "followup",
+          "msgid": "<4g1nRM1VWMz3hhTL@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "artur.k.sivaslian@medstar.net": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:33:46 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for MedStar Urgent Care | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ620jh4z3hhVJ@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 20 Feb 2026 15:35:50 +0000",
+          "subject": "Automatic reply: [EXTERNAL] Third-Party Inspection Services for\r\n MedStar Urgent Care | Building Code Consulting LLC",
+          "snippet": "Hello, Thank you for your message. I am currently out of the office I will be checking email periodically and will respond as soon as possible. Thank you Art",
+          "class": "unclear"
+        }
+      ]
+    },
+    "shenelle.scott@medstar.net": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:33:52 -0500 (EST)",
+          "subject": "Third-Party Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ6801N6z3hhVD@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:18:10 -0400 (EDT)",
+          "subject": "Following Up \u2014 Inspection Services for MedStar Georgetown University Hospital Cyberknife Equipment Addition | BCC",
+          "type": "followup",
+          "msgid": "<4g1nTZ75Yfz3hhTG@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "toby.millman@brookfieldproperties.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:34:04 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Yards Phase 2 | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fHZ6N0Q6cz3hhVc@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 16:19:56 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Yards Phase 2 | BCC",
+          "type": "followup",
+          "msgid": "<4g1nWc6R0Jz3hhT9@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "hdedic@ceo.lacounty.gov": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:18:57 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Legislative Affairs & Intergovernmental Relations Leased Office | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1b51txWz3hhTD@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:13:27 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Legislative Affairs & Intergovernmental Relations Leased Office | BCC",
+          "type": "followup",
+          "msgid": "<4g1pjM1Dx5z3hhSQ@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "dcoxson@cunninghamquill.com": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:19:14 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Chinatown Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1bQ5Tgyz3hhTH@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 17:14:41 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Chinatown Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1pkn6xQ0z3hhSQ@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "avasquez@mhcdo.org": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:19:29 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for 1200 New Jersey Avenue Southeast Affordable Housing | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1bj4HJ9z3hhTH@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 19:00:11 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for 1200 New Jersey Avenue Southeast Affordable Housing | BCC",
+          "type": "followup",
+          "msgid": "<4g1s4W1Y6tz3hhTM@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "dbagnoli@studiombdc.com": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:19:59 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Stanton Road Apartments | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1cH18c6z3hhTJ@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 19:06:47 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Stanton Road Apartments | BCC",
+          "type": "followup",
+          "msgid": "<4g1sD716LPz3hhTD@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "jchoi@studios.com": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:20:14 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Square 695 | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1cZ1KNdz3hhTR@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 19:06:58 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Square 695 | BCC",
+          "type": "followup",
+          "msgid": "<4g1sDL38dHz3hhTF@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "bo@menkitigroup.com": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:20:28 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for The Bond Mixed-Use Project | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1cr71DWz3hhTS@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 19:07:09 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for The Bond Mixed-Use Project | BCC",
+          "type": "followup",
+          "msgid": "<4g1sDY3JmZz3hhT6@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "ahayes@rappaportco.com": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:20:43 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for ABA Centers of America Skyland Town Center | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1d75Nhvz3hhT9@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 19:07:44 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for ABA Centers of America Skyland Town Center | BCC",
+          "type": "followup",
+          "msgid": "<4g1sFD1t0Rz3hhT6@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mtamaro@thorntontomasetti.com": {
+      "sends": [
+        {
+          "date": "Tue, 24 Feb 2026 10:20:57 -0500 (EST)",
+          "subject": "Third-Party Plan Review & Inspection Services for Burnham Place at Union Station Hotel | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4fL1dP2J8sz3hhTR@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 19:09:32 -0400 (EDT)",
+          "subject": "Following Up \u2014 Plan Review & Inspection Services for Burnham Place at Union Station Hotel | BCC",
+          "type": "followup",
+          "msgid": "<4g1sHJ5jrYz3hhTB@mta-06.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "teddy@preciseengineer.com": {
+      "sends": [
+        {
+          "date": "Thu, 16 Apr 2026 18:29:10 -0400 (EDT)",
+          "subject": "Third-Party Code Inspection \u2014 Maher Residence Addition Proposal + Master Services Agreement | Building Code Consulting LLC",
+          "type": "other",
+          "msgid": "<4fxXjy5qg6z3hhTg@mta-12.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 16 Apr 2026 22:56:19 +0000",
+          "subject": "Re: Third-Party Code Inspection \u2014 Maher Residence Addition Proposal + Master Services Agreement | Building Code Consulting LLC",
+          "snippet": "Thanks, Kyle. See the signed copy attached. Thanks Tewodros (Teddy) Amde, PE (DC, MD & VA) Professional-in-Charge Precise Engineering LLC (PELLC) 7432 Alban Station Blvd, Suite A109 Springfield, VA 22150 [cid:af439672-cb65-4c1b-84a5-a5b7c7b9f774] www.preciseengineer.com Email-Teddy@preciseengineer.com Cell: 240.447.9400 Office: 571.597.8003 ________________________________",
+          "class": "unclear"
+        }
+      ]
+    },
+    "jlopatin@sachse.net": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 09:43:54 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 Neko Health, Anthem Row (Washington DC)",
+          "type": "bc_proposal",
+          "msgid": "<4g10n70DD9z3hhTS@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 09:44:19 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 Neko Health, Anthem Row (Washington DC)",
+          "type": "bc_proposal",
+          "msgid": "<4g10nb2Kl6z3hhTM@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 09:49:19 -0400 (EDT)",
+          "subject": "Apologies \u2014 duplicate proposal delivery (Neko Health)",
+          "type": "other",
+          "msgid": "<4g10vM07qTz3hhTZ@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "natasha.solis@desbuild.com": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 09:44:02 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 Repair Faulty Circuit Breaker B94, JBAB",
+          "type": "bc_proposal",
+          "msgid": "<4g10nG6zrrz3hhTM@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 09:44:25 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 Repair Faulty Circuit Breaker B94, JBAB",
+          "type": "bc_proposal",
+          "msgid": "<4g10nj0vgLz3hhTM@mta-07.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Wed, 22 Apr 2026 09:49:24 -0400 (EDT)",
+          "subject": "Apologies \u2014 duplicate proposal delivery (B94 Breaker Repair)",
+          "type": "other",
+          "msgid": "<4g10vS6Y7vz3hhTZ@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Thu, 23 Apr 2026 21:06:33 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 US GPO QCIM Room Renovation (732 N Capitol St NW)",
+          "type": "bc_proposal",
+          "msgid": "<4g1vtL05L3z3hhTM@mta-05.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Wed, 22 Apr 2026 13:59:19 +0000",
+          "subject": "RE: Third-Party Code Compliance Inspection Proposal \u2013 Repair Faulty Circuit Breaker B94, JBAB",
+          "snippet": "Received. Thanks, Natasha Solis Pre Construction Management Direct: (301) 587-3652| Cell: (703) 863-5820 4744 Baltimore Ave, Hyattsville, MD 20781 [cid:image001.png@01DCD23E.AE708FD0]",
+          "class": "unclear"
+        }
+      ]
+    },
+    "sandrar@horizonretail.com": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 16:31:32 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 LaserAway, 1427 P Street NW (Washington DC)",
+          "type": "bc_proposal",
+          "msgid": "<4g19qS2r7cz3hhVt@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 23 Apr 2026 16:38:28 +0000",
+          "subject": "RE: Third-Party Code Compliance Inspection Proposal \u2013 LaserAway, 1427 P Street NW (Washington DC)",
+          "snippet": "I would like to thank you for taking the time to provide Horizon Retail Construction with your proposal. If the estimator has any questions he will contact you. Have a wonderful day! Sandra Rodriguez | Project Coordinator Tel | 262.865.6212 SandraR@horizonretail.com<mailto:SandraR@horizonretail.com> | www.horizonretail.com<http://www.horizonretail.com/> 9999 E Exploration Court, Sturtevant, WI 531",
+          "class": "unclear"
+        }
+      ]
+    },
+    "travis.boren@guardiangc.net": {
+      "sends": [
+        {
+          "date": "Wed, 22 Apr 2026 16:31:39 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 Sanitary and Storm Systems Upgrade, National Museum of Natural History",
+          "type": "bc_proposal",
+          "msgid": "<4g19qb46pZz3hhVf@mta-14.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "amiles@tcco.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 18:39:51 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 AIA Headquarters Renewal, 1735 New York Ave NW",
+          "type": "bc_proposal",
+          "msgid": "<4g1rd36ND3z3hhSD@mta-13.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "jwhiting@pkwycon.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 21:06:40 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 Panda Express (1247 1st St SE, Navy Yard)",
+          "type": "bc_proposal",
+          "msgid": "<4g1vtS6hwKz3hhTK@mta-05.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "epalma@capitaltradesva.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 21:06:48 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 GPO NARA 4th Floor Turnkey Interior Buildout (732 N Capitol St NW)",
+          "type": "bc_proposal",
+          "msgid": "<4g1vtc2qw3z3hhTJ@mta-05.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "cmcbride@g3-contracting.com": {
+      "sends": [
+        {
+          "date": "Thu, 23 Apr 2026 21:06:55 -0400 (EDT)",
+          "subject": "Third-Party Code Compliance Inspection Proposal \u2013 Room Renovation Washington DC (732 N Capitol St NW)",
+          "type": "bc_proposal",
+          "msgid": "<4g1vtl4jgnz3hhTY@mta-05.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "seydou.tounkara@whiting-turner.com": {
+      "sends": [
+        {
+          "date": "Mon, 27 Apr 2026 01:21:45 -0400 (EDT)",
+          "subject": "Re: Rebid Proposal: JW Marriott - The Restaurant and Diner Bar | Building Code Consulting LLC",
+          "type": "reply_or_fwd",
+          "msgid": "<4g3sPP14JMz3hhT9@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Fri, 6 Feb 2026 17:59:19 -0500 (EST)",
+          "subject": "Rebid Proposal: JW Marriott - The Restaurant and Diner Bar -\r\n Building Code Consulting",
+          "type": "other",
+          "msgid": "<225352368.2729731.1770418759620@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Thu, 19 Feb 2026 17:38:29 -0500 (EST)",
+          "subject": "Re: Rebid Proposal: JW Marriott - The Restaurant and Diner Bar -\r\n Building Code Consulting",
+          "type": "reply_or_fwd",
+          "msgid": "<43277325.577515.1771540709452@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Thu, 19 Feb 2026 20:38:55 +0000",
+          "subject": "Re: Rebid Proposal: JW Marriott - The Restaurant and Diner Bar -\r\n Building Code Consulting",
+          "snippet": "Kevin, Confirming receipt, thanks. Sorry for the late response, this email somehow ended up in my spam folder but I saw the submission on Building Connected. Thanks, . [cid:WT-Orange120x82_f61f6735-a787-4878-b0a6-4f1d4323bd6e.jpg]<http://www.whiting-turner.com> Seydou Tounkara Project Engineer The Whiting-Turner Contracting Company 300 East Joppa Road Baltimore, Maryland 21286 Phone: 410-821-1100 ",
+          "class": "unclear"
+        }
+      ]
+    },
+    "senit.t.hailemariam@gunet.georgetown.edu": {
+      "sends": [
+        {
+          "date": "Mon, 27 Apr 2026 01:22:06 -0400 (EDT)",
+          "subject": "Third-Party Inspection Services for MedStar Georgetown Cyberknife Equipment Addition | Building Code Consulting LLC",
+          "type": "cw_intro",
+          "msgid": "<4g3sPp4DHYz3hhT9@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Mon, 27 Apr 2026 05:24:48 +0000",
+          "subject": "Automatic reply: [EXTERNAL] Third-Party Inspection Services for\r\n MedStar Georgetown Cyberknife Equipment Addition | Building Code Consulting\r\n LLC",
+          "snippet": "Hello, Thank you for your email. I am currently away from the office and will be returning on April 27th. Please reach out to the following contacts as appropriate: - The department's main line is 202-444-3320. Our front desk associates will be happy to assist you. - Patient insurance and billing inquiries can be directed to Angela Stevens, Billing Manager, 202-444-7946 or stevensa@gunet.georgetow",
+          "class": "auto"
+        }
+      ]
+    },
+    "service@seiwork.com": {
+      "sends": [
+        {
+          "date": "Mon, 27 Apr 2026 16:33:13 -0400 (EDT)",
+          "subject": "Re: Third-Party Inspection Proposal: 1425 Rhode Island Ave NW",
+          "type": "reply_or_fwd",
+          "msgid": "<4g4Fd52JB8z3hhTK@mta-15.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        },
+        {
+          "date": "Mon, 23 Mar 2026 14:11:09 -0400 (EDT)",
+          "subject": "Third-Party Inspection Proposal: 1425 Rhode Island Ave NW",
+          "type": "other",
+          "msgid": "<122090419.3656881.1774289469073@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "rgibbons@carmelpartners.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:33:27 -0400 (EDT)",
+          "subject": "Plan Review + TPI for 1275 Union Street NE - Unio\u2026 \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kwl06ryz3hhSQ@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mzacarias@crescentheights.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:33:34 -0400 (EDT)",
+          "subject": "TPI Inspector for 1333 M Street SE Development \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kwt4hXSz3hhSn@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "rick@felicedevelopmentgroup.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:33:41 -0400 (EDT)",
+          "subject": "TPI Inspector for 1333 M Street SE Development \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kx16q2zz3hhS2@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "jmyers@gtmarchitects.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:33:49 -0400 (EDT)",
+          "subject": "Plan Review for East Tower Residences Phase 1 \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kx91NxTz3hhSb@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "rtorres@gtmarchitects-dc.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:33:56 -0400 (EDT)",
+          "subject": "Plan Review for 1333 M Street SE Development \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kxJ3h7Vz3hhS8@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "smentus@gtmarchitects-dc.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:34:03 -0400 (EDT)",
+          "subject": "Plan Review for 901 North Capitol Hotel - Phase II \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kxR5SWVz3hhS8@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "cmclain@idgroupdallas.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:34:11 -0400 (EDT)",
+          "subject": "Plan Review for FedEx - 7th and D \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kxb03dYz3hhS5@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "mvalazak@miller.group": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:34:18 -0400 (EDT)",
+          "subject": "TPI Inspector for Wagner Senior Residences \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kxk1ht2z3hhSb@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "jcausey@redbricklmd.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:34:25 -0400 (EDT)",
+          "subject": "Plan Review + TPI for Sycamore & Oak - Hotel Deve\u2026 \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kxs46qlz3hhS5@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "pelias@redbricklmd.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:34:32 -0400 (EDT)",
+          "subject": "Plan Review + TPI for St. Elizabeths East Parcel\u2026 \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4ky06JzFz3hhSQ@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "peter.prominski@transwestern.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:34:47 -0400 (EDT)",
+          "subject": "TPI Inspector for MedStar Health Urgent Care at Va\u2026 \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kyH3C5zz3hhSG@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "csmith@wcsmith.com": {
+      "sends": [
+        {
+          "date": "Tue, 28 Apr 2026 11:34:54 -0400 (EDT)",
+          "subject": "TPI Inspector for Wagner Senior Residences \u2014 BCC",
+          "type": "other",
+          "msgid": "<4g4kyQ4tfzz3hhSG@mta-09.privateemail.com>",
+          "account": "ycao",
+          "folder": "INBOX"
+        }
+      ],
+      "replies": []
+    },
+    "tdcinfo@donohoe.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 10:09:16 -0500 (EST)",
+          "subject": "Inquiry to Join Bid List: Third Party Plan Review and Inspection Services \u2013 Building Code Consulting LLC",
+          "type": "other",
+          "msgid": "<2025140147.2133869.1770044956360@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "receptionist@borgermanagement.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 10:25:09 -0500 (EST)",
+          "subject": "Inquiry to Join Bid List: Third Party Plan Review and Inspection Services \u2013 Building Code Consulting LLC",
+          "type": "other",
+          "msgid": "<842530880.2135854.1770045909516@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "cbsinfo@donohoe.com": {
+      "sends": [
+        {
+          "date": "Mon, 2 Feb 2026 10:27:16 -0500 (EST)",
+          "subject": "Inquiry to Join Bid List: Third-Party Code Compliance Inspections \u2013 Building Code Consulting LLC",
+          "type": "other",
+          "msgid": "<1305466457.2136261.1770046036180@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "santiago@arqcontracting.com": {
+      "sends": [
+        {
+          "date": "Thu, 12 Feb 2026 11:10:53 -0500 (EST)",
+          "subject": "Proposal: Third-Party Code Inspections - 3050 K St NW White Box",
+          "type": "other",
+          "msgid": "<253920307.3262516.1770912653487@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "zzhang@dullesgeotechnical.com": {
+      "sends": [
+        {
+          "date": "Thu, 12 Feb 2026 11:45:06 -0500 (EST)",
+          "subject": "Building Code Consulting LLC and KCY Engineering Code Consulting\r\n LLC info",
+          "type": "other",
+          "msgid": "<1137016418.3267136.1770914706642@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Wed, 18 Feb 2026 13:41:24 -0500 (EST)",
+          "subject": "Master Agreement - Third-Party Code Compliance Services (DC) |\r\n Building Code Consulting",
+          "type": "other",
+          "msgid": "<1661677415.418107.1771440084914@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Wed, 18 Feb 2026 13:43:15 -0500 (EST)",
+          "subject": "Fwd: Master Agreement - Third-Party Code Compliance Services (DC) |\r\n Building Code Consulting",
+          "type": "reply_or_fwd",
+          "msgid": "<42371353.418336.1771440195878@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 10:05:59 -0500 (EST)",
+          "subject": "Re: Electrical Engineer Referral",
+          "type": "reply_or_fwd",
+          "msgid": "<808397266.616422.1771599959888@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 13 Feb 2026 20:00:34 +0000",
+          "subject": "Fw: Building Code Consulting LLC and KCY Engineering Code Consulting\r\n LLC info",
+          "snippet": "Hello Mr. Tariq, Please see the attachments for Kevin Cao's companies. 1. Building Code Consulting, LLC - DC 2. KCY Engineering Code Consulting, LLC - VA Thanks Zichang Zhang (Zee), P.E Director of Operations Cell: 857-300-9213 Office: 703-999-3207 GET CONNECTED: [https://www.facebook.com/Dulles-Geotechnical-and-Material-Testing-Services-DGMTS-123905965676760/]<https://www.facebook.com/Dulles-Geot",
+          "class": "unclear"
+        }
+      ]
+    },
+    "thamid@dullesgeotechinical.com": {
+      "sends": [
+        {
+          "date": "Wed, 18 Feb 2026 13:41:24 -0500 (EST)",
+          "subject": "Master Agreement - Third-Party Code Compliance Services (DC) |\r\n Building Code Consulting",
+          "type": "other",
+          "msgid": "<1661677415.418107.1771440084914@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "thamid@dullesgeotechnical.com": {
+      "sends": [
+        {
+          "date": "Wed, 18 Feb 2026 13:43:15 -0500 (EST)",
+          "subject": "Fwd: Master Agreement - Third-Party Code Compliance Services (DC) |\r\n Building Code Consulting",
+          "type": "reply_or_fwd",
+          "msgid": "<42371353.418336.1771440195878@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "khemeng@casedesign.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:05:59 -0500 (EST)",
+          "subject": "Re: Electrical Engineer Referral",
+          "type": "reply_or_fwd",
+          "msgid": "<808397266.616422.1771599959888@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 20 Feb 2026 15:01:24 +0000",
+          "subject": "Re: Electrical Engineer Referral",
+          "snippet": "Appreciate as always! Get Outlook for iOS<https://aka.ms/o0ukef> ________________________________",
+          "class": "unclear"
+        },
+        {
+          "date": "Fri, 20 Feb 2026 15:15:10 +0000",
+          "subject": "Re: Electrical Engineer Referral",
+          "snippet": "Hello Kevin, Im heading to the office and will reach out in a few. Thanks, Kwasi Get Outlook for iOS<https://aka.ms/o0ukef> ________________________________",
+          "class": "unclear"
+        }
+      ]
+    },
+    "ssingh@dullesgeotechnical.com": {
+      "sends": [
+        {
+          "date": "Fri, 20 Feb 2026 10:05:59 -0500 (EST)",
+          "subject": "Re: Electrical Engineer Referral",
+          "type": "reply_or_fwd",
+          "msgid": "<808397266.616422.1771599959888@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": [
+        {
+          "date": "Fri, 20 Feb 2026 14:39:16 +0000",
+          "subject": "Re: Electrical Engineer Referral",
+          "snippet": "Dear Kwasi, Thank you for reaching out to me earlier. As we discussed over the phone, please see the contact information below for your electrical inspection: Kevin C. Professional In Charge / President Building Code Consulting LLC Cell: (571) 365-6937 Please let me know if you need anything else or have further questions. Best regards, Sukhveer Singh Project Manager, B. Sc., M. Sc. (Civil Engg.) ",
+          "class": "unclear"
+        }
+      ]
+    },
+    "sammy@dfchomeimprovement.com": {
+      "sends": [
+        {
+          "date": "Fri, 13 Mar 2026 18:34:37 -0400 (EDT)",
+          "subject": "Fwd: RE: Third party request for ALTR-2024-06052",
+          "type": "reply_or_fwd",
+          "msgid": "<1803092707.2758404.1773441277044@privateemail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        },
+        {
+          "date": "Mon, 16 Mar 2026 10:23:07 -0400",
+          "subject": "Fwd: Request to Use 3rd Party Result",
+          "type": "reply_or_fwd",
+          "msgid": "<Mime4j.1.c9f277621345d8e3.19cf70edeee@imap.gmail.com>",
+          "account": "ycao",
+          "folder": "Sent"
+        }
+      ],
+      "replies": []
+    },
+    "postmaster@eventsdc.onmicrosoft.com": {
+      "sends": [],
+      "replies": [
+        {
+          "date": "Mon, 2 Feb 2026 21:16:02 +0000",
+          "subject": "Undeliverable: Bid Inquiry - DC Third-Party Plan Review & Inspections\r\n - Washington Commanders Stadium (2400 East Capitol Street Southeast)",
+          "snippet": "[https://products.office.com/en-us/CMSImages/Office365Logo_Orange.png?version=b8d100a9-0a8b-8e6a-88e1-ef488fee0470] Your message to vrobinson@eventsdc.com couldn't be delivered. A custom mail flow rule created by an admin at eventsdc.onmicrosoft.com has blocked your message. This mailbox is inactive and no longer receives email. admin Office 365 eventsdc.com Sender Action Required Blocked by mail ",
+          "class": "unclear"
+        }
+      ]
+    },
+    "postmaster@ma.com": {
+      "sends": [],
+      "replies": [
+        {
+          "date": "Thu, 23 Apr 2026 20:13:08 +0000",
+          "subject": "Undeliverable: Following Up \u2014 Plan Review & Inspection Services for Gallaudet Mixed-use Development | BCC",
+          "snippet": "[https://products.office.com/en-us/CMSImages/Office365Logo_Orange.png?version=b8d100a9-0a8b-8e6a-88e1-ef488fee0470] Your message to mz@ma.com couldn't be delivered. mz@ma.com only accepts messages from people in its organization or on its allowed senders list, and your email address isn't on the list. admin Office 365 mz Sender Action Required Sender not allowed How to Fix It It appears you aren't",
+          "class": "unclear"
+        }
+      ]
+    },
+    "erica.killam@mgac.com": {
+      "sends": [],
+      "replies": [
+        {
+          "date": "Thu, 19 Feb 2026 06:12:33 +0000",
+          "subject": "Automatic reply: Third-Party Inspection Services for 20 Massachusetts\r\n Ave NW Redevelopment | Building Code Consulting LLC",
+          "snippet": "Thank you for your email. I am currently out of the office on vacation and will reply when I return on Monday, February 23rd. Regards, Erica",
+          "class": "auto"
+        }
+      ]
+    },
+    "nintex@workflowcloud.com": {
+      "sends": [],
+      "replies": [
+        {
+          "date": "Mon, 16 Mar 2026 13:44:27 +0000 (UTC)",
+          "subject": "Request to Use 3rd Party Result",
+          "snippet": "Your request to use a 3rd party has been rejected forALTR-2024-06052 at 1842 St. Roman Dr. Vienna, VA 22182. Please see comments below: Denied. The third party inspector notified me that this request is for the basement. Based on the county inspector comment, Caleb, this permit needs to be amended to have the basement removed and get a new permits to do the basement work. Once the process is done ",
+          "class": "unclear"
+        }
+      ]
+    }
+  }
+}
