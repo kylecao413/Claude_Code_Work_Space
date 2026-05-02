@@ -10,7 +10,7 @@ Copy/paste these answers into the portal fields:
 | Field | Value |
 |-------|-------|
 | Full Legal Name | Yue Cao |
-| Preferred Name | Kyle Cao |
+| Preferred Name | (leave blank — professional name = legal name = Yue Cao; "Kyle" is casual nickname only) |
 | Date of Birth | 11/04/1986 |
 | Sex | Male |
 | SSN | 885-85-5389 |

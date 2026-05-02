@@ -1,0 +1,16 @@
+Greenville City + County, SC — TPI/SI PDFs
+Verified live 2026-04-27. Bash/curl sandboxed — manual download via browser.
+
+1. Greenville COUNTY Special Inspection Procedure (rev. June 2023)
+   https://www.greenvillecounty.org/BuildingSafety/forms/SpecialInspectionProcedure.pdf
+   Save as: Greenville_County_Special_Inspection_Procedure.pdf
+   --> The most important reference for the Greenville metro
+
+2. Greenville City Final Report of Special Inspections (legacy URL, currently 404)
+   https://www.greenvillesc.gov/DocumentCenter/View/7187
+   Status: form retired or relocated; verify with City Building Official during outreach
+
+City Permit Center portal: https://grvl-egov.aspgov.com/grvlc2gbp/index.html
+County eTRAKiT portal:    https://grvlc-trk.aspgov.com/eTRAKiT/
+City Building & Permit Center: https://www.greenvillesc.gov/656/Building-Permit-Center
+City Permit E-Forms:           https://www.greenvillesc.gov/1626/Building-Permit-Applications-E-Forms

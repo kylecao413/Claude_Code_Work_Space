@@ -1,0 +1,29 @@
+SC LLR Building Codes Council — Special Inspector PDFs
+Verified live 2026-04-27. Bash/curl currently sandboxed in this session — manual download via browser when filing.
+
+1. Special Inspector Registration Application (the actual app form)
+   https://llr.sc.gov/bcc/PDFfiles/Special_Inspectors_Reg_App.pdf
+   Save as: SC_LLR_SI_Registration_Application.pdf
+
+2. Special Inspector Manual (2009-08-26 — defines categories, ICC certs accepted per category)
+   https://www.llr.sc.gov/bcc/PDFfiles/SPECIAL%20INSPECTION%20MANUAL%20082609.pdf
+   Save as: SC_LLR_Special_Inspection_Manual_2009.pdf
+
+3. Statement of Special Inspections form (per-project form filed by RDP)
+   https://llr.sc.gov/bcc/PDFfiles/Special_Inspection_Form.pdf
+   Save as: SC_LLR_Statement_of_Special_Inspections_Form.pdf
+
+4. Special Inspectors Online Guidelines Package (instructions for online application)
+   https://llr.sc.gov/BCC/Forms/Special_Inspectors_Online_Guidelines_(package).pdf
+   Save as: SC_LLR_Online_Guidelines_Package.pdf
+
+5. Special Inspector Experience Affidavit (EIT route attachment)
+   https://llr.sc.gov/bcc/PDFfiles/Special%20Inspector%20Experience%20Affidavit.pdf
+   Save as: SC_LLR_SI_Experience_Affidavit.pdf
+
+6. Direct Supervision Affidavit (EIT route attachment, PE-signed)
+   https://llr.sc.gov/bcc/Forms/Direct-Supervision-Affidavit.pdf
+   Save as: SC_LLR_Direct_Supervision_Affidavit.pdf
+
+Online application portal: https://eservice.llr.sc.gov/NewAppsV3/
+Document submission portal: https://eservice.llr.sc.gov/SSO/Login/LoginPage?ReturnUrl=%2fDocumentSubmission

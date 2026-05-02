@@ -21,10 +21,14 @@ def _load() -> dict:
         return yaml.safe_load(f)
 
 
-def _fill(src: Path, dst: Path, text_map: dict[str, str], check_map: dict[str, bool] | None = None) -> None:
-    """Fill a PDF's text fields (text_map) and checkbox fields (check_map).
+def _fill(src: Path, dst: Path, text_map: dict[str, str], check_map: dict[str, bool | str] | None = None) -> None:
+    """Fill a PDF's text fields (text_map) and checkbox/radio fields (check_map).
 
-    For checkboxes, pass True to check, False/absent to leave unchecked.
+    check_map values:
+      - True            → set to /Yes
+      - False / absent  → leave unchecked
+      - str (e.g. /Male, /Home, /Choice4) → set to that exact export name
+        (use when the form's button group has named options beyond Yes/Off)
     """
     reader = PdfReader(str(src))
     writer = PdfWriter(clone_from=reader)
@@ -40,7 +44,13 @@ def _fill(src: Path, dst: Path, text_map: dict[str, str], check_map: dict[str, b
             print(f"  warn (text): {e}")
 
     if check_map:
-        checked = {k: NameObject("/Yes") for k, v in check_map.items() if v}
+        checked: dict[str, NameObject] = {}
+        for k, v in check_map.items():
+            if v is True:
+                checked[k] = NameObject("/Yes")
+            elif isinstance(v, str) and v:
+                # explicit export name like "/Male", "/Home", "/Choice4"
+                checked[k] = NameObject(v if v.startswith("/") else f"/{v}")
         if checked:
             for page in writer.pages:
                 try:
@@ -229,6 +239,9 @@ def fill_sc(info: dict) -> None:
     b = info["business"]
     edu = info["education"]
     emp = info["employment"]
+    ex = info["exams"]
+    lic = info["licenses"]
+    ref = info["references"]
 
     def edu_field(i: int, key: str) -> str:
         if i >= len(edu):
@@ -245,10 +258,12 @@ def fill_sc(info: dict) -> None:
         if i >= len(emp):
             return ""
         E = emp[i]
+        # SubProWork = subordinate/junior engineering work; for senior roles set to "N/A".
+        # ProWork = professional/responsible-charge work — uses position + project summary.
         return {
             "dates": f'{E.get("from_date", "")} - {E.get("to_date", "")}',
             "name": E.get("employer", ""),
-            "sub": "[TBD: Subordinate work description]",
+            "sub": "N/A",
             "pro": f'{E.get("position", "")} - {E.get("projects", "")}',
             "total": str(E.get("months_full_time", "")),
         }.get(key, "")
@@ -256,7 +271,36 @@ def fill_sc(info: dict) -> None:
     full_home_addr = f'{p["home_street"]}, {p["home_city"]}, {p["home_state"]} {p["home_zip"]}'
     full_biz_addr = f'{b["street"]}, {b["city"]}, {b["state"]} {b["zip"]}'
 
-    text_map = {
+    # 5 SC reference slots — fill with the 4 PE refs + Jeff Tan as the 5th
+    # (SC commonly accepts 1 character ref alongside PE refs; Kyle to verify
+    # SC instructions before notarizing if all 5 must be PE).
+    ref_slots: list[dict] = []
+    pe_only = [r for r in ref if r.get("is_pe")]
+    non_pe = [r for r in ref if not r.get("is_pe")]
+    ref_slots.extend(pe_only[:4])
+    if non_pe:
+        ref_slots.append(non_pe[0])  # Jeff Tan
+    while len(ref_slots) < 5:
+        ref_slots.append({"name": "", "address": ""})
+
+    # Engineering exam history summary (FE + 4 PE incl. one Fail)
+    exam_summary = (
+        f'FE Civil {ex["fe"]["date"]} {ex["fe"]["location"]} - Pass; '
+        f'PE Civil-Geotech {ex["pe_civil"]["date"]} {ex["pe_civil"]["location"]} - Pass; '
+        f'PE Control Systems {ex["pe_control_systems"]["date"]} {ex["pe_control_systems"]["location"]} - Fail; '
+        f'PE Electrical/Computer-ECC {ex["pe_electrical"]["date"]} {ex["pe_electrical"]["location"]} - Pass; '
+        f'PE Fire Protection {ex["pe_fire"]["date"]} {ex["pe_fire"]["location"]} - Pass.'
+    )
+
+    # Other-jurisdiction license summary (3 slots → VA / DC / MD)
+    pe_lics = [L for L in lic if L.get("type", "").startswith("Professional Engineer")]
+    def lic_summary(i: int) -> str:
+        if i >= len(pe_lics):
+            return ""
+        L = pe_lics[i]
+        return f'{L["state"]} PE {L["number"]} / {L.get("initial_issue_date", L.get("year_issued", ""))} - {L.get("status", "Active")}'
+
+    text_map: dict[str, str] = {
         "Applicant Name": p["full_legal"],
         "Home Address": full_home_addr,
         "Home Telephone": p["home_phone"],
@@ -267,6 +311,17 @@ def fill_sc(info: dict) -> None:
         "Business Email": b["email"],
         "SSN": p["ssn"],
         "DOB": p["dob_slash"],
+        # 5 reference rows
+        "NameRow1": ref_slots[0].get("name", ""),
+        "Mailing AddressRow1": ref_slots[0].get("address", ""),
+        "NameRow2": ref_slots[1].get("name", ""),
+        "Mailing AddressRow2": ref_slots[1].get("address", ""),
+        "NameRow3": ref_slots[2].get("name", ""),
+        "Mailing AddressRow3": ref_slots[2].get("address", ""),
+        "NameRow4": ref_slots[3].get("name", ""),
+        "Mailing AddressRow4": ref_slots[3].get("address", ""),
+        "NameRow5": ref_slots[4].get("name", ""),
+        "Mailing AddressRow5": ref_slots[4].get("address", ""),
         # Education rows
         "Name and Location of InstitutionRow1": edu_field(0, "school"),
         "Years Attended From  ToRow1": edu_field(0, "years"),
@@ -280,7 +335,22 @@ def fill_sc(info: dict) -> None:
         "Years Attended From  ToRow3": edu_field(2, "years"),
         "Date Graduated MonthDayYearRow3": edu_field(2, "grad"),
         "Degree ReceivedMajorRow3": edu_field(2, "degree"),
-        # Employment (array-index fields)
+        # Disclosure detail text fields (Yes/No checkboxes left blank — Kyle ticks by hand;
+        # field-name pairings are inferred and could be reversed, so polarity stays manual)
+        "If so date of examination": exam_summary,
+        "If so date of examination_2": f'PE Control Systems {ex["pe_control_systems"]["date"]} {ex["pe_control_systems"]["location"]} - Fail (only failed attempt; passed PE Electrical/Computer-ECC the following year).',
+        "If so jurisdictiondatecert no": lic_summary(0),
+        "If so jurisdictiondatecert no_2": lic_summary(1),
+        "If so jurisdictiondatecert no_3": lic_summary(2),
+        "If so list numberdate1": "N/A",
+        "If so list numberdate": "N/A",
+        "If so List COA": (
+            "N/A - Building Code Consulting LLC (Virginia) is not currently registered "
+            "in South Carolina. Upon issuance of the individual SC PE license, the firm "
+            "will file for a SC Certificate of Authorization prior to offering or "
+            "performing any engineering services within South Carolina."
+        ),
+        # Employment rows 0-3 (4 slots filled)
         "2DatesEmployment.0": emp_block(0, "dates"),
         "2EmpName.0": emp_block(0, "name"),
         "2SubProWork.0": emp_block(0, "sub"),
@@ -291,7 +361,23 @@ def fill_sc(info: dict) -> None:
         "2SubProWork.1": emp_block(1, "sub"),
         "2ProWork.1": emp_block(1, "pro"),
         "2TotalTime.1": emp_block(1, "total"),
-        "2WhatBranch": "Electrical and Computer (primary NCEES discipline); also Civil-Geotechnical, Fire Protection",
+        "2DatesEmployment.2": emp_block(2, "dates"),
+        "2EmpName.2": emp_block(2, "name"),
+        "2SubProWork.2": emp_block(2, "sub"),
+        "2ProWork.2": emp_block(2, "pro"),
+        "2TotalTime.2": emp_block(2, "total"),
+        "2DatesEmployment.3": emp_block(3, "dates"),
+        "2EmpName.3": emp_block(3, "name"),
+        "2SubProWork.3": emp_block(3, "sub"),
+        "2ProWork.3": emp_block(3, "pro"),
+        "2TotalTime.3": emp_block(3, "total"),
+        # Engineering experience totals — 32 (BCC) + 96 (UES-CTI) + 50 (DMY) + 24 (YIDA) = 202;
+        # but UES-CTI (96 mo) overlaps with BCC (32 mo) since both are concurrent self-employed
+        # PIC roles. Net non-overlapping full-time: 96 + 50 + 24 = 170 months ~= 14.2 years.
+        "2SubProTotal": "0",                          # no subordinate-only periods claimed
+        "2ProTotal": "170",                           # responsible-charge total months
+        "2Total": "170",
+        "2WhatBranch": "Electrical and Computer (primary NCEES discipline); also Civil-Geotechnical and Fire Protection",
         # VLC block (legal presence)
         "NameVLC": p["full_legal"],
         "Home Address City State and Zip Code": full_home_addr,
@@ -300,7 +386,16 @@ def fill_sc(info: dict) -> None:
         "Alien Number": p["alien_number"],
         "I94 Number": p["i94_number"],
     }
-    _fill(HERE / "SC" / "SC_PE_Comity.pdf", HERE / "SC" / "SC_PE_Comity_PREFILLED.pdf", text_map)
+
+    # Unambiguous radio-style buttons (export-name values, not just /Yes)
+    check_map: dict[str, bool | str] = {
+        "cbSex": "/Male",
+        "cbAddress": "/Home",     # personal email + home phone are primary contact per yaml
+        # Yes/No disclosure checkboxes deliberately NOT auto-checked — see comment above.
+        # Group1 (4 choices) also left for Kyle to pick manually before notarizing.
+    }
+
+    _fill(HERE / "SC" / "SC_PE_Comity.pdf", HERE / "SC" / "SC_PE_Comity_PREFILLED.pdf", text_map, check_map)
 
 
 def fill_tx(info: dict) -> None:
@@ -332,7 +427,7 @@ def fill_tx(info: dict) -> None:
         return {
             "dates": f'{E.get("from_date", "")} - {E.get("to_date", "")}',
             "emp": f'{E.get("employer", "")} - {E.get("position", "")}',
-            "noneng": "0",
+            "noneng": "",
             "eng": str(E.get("months_full_time", "")),
             "verifier": f'{E.get("verifying_engineer", "")}, {E.get("verifier_license", "")}',
         }.get(key, "")
@@ -356,17 +451,17 @@ def fill_tx(info: dict) -> None:
         "Employer City, State, Zip": full_biz_citystatezip,
         "Employer Telephone Number": b["phone"],
         "Employer Fax Number": "",
-        "Primary Branch": "Electrical and Computer Engineering",
+        "Primary Branch": "Electrical and Computer",
         "FE Where?": ex["fe"]["location"],
         "FE When?": ex["fe"]["date"],
         "PE Where?": ex["pe_electrical"]["location"],
         "PE When?": ex["pe_electrical"]["date"],
-        "States With Other Current Licenses": "VA (primary); DC, MD (PE - currently updating via NCEES Record for FP discipline)",
+        "States With Other Current Licenses": "VA, DC, MD",
         "States With Other Expired Licenses": "None",
         "States Where Licenses Were Denied": "None",
         "States Where Disciplined": "None",
         "Primary Jurisdiction": "VA",
-        "Date Transmitted": "[TBD: date NCEES Record transmitted to TX]",
+        "Date Transmitted": "",   # leave blank — fill by hand when you order NCEES → TX transmittal
         # Education rows
         "education degree program 1": edu_field(0, "program"),
         "education degree type 1": edu_field(0, "type"),

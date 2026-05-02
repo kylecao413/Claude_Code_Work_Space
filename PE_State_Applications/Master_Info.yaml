@@ -12,9 +12,9 @@ personal:
   first: Yue
   middle: ""
   last: Cao
-  preferred_first: Kyle         # goes by "Kyle Cao" professionally; legal = Yue Cao
+  preferred_first: Kyle         # casual nickname only; PROFESSIONAL + LEGAL name = Yue Cao (PE seal, all state apps)
   full_legal: "Yue Cao"
-  other_names: "Kyle Cao (preferred / professional name)"
+  other_names: ""               # do NOT list "Kyle Cao" on PE forms — Kyle is casual nickname, not used professionally
   dob_slash: "11/04/1986"
   dob_nohyp: "11041986"
   sex: "M"
@@ -89,30 +89,43 @@ education:
     graduated: false
     abet: "Yes (OMSCS - not required for PE)"
 
-# ---- Exams (all confirmed 2026-04-22) ----
-# Order: FE first, then PE exams chronologically. All Pass.
+# ---- Exams (cities confirmed from NCEES dashboard 2026-04-26) ----
+# Order on application forms: FE first, then PE exams chronologically.
+# IMPORTANT: pe_control_systems is a FAIL — some state apps require listing
+# all PE attempts including failures. Disclose if the form asks. Do NOT
+# answer "Yes" to "denied examination" — failing != being denied.
 exams:
   fe:
     date: "10/2013"
     location: "Boston Area, MA"
     discipline: "FE Civil"
     result: "Pass"
-  pe_electrical:
-    date: "10/2021"              # Oct 20, 2021
-    location: "Virginia"
-    discipline: "PE Electrical and Computer - Electronics, Controls, and Communications"
-    result: "Pass"
-    ncees_registration: "400063613"
   pe_civil:
     date: "10/2017"
-    location: "Virginia"
+    location: "Northern Virginia Area, VA"
     discipline: "PE Civil - Geotechnical"
     result: "Pass"
+    board: "Virginia"
+  pe_control_systems:
+    date: "10/2020"
+    location: "Arlington Area, VA"
+    discipline: "PE Control Systems"
+    result: "Fail"
+    board: "Virginia"
+    notes: "Failed attempt; passed PE Electrical/Computer-ECC the following year. List on any app that asks for full exam history including failures."
+  pe_electrical:
+    date: "10/20/2021"
+    location: "Pearson Professional Centers - Washington, DC"   # NOTE: tested at DC center even though VA is the board
+    discipline: "PE Electrical and Computer - Electronics, Controls, and Communications"
+    result: "Pass"
+    board: "Virginia"
+    ncees_registration: "400063613"
   pe_fire:
-    date: "04/2026"              # 04-16-2026
-    location: "Virginia"
+    date: "04/16/2026"
+    location: "Pearson Professional Centers - Reston, VA"
     discipline: "PE Fire Protection"
     result: "Pass"
+    board: "Virginia"
 
 # ---- Licenses currently held ----
 # DC + MD PE already held - no new application needed. Just order NCEES Record
@@ -131,13 +144,13 @@ licenses:
     year_issued: "2018"              # initial issue date: 04/17/2018
     initial_issue_date: "04/17/2018"
     type: "Professional Engineer"
-    status: "Active - adding FP via NCEES transmittal only"
+    status: "Active"
   - state: "MD"
     number: "0052837"
     year_issued: "2018"              # initial issue date: 06/15/2018
     initial_issue_date: "06/15/2018"
     type: "Professional Engineer"
-    status: "Active - adding FP via NCEES transmittal only"
+    status: "Active"
   # Related licenses (mention on apps as 'other licenses'):
   - state: "VA"
     number: "[TBD: VA Master Electrician number]"
@@ -157,16 +170,16 @@ employment:
     to_date: "Present"
     employer: "Building Code Consulting LLC, 3914 Tallow Tree Court, Fairfax, VA 22033"
     position: "President / Principal Engineer"
-    months_full_time: "~32 months (Aug 2023 - Apr 2026)"
-    verifying_engineer: "Self (sole member)"
-    verifier_license: "VA PE 0402056707 (self)"
+    months_full_time: "32"
+    verifying_engineer: "Self"
+    verifier_license: "VA PE 0402056707"
     projects: "Third-party code compliance inspection, plan review, and code consulting across DC, VA, MD. Disciplines: Building, Mechanical, Electrical, Plumbing, Fire Protection."
   - from_date: "04/2018"
     to_date: "Present"
     employer: "UES-CTI District Services Inc., 6856 Eastern Avenue NW, Suite 211, Washington, DC 20012"
     position: "Professional In Charge"
-    months_full_time: "~96 months (Apr 2018 - Apr 2026)"
-    verifying_engineer: "Ray Bradner (Manager, CTI/UES) - not PE"
+    months_full_time: "96"
+    verifying_engineer: "Ray Bradner, Manager"
     verifier_license: "N/A"
     verifier_email: "rbradner@teamues.com"
     projects: "Electrical / MEP / FP plan review and third-party inspection. Major project: Micron Technology Blue Ridge FAB & CUP, Manassas VA (04/2018 - 12/2025) - full-time onsite code, equipment, and system inspections + commissioning support."
@@ -174,25 +187,22 @@ employment:
     to_date: "03/2018"
     employer: "DMY Capital LLC (DMY Engineering Consultants), 4170 Lafayette Center Drive, Suite 500, Chantilly, VA 20151"
     position: "Project Engineer"
-    months_full_time: "~50 months (Jan 2014 - Mar 2018)"
-    verifying_engineer: "[TBD: DMY supervisor name]"
-    verifier_license: "[TBD]"
+    months_full_time: "50"
+    verifying_engineer: "See NCEES Record 14-528-37"   # Kyle has strained relationship with former DMY owner; Record covers employment verification on comity track (2026-04-26)
+    verifier_license: "Verified via NCEES Record"
     projects: "Geotechnical, civil, and electrical engineering support on mixed-use, residential, commercial projects across NoVA / MD. Plan review and field inspection assistance."
-  - from_date: "07/2018"
-    to_date: "03/2020"
-    employer: "Frederick County, MD - Building & Permit Department"
-    position: "Combination Inspector (part-time contractor) - Electrical, Plumbing, Building"
-    months_full_time: "Part-time concurrent with UES-CTI"
-    verifying_engineer: "Bob Ensor (manager - not Building Official, not PE)"
-    verifier_license: "N/A"
-    projects: "County building, plumbing, electrical code inspections."
+  # Frederick County 2018-2020 part-time intentionally OMITTED from state apps:
+  # (1) NOT on NCEES Record — no independent verification path
+  # (2) part-time concurrent with full-time UES-CTI — adds zero full-time months
+  # (3) CTI Staff parent chain already covered by the UES-CTI row above
+  # Decided 2026-04-27 — Kyle confirmed NCEES Record doesn't have it.
   - from_date: "09/2008"
     to_date: "09/2010"
-    employer: "YIDA Group - 5th County Project, Dalian, China"
+    employer: "YIDA Group - 5th County Project, Dalian, China (entity dissolved/bankrupt; no longer operating)"
     position: "Structural Engineer / Assistant Construction Manager"
-    months_full_time: "24 months"
-    verifying_engineer: "[TBD: former YIDA supervisor - may not be needed given recent US experience]"
-    verifier_license: "N/A"
+    months_full_time: "24"
+    verifying_engineer: "Unable to verify - employer dissolved; see NCEES Record 14-528-37"
+    verifier_license: "Verified via NCEES Record"
     projects: "Luxury residential community structural design, pre-con management, electrical and fire protection assistant construction management."
 
 # ---- Professional References ----
@@ -215,29 +225,29 @@ references:
     notes: "Primary employment verifier (already signed VA DPOR experience form)."
   - name: "Xuebin Huang, P.E."
     title: "[TBD]"
-    company: "[TBD]"
+    company: "Plus Engineering"
     license: "DC PE PE064574"      # confirmed 2026-04-23: DC PE
-    address: "[TBD]"
-    email: "[TBD]"
-    phone: "[TBD]"
+    address: "14416 Golden Oak Ct, Centreville, VA 20121"
+    email: "daniel@pluspes.com"
+    phone: "(716) 380-9602"
     years_known: "[TBD]"
     is_pe: true
   - name: "Yu Tan, P.E."
     title: "[TBD]"
-    company: "[TBD]"
+    company: "Plus Engineering"
     license: "VA PE 0402052555"    # format 040205#### matches VA PE license style
-    address: "[TBD]"
-    email: "[TBD]"
-    phone: "[TBD]"
+    address: "4309 Holly Ln, Annandale, VA"
+    email: "jeff@pluspes.com"
+    phone: "(703) 919-0008"
     years_known: "[TBD]"
     is_pe: true
   - name: "Yi Tian, P.E."
     title: "[TBD]"
     company: "[TBD]"
     license: "VA PE 0402059720"
-    address: "[TBD]"
-    email: "[TBD]"
-    phone: "[TBD]"
+    address: "6115 Clifton Rd, Clifton, VA 20124"
+    email: "tianyi12345@gmail.com"
+    phone: "(405) 385-2269"
     years_known: "[TBD]"
     is_pe: true
   # Non-PE professional / character references (kept as backups; NOT used

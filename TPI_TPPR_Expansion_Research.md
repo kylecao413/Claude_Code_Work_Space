@@ -192,9 +192,9 @@ Estimated minimum entry cost per priority state: **$2,000–$5,000** (PE comity 
 
 **Statute:** [SC Code Title 6 Ch. 9](https://www.scstatehouse.gov/code/t06c008.php) + [SC Building Codes Council CRR 8-700](https://www.scstatehouse.gov/coderegs/Chapter%208.pdf).
 
-**Application:** [SCLLR Special Inspectors Page](https://llr.sc.gov/bcc/siinfo.aspx). $50 application fee. Required: copies of ICC (or other recognized cert org) certifications. **Architects and PEs licensed in SC are exempt from registration** — they can act as special inspectors automatically.
+**Application:** [SCLLR Special Inspectors Page](https://llr.sc.gov/bcc/siinfo.aspx). $50 application fee. Required: copies of ICC (or other recognized cert org) certifications. **Architects and PEs licensed in SC are exempt from registration** statewide — but per BCC FAQ, individual local jurisdictions may still require the registration; file the $50 anyway as belt-and-suspenders.
 
-**Renewal:** Annual.
+**Renewal:** **Biennial** (corrected 2026-04-27 per LLR site verification — earlier note said annual, that was wrong). Cycle expires June 30 of odd-numbered years; current cycle 2025-2027.
 
 **Bottom line:** Cheapest entry in the country at $50. If BCC has SC PE, no registration even needed. Charleston specifically [accepts third-party inspections](https://www.charleston-sc.gov/1518/Third-Party-Building-Inspections).
 

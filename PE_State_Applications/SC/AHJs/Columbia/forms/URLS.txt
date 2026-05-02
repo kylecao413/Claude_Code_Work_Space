@@ -1,0 +1,13 @@
+City of Columbia, SC — No formal TPI/SI registration forms
+Verified 2026-04-27.
+
+Columbia does NOT publish a city-level Third-Party Inspection registration program.
+Use SC LLR statewide framework (see SC_LLR_Statewide folder).
+
+For per-project Statement of Special Inspections:
+   https://llr.sc.gov/bcc/PDFfiles/Special_Inspection_Form.pdf
+   (already tracked in SC_LLR_Statewide/forms/URLS.txt)
+
+Columbia Inspections landing pages:
+   https://planninganddevelopment.columbiasc.gov/inspections/
+   https://planninganddevelopment.columbiasc.gov/commercial-inspection-contacts/

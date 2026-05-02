@@ -1,0 +1,17 @@
+Charleston SC TPI Program — PDFs
+Verified live 2026-04-27. Bash/curl currently sandboxed — manual download via browser.
+
+1. City of Charleston Third Party Inspection Program Policy (September 2021)
+   https://www.charleston-sc.gov/DocumentCenter/View/31221/COC-Third-Party-Inspection-Program-092021
+   Save as: Charleston_TPI_Program_Policy_2021.pdf
+
+2. Older version (cross-reference, in case 2021 doc supersedes details)
+   https://www.charleston-sc.gov/DocumentCenter/View/12847/City-of-Charleston-Third-Party-Building-Inspection-Program
+   Save as: Charleston_TPI_Program_Policy_legacy.pdf
+
+3. IECC form (referenced from Document Center)
+   https://charleston-sc.gov/DocumentCenter/View/841/IECC-form-
+   Save as: Charleston_IECC_Form.pdf
+
+Main TPI page: https://www.charleston-sc.gov/1518/Third-Party-Building-Inspections
+Inspections Procedure: https://charleston-sc.gov/906/Inspections-Procedure
