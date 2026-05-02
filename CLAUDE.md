@@ -146,6 +146,41 @@ with operator_lock(__file__):
     run_send_loop()
 ```
 
+## Cross-Machine Letter Protocol (Mac ↔ Windows)
+
+Letters between Mac Claude and Windows Claude live in the bridge folder, **not
+in this git repo**. The bridge folder is `My Drive > claude-bridge`
+(bidirectional Drive sync — same folder used by `active_operator.py`).
+
+| File | Direction | Convention |
+|------|-----------|------------|
+| `<bridge>/to-mac.md`     | Windows → Mac | Append-only message blocks |
+| `<bridge>/to-windows.md` | Mac → Windows | Append-only message blocks |
+| `<bridge>/attachments/`  | Both          | Large code blocks / outputs referenced by name |
+
+**Naming**: hyphen, not underscore (`to-mac.md`, NOT `to_mac.md`). Do NOT
+create underscore-named letter files in the repo root — that has happened
+twice now and confused both sides. The bridge READMEs are authoritative on
+format (timestamp + FROM/TO + body + Asks + `Status: OPEN/REPLIED`,
+append-only, never delete history).
+
+**Why bridge, not git**:
+- Letters are ephemeral chat, not source. Versioning them in git pollutes
+  history without value.
+- Bidirectional. Mac can reply in seconds; git would require commit + push
+  on the other side too.
+- Already wired up — the bridge folder + protocol + READMEs exist since
+  2026-04-26.
+
+**Sync model summary** (use the right channel for the right thing):
+
+| Content | Channel |
+|---------|---------|
+| Business code + flow docs (`*.py`, `CLAUDE.md`, rules) | git push/pull (version-controlled) |
+| Letters / status pings between Mac & Windows Claude | `<bridge>/to-{mac,windows}.md` |
+| Project files NOT in git (`*.docx`, `*.pdf`, `Projects/`, drawings) | Drive `Computers > My Laptop` (read-mostly) |
+| Remote execution of Windows scripts from Mac | `core_tools/bcc-remote.sh` (Tailscale + SSH) |
+
 ## Architecture: Hybrid Intelligence QA
 
 This system follows a **dual-brain architecture** as described in the 2026 QA blueprint:
