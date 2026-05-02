@@ -32,8 +32,49 @@
   - 内部笔记: PRR section + 修改方案
   - 客户交付物: **只列 observation + code 引用**，**不能给 suggested correction 文字**
 - **Checklists**: `Fairfax_Meeting_Prep/KCY_Peer_Review_Checklists/` —— 7 个 trade × 3 tier (a/b/c) + 县级 detail / Other Agency Coordination + 复用 deficiency-log 模板。
-- **Inspection report 流程**（参考 `fill_3303_lockheed_reinspection.py` / `fill_1005_union_church_footing.py`）: fill AcroForm → chunk comments → ASCII-safe → fitz 在 "Signature:" 行盖 `E-Sig.jpg` → flatten 250 DPI → `fairfax_3pi_submit.py` 提交。
-- **每个 Fairfax 项目首动作**: dump owner/permit/inspector 元数据到该项目文件夹的 `project_info.md`，不要靠脑子记、不要反复问 Kyle。
+
+### 4a. ⭐ 新项目首动作：提早记录 metadata 到 `project_info.md`
+
+任何 Fairfax 新项目（无论是 3PI request 还是 inspection report 准备），**第一件事**
+就是在该项目文件夹里建/更新 `project_info.md`，记录：
+
+- Owner 公司 + contact + phone + email
+- Permit number(s) + issue date
+- Project address + jurisdiction
+- Inspection log（每次去哪一项 / pass/fail / 日期）
+- 任何 Kyle 当面/电话给的零碎信息
+
+**为什么硬规则**（MEMORY: `feedback_extract_project_info_first.md`）：
+- Owner 信息现在源头是 `ycao@kcyengineer.com` inbox —— 不要每次都让 Kyle 重复
+- 不要等到 session 末尾才建，不要靠 docstring 记忆
+- 后续 fill scripts (`fill_*.py`) 都从 `project_info.md` 读，不再问 Kyle
+
+### 4b. 3PI Request Submission —— `fairfax_3pi_submit.py`
+
+- 入口: `python fairfax_3pi_submit.py`（Playwright 自动化，提交到 Fairfax workflowcloud
+  form）
+- 已知 fix（不要再踩坑）: workflowcloud 表单要 **label-click**（不是 input click），
+  以及提交后必须等 confirmation text 出现才能算成功
+- 已 wrap `active_operator` lock（commit `5086a3f`）—— Phase 2 之后从 Mac 调用要走
+  `core_tools/bcc-remote.sh fairfax_3pi_submit.py`
+
+### 4c. Inspection Report —— canonical 5 步流程
+
+参考实现: `fill_3303_lockheed_reinspection.py` / `fill_1005_union_church_footing.py`：
+
+1. `fill AcroForm` —— 从 `project_info.md` 拿 owner/permit 填表
+2. `chunk comments` —— 长 comment 切片避免溢出 PDF 框
+3. `ASCII-safe` —— 替换 smart quote / em-dash 等非 ASCII 字符
+4. `fitz` 在 "Signature:" 行盖 `E-Sig.jpg` —— 用 `page.search_for("Signature:")`
+   定位坐标。E-Sig 路径: `…\Logo E-Sig Stamp\E-Sig.jpg`
+5. flatten 250 DPI（防 reviewer 改字段）→ 调 `send_<job>_report.py` 发给 owner
+
+**Token 效率硬规则**（MEMORY: `feedback_token_efficiency_inspection_jobs.md`）：
+routine inspection report job 应该 **5-7 个 tool call 内完成**。不要：
+- 每改一行就重读 PDF
+- 已证明流程还做 dry-run
+- 反复问 Kyle 同一项 metadata（去 `project_info.md` 拿）
+- TargetClosedError 自动重试（Playwright 挂了先停下问）
 
 ## 5. PE Multistate Expansion 结构搭好了
 
