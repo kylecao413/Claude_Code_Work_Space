@@ -52,21 +52,20 @@ def add_body(text):
     return p
 
 
-# Title — filing entity must be identified by its CURRENT legal name on file with VA SCC.
-# The new name (KCY Engineer PLLC) is adopted by the restatement itself in Article I.
+# Title — per VA SCC rejection guidance (2026-04-28), the amended-and-restated
+# articles must only set forth the AMENDED (new) name. The currently existing
+# name appears only in the separate Articles of Restatement cover document.
 add_centered("RESTATED ARTICLES OF ORGANIZATION", bold=True, size=14)
 add_centered("OF", bold=True, size=12)
-add_centered("KCY ENGINEERING CODE CONSULTING, LLC", bold=True, size=14)
+add_centered("KCY ENGINEER PLLC", bold=True, size=14)
 add_centered("Virginia SCC Entity ID: 11579383", size=11)
-add_centered("Originally formed August 10, 2023", size=11)
 
 doc.add_paragraph()  # spacer
 
 add_body(
     "Pursuant to Virginia Code § 13.1-1014.1, the Articles of Organization "
-    "of KCY Engineering Code Consulting, LLC (the \"Company\"), originally "
-    "filed with the Virginia State Corporation Commission on August 10, 2023, "
-    "are hereby restated in their entirety to read as follows:"
+    "of the Company (the \"Company\") are hereby amended and restated in "
+    "their entirety to read as follows:"
 )
 
 # ARTICLE I — NAME
@@ -162,9 +161,7 @@ p = doc.add_paragraph("_______________________________________")
 p.paragraph_format.space_after = Pt(0)
 p = doc.add_paragraph("Yue Cao, Sole Member")
 p.paragraph_format.space_after = Pt(0)
-p = doc.add_paragraph("KCY Engineering Code Consulting, LLC")
-p.paragraph_format.space_after = Pt(0)
-p = doc.add_paragraph("(to be renamed KCY Engineer PLLC upon effectiveness of this filing)")
+p = doc.add_paragraph("KCY Engineer PLLC")
 p.paragraph_format.space_after = Pt(0)
 doc.add_paragraph("Date: April 20, 2026")
 

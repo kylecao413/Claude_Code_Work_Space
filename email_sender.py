@@ -114,6 +114,8 @@ def _build_html_message(
     attachment_path: str | None = None,
     attachment_paths: list[str] | None = None,
     brand: dict = BCC_BRAND,
+    in_reply_to: str | None = None,
+    references: str | None = None,
 ) -> MIMEMultipart:
     """
     Build a multipart/related HTML email with:
@@ -121,6 +123,7 @@ def _build_html_message(
       - HTML body with brand-specific signature block
       - Inline brand logo (cid per brand)
       - Optional PDF attachment
+      - Optional threading headers (In-Reply-To, References) for proper reply chain
     """
     # Outer container: related (holds html + inline image)
     outer = MIMEMultipart("related")
@@ -129,6 +132,12 @@ def _build_html_message(
     outer["Subject"] = subject
     if cc_list:
         outer["Cc"]  = ", ".join(cc_list)
+    if in_reply_to:
+        outer["In-Reply-To"] = in_reply_to
+    if references:
+        outer["References"] = references
+    elif in_reply_to:
+        outer["References"] = in_reply_to
 
     # Alternative: plain + html
     alt = MIMEMultipart("alternative")
@@ -208,9 +217,11 @@ def _smtp_send(
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def send_from_admin(
-    to_email: str, subject: str, body_plain: str, cc: str | None = None
+    to_email: str, subject: str, body_plain: str, cc: str | None = None,
+    in_reply_to: str | None = None, references: str | None = None,
 ) -> tuple[bool, str]:
-    """Send HTML email from admin@ with inline logo + signature. CC ycao@ automatically."""
+    """Send HTML email from admin@ with inline logo + signature. CC ycao@ automatically.
+    Pass in_reply_to / references to thread the message under an existing conversation."""
     cc_list = [CC_YCAO]
     if cc:
         for e in cc.replace(",", " ").split():
@@ -218,15 +229,18 @@ def send_from_admin(
             if e and e not in (CC_YCAO, to_email):
                 cc_list.append(e)
 
-    msg = _build_html_message(ADMIN_FROM, to_email, subject, body_plain, cc_list)
+    msg = _build_html_message(ADMIN_FROM, to_email, subject, body_plain, cc_list,
+                              in_reply_to=in_reply_to, references=references)
     return _smtp_send(msg, ADMIN_FROM, [to_email] + cc_list)
 
 
 def send_from_admin_with_attachment(
     to_email: str, subject: str, body_plain: str, attachment_path: str,
     cc: str | None = None,
+    in_reply_to: str | None = None, references: str | None = None,
 ) -> tuple[bool, str]:
-    """Send HTML email from admin@ with PDF attachment + inline logo + signature."""
+    """Send HTML email from admin@ with PDF attachment + inline logo + signature.
+    Pass in_reply_to / references to thread the message under an existing conversation."""
     if not os.path.isfile(attachment_path):
         return False, f"Attachment not found: {attachment_path}"
 
@@ -237,7 +251,8 @@ def send_from_admin_with_attachment(
             if e and e not in (CC_YCAO, to_email):
                 cc_list.append(e)
 
-    msg = _build_html_message(ADMIN_FROM, to_email, subject, body_plain, cc_list, attachment_path)
+    msg = _build_html_message(ADMIN_FROM, to_email, subject, body_plain, cc_list, attachment_path,
+                              in_reply_to=in_reply_to, references=references)
     return _smtp_send(msg, ADMIN_FROM, [to_email] + cc_list)
 
 

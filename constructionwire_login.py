@@ -25,31 +25,62 @@ def has_saved_cookies() -> bool:
     return os.path.isfile(COOKIES_PATH)
 
 
+def _on_login_page(url: str) -> bool:
+    """URL still on the login page (case-insensitive)."""
+    u = (url or "").lower()
+    return "constructionwire.com" in u and "/login" in u
+
+
+def _on_app_page(url: str) -> bool:
+    """URL is on ConstructionWire app but past the login page."""
+    u = (url or "").lower()
+    return "constructionwire.com" in u and "/login" not in u and not u.startswith("about:")
+
+
 def is_logged_in_url(url: str) -> bool:
-    """简单判断：当前 URL 已离开登录页，视为可能已登录。"""
-    return "/Login" not in (url or "")
+    """Backward-compat alias for downstream importers (pipeline scripts).
+    Returns True iff the URL is past the login page (i.e. inside the app)."""
+    return _on_app_page(url)
 
 
 async def wait_for_login_success(page, timeout_ms: int = 300_000):
     """
-    轮询直到检测到登录成功：URL 离开 /Login 或出现典型登录后页面特征。
-    超时时间内未检测到则抛出 asyncio.TimeoutError。
+    Two-stage wait:
+      1. Confirm we actually arrived at the /Login page (URL contains /Login).
+         If we already land on the app (cookies still valid), short-circuit success.
+      2. Wait for URL to leave /Login (i.e. user finished login).
+    Avoids the about:blank false-positive from the original loose `'/Login' not in url` check.
     """
     deadline = asyncio.get_event_loop().time() + (timeout_ms / 1000.0)
 
+    # Stage 1: confirm landing
+    landed_on_login = False
     while asyncio.get_event_loop().time() < deadline:
         url = page.url
-        if is_logged_in_url(url):
+        if _on_login_page(url):
+            landed_on_login = True
+            break
+        if _on_app_page(url):
+            # Already authenticated via residual cookies
+            print(f"未到登录页就直接进入应用 ({url}) —— cookies 未失效,直接保存。")
             return True
-        # 可选：检测登录后才有的元素，减少误判
-        # try:
-        #     await page.wait_for_selector("...", timeout=2000)
-        #     return True
-        # except Exception:
-        #     pass
         await asyncio.sleep(1.0)
 
-    raise asyncio.TimeoutError("未在限定时间内检测到登录成功，请重试。")
+    if not landed_on_login:
+        raise asyncio.TimeoutError("未到达登录页,无法继续。")
+
+    print(f"已到达登录页 ({page.url})。请在浏览器中手动登录,登录后窗口会自动关闭并保存 cookies…")
+
+    # Stage 2: wait for URL to leave /Login
+    while asyncio.get_event_loop().time() < deadline:
+        url = page.url
+        if _on_app_page(url):
+            print(f"检测到登录成功,跳转到 {url}")
+            await asyncio.sleep(2.0)  # let session storage settle
+            return True
+        await asyncio.sleep(1.5)
+
+    raise asyncio.TimeoutError("登录超时 (5 min) —— 请重试。")
 
 
 async def save_cookies(context):
